@@ -1,0 +1,82 @@
+/////////////////////////
+// Docker Commands
+/////////////////////////
+
+
+###########################
+## Instalar Docker na V.M
+###########################
+
+sudo yum install -y yum-utils
+
+sudo yum-config-manager --add-repo \https://download.docker.com/linux/centos/docker-ce.repo
+
+sudo yum install docker-ce docker-ce-cli containerd.io
+
+sudo systemctl start docker
+
+## Verificar Funcionamento
+
+sudo docker run hello-world
+
+sudo docker run fedora cat /etc/os-release
+
+
+###########################
+## Criar Imagem Docker na VM
+###########################
+
+
+## Exemplo de DockerFile para correr o jar "ServiceREST"
+## "Extende" de uma imagem de jdk para conseguir correr java
+FROM openjdk:11
+
+WORKDIR /usr/servicerest
+
+COPY ServiceREST.jar .
+
+EXPOSE 7500
+
+CMD ["java", "-jar", "ServiceREST.jar"]
+
+## Imagem é criada com base no ficheiro DockerFile
+
+## Criar a imagem simples com o nome servicerest na diretoria local
+sudo docker build -t rest-servicerest .
+
+## Criar de um container baseado na imagem anterior 
+## atraves de execução com exposição 
+## do porto 7500 do container como porto 8000 do host
+sudo docker run -d -p 8000:7500 servicerest
+sudo docker run -d -p 8001:7500 servicerest
+
+## Acrescentar volume ao docker correr com flag -v
+-v logging:/usr/servicerest
+
+## verificar a diretoria do
+## file system do host onde está o volume
+docker volume inspect logging
+
+## Ver todos os volumes
+docker volume ls
+
+## Lista de imagens
+sudo docker ps -a
+
+## Parar todos os containers
+docker stop $(docker ps -q)
+
+## Apagar container
+docker rm containner_id
+
+## Testar realizando pedido para as portas 8001 e 8001 e ver a resposta
+
+## Verifique que agora já consegue visualizar os logs durante a execução ou após o
+## container ter terminado, acedendo à diretoria do host onde está o volume logging:
+sudo ls -al /var/lib/docker/volumes/logging/_data
+sudo cat /var/lib/docker/volumes/logging/_data/ServiceRestlogs
+
+
+
+
+
