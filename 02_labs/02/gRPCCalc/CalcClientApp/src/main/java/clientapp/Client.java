@@ -1,10 +1,9 @@
 package clientapp;
 
 import calcstubs.*;
-import calcstubs.Number;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.stub.StreamObserver;
+
 import java.util.*;
 
 
@@ -33,16 +32,15 @@ public class Client {
             blockingStub = CalcServiceGrpc.newBlockingStub(channel);
             noBlockStub = CalcServiceGrpc.newStub(channel);
 
+            ServerCaller serverCaller = new ServerCaller(blockingStub, noBlockStub);
+
             while (true) {
                 switch (Menu()) {
                     case 1:  // adicionar dois numeros
-                        Result res = blockingStub.add(AddOperands.newBuilder()
-                                .setId("50+25")
-                                .setOp1(50).setOp2(25)
-                                .build());
-                        System.out.println("add " + res.getId() + "= " + res.getRes());
+                        serverCaller.blockingAdd();
                         break;
                     case 2: // calcular as  potencias de x^y
+                        serverCaller.sendCalculatePowersRequest();
                         break;
                     case 3: //somar a sequencia dos numeros de x a y
                         break;
@@ -58,6 +56,15 @@ public class Client {
             ex.printStackTrace();
         }
     }
+
+    private static Result blockingAdd(){
+        return blockingStub.add(AddOperands.newBuilder()
+                .setId("50+25")
+                .setOp1(50).setOp2(25)
+                .build());
+    }
+
+
 
     private static int Menu() {
         int op;
