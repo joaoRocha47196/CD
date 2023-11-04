@@ -12,7 +12,7 @@ public class Server extends CalcServiceGrpc.CalcServiceImplBase {
 
     public static void main(String[] args) {
         try {
-            if (args.length > 0) svcPort = Integer.parseInt(args[0]);
+            if (args.length > 0) svcPort= Integer.parseInt(args[0]);
             io.grpc.Server svc = ServerBuilder
                 .forPort(svcPort)
                 .addService(new Server())
