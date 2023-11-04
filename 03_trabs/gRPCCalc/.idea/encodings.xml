@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/CalcClientApp/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/CalcClientApp/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/CalcContract/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/CalcContract/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/CalcServerApp/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/CalcServerApp/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ClientApp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ClientApp/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Contracts/CalcContract/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Contracts/CalcContract/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Contracts/ClientToRegisterContract/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Contracts/ClientToRegisterContract/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Contracts/ClientToServerContract/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Contracts/ClientToServerContract/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Contracts/ServerToRegisterContract/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Contracts/ServerToRegisterContract/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ImgServerApp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ImgServerApp/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/RegisterServerApp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/RegisterServerApp/src/main/resources" charset="UTF-8" />
   </component>
 </project>

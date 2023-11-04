@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CalcClientApp/CalcClientApp.iml" filepath="$PROJECT_DIR$/CalcClientApp/CalcClientApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CalcContract/CalcContract.iml" filepath="$PROJECT_DIR$/CalcContract/CalcContract.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CalcServerApp/CalcServerApp.iml" filepath="$PROJECT_DIR$/CalcServerApp/CalcServerApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/gRPCCalc.iml" filepath="$PROJECT_DIR$/.idea/gRPCCalc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Contracts/CalcContract/CalcContract.iml" filepath="$PROJECT_DIR$/Contracts/CalcContract/CalcContract.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClientApp/ClientApp.iml" filepath="$PROJECT_DIR$/ClientApp/ClientApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Contracts/ClientToRegisterContract/ClientToRegisterContract.iml" filepath="$PROJECT_DIR$/Contracts/ClientToRegisterContract/ClientToRegisterContract.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Contracts/ClientToServerContract/ClientToServerContract.iml" filepath="$PROJECT_DIR$/Contracts/ClientToServerContract/ClientToServerContract.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ImageMarks.iml" filepath="$PROJECT_DIR$/.idea/ImageMarks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CalcServerApp/ImgServerApp.iml" filepath="$PROJECT_DIR$/CalcServerApp/ImgServerApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RegisterServerApp/RegisterServerApp.iml" filepath="$PROJECT_DIR$/RegisterServerApp/RegisterServerApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Contracts/ServerToRegisterContract/ServerToRegisterContract.iml" filepath="$PROJECT_DIR$/Contracts/ServerToRegisterContract/ServerToRegisterContract.iml" />
     </modules>
   </component>
 </project>

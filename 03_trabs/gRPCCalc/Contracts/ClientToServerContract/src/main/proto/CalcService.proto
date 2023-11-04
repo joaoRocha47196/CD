@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+message ImageRequest {
+  bytes image_data = 1;
+  repeated string keywords = 2;
+}
+
+message ImageResponse {
+  string image_id = 1;
+  bytes processed_image = 2;
+  string status = 3;
+}
+
+service ImageProcessingService {
+  rpc ProcessImage(ImageRequest) returns (ImageResponse);
+  rpc CheckImageStatus(ImageRequest) returns (ImageResponse);
+  rpc DownloadProcessedImage(ImageRequest) returns (ImageResponse);
+}
