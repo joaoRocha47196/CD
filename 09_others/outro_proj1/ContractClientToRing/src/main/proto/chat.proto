@@ -1,0 +1,22 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+option java_multiple_files = true;
+option java_package = "client";
+
+package client;
+
+// The Chat service definition.
+service Client {
+    rpc getServer(clientID) returns (msg);
+}
+
+    message clientID {
+    string name = 1;
+        }
+
+        message msg{
+    string ip = 1;
+        }
+
+
+

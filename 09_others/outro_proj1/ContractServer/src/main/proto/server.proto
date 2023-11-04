@@ -1,0 +1,26 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+option java_multiple_files = true;
+option java_package = "contractServer";
+
+package ContractServer;
+
+// The Chat service definition.
+service ServerToServer {
+  rpc registerServer(serverIP) returns (stream ChatMessageServer);
+  rpc sendMessageServer(ChatMessageServer) returns (google.protobuf.Empty);
+}
+
+message serverIP {
+  int32 ip = 1;
+
+}
+
+
+message ChatMessageServer {
+  string txtMsg = 1;
+  string fromUser = 2;
+  int32 token = 3;
+}
+
+

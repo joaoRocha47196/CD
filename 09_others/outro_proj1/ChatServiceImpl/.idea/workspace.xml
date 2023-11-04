@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3d9499ba-144a-41d6-b918-b2ad8b2b5355" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="2034nQ2TNn6KSy3xksXZ0Tdnb6H" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunManager">
+    <configuration name="ChatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chatserver.ChatServer" />
+      <module name="ChatServiceImpl" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chatserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ChatServer" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3d9499ba-144a-41d6-b918-b2ad8b2b5355" name="Default Changelist" comment="" />
+      <created>1635260105001</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1635260105001</updated>
+      <workItem from="1635260106335" duration="32000" />
+      <workItem from="1635260198540" duration="99000" />
+      <workItem from="1635260318092" duration="2348000" />
+      <workItem from="1635262772727" duration="2010000" />
+      <workItem from="1636392816901" duration="326000" />
+      <workItem from="1636393383986" duration="1916000" />
+      <workItem from="1636473254373" duration="1826000" />
+      <workItem from="1636477136664" duration="11852000" />
+      <workItem from="1636644885290" duration="2984000" />
+      <workItem from="1637072790142" duration="2499000" />
+      <workItem from="1637163548493" duration="482000" />
+      <workItem from="1637335503501" duration="5304000" />
+      <workItem from="1637684816987" duration="1367000" />
+      <workItem from="1637763845399" duration="11664000" />
+      <workItem from="1637955593260" duration="2122000" />
+      <workItem from="1638029452903" duration="365000" />
+      <workItem from="1638029834801" duration="8858000" />
+      <workItem from="1638315227955" duration="595000" />
+      <workItem from="1638379939744" duration="596000" />
+      <workItem from="1638460027486" duration="7736000" />
+      <workItem from="1638548583301" duration="8220000" />
+      <workItem from="1638750252174" duration="2111000" />
+      <workItem from="1638800414201" duration="11040000" />
+      <workItem from="1638897396704" duration="4492000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

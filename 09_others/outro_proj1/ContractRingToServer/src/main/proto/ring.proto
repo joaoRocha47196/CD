@@ -1,0 +1,19 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+option java_multiple_files = true;
+option java_package = "ring";
+
+package ring;
+
+// The Chat service definition.
+service Ring {
+    rpc registerServer(serverID) returns (google.protobuf.Empty);
+    rpc vizinhoIp(serverID) returns(serverID);
+}
+
+    message serverID {
+    string ip = 1;
+        }
+
+
+

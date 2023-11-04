@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "rpcCourierStub";
+
+package CourierClientService; // proto  package
+
+service CommunicationService {
+    rpc connect(Connection) returns (stream Work);
+    rpc disconnect(Void) returns (Void);
+    rpc free(Void) returns (Void);
+    rpc busy(Void) returns (Void);
+}
+
+message Connection {
+    string region = 1;
+}
+
+message Work {
+    string addressSrc = 1;
+    string addressDest = 2;
+}
+
+message Void {
+
+}

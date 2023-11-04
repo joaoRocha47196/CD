@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "rpcRegisterStub";
+
+package RingManagerService; // proto  package
+
+// ring manager - kv Server contract
+service RegisterService {
+    rpc registServer(Server) returns (Server);
+}
+
+message Server {
+    string ip = 1;
+    int32 port = 2;
+    string id = 3;
+}

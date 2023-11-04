@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "rpcBrowserStub";
+
+package RingManagerService; // proto  package
+
+service ServerBrowserService {
+    rpc getKvServer(Void) returns (Server);
+}
+
+message Server {
+    string ip = 1;
+    int32 port = 2;
+    string id = 3;
+}
+
+message Void {
+
+}
