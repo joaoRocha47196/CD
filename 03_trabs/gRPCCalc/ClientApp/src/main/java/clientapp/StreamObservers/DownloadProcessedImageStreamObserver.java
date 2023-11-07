@@ -1,8 +1,16 @@
 package clientapp.StreamObservers;
 
+import csstubs.ImageResponse;
 import io.grpc.stub.StreamObserver;
 
 public class DownloadProcessedImageStreamObserver implements StreamObserver<ImageResponse> {
+
+    private final String destinationPath;
+
+    public DownloadProcessedImageStreamObserver(String destinationPath){
+        this.destinationPath = destinationPath;
+    }
+
     @Override
     public void onNext(ImageResponse imageResponse) {
         System.out.println("╔════════════════════════════════════╗");

@@ -1,5 +1,6 @@
 package clientapp.StreamObservers;
 
+import csstubs.ImageResponse;
 import io.grpc.stub.StreamObserver;
 
 public class CheckImageStatusStreamObserver implements StreamObserver<ImageResponse> {

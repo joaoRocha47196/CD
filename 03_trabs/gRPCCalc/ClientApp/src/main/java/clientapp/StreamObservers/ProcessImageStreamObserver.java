@@ -1,8 +1,16 @@
 package clientapp.StreamObservers;
 
+import csstubs.ImageIdentifier;
 import io.grpc.stub.StreamObserver;
 
 public class ProcessImageStreamObserver implements StreamObserver<ImageIdentifier> {
+
+    private final String imagePath;
+
+    public ProcessImageStreamObserver(String imagePath){
+        this.imagePath = imagePath;
+    }
+
     @Override
     public void onNext(ImageIdentifier imageIdentifier) {
         System.out.println("╔════════════════════════════════════╗");

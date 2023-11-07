@@ -49,7 +49,7 @@
                     </descriptors>
                     <archive>
                         <manifest>
-                            <mainClass>serverapp.Server</mainClass>
+                            <mainClass>serverapp.ImageServer</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

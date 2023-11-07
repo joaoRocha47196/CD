@@ -27,6 +27,8 @@ public class Server extends CalcServiceGrpc.CalcServiceImplBase {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        System.out.println("Entrou");
     }
 
     public void logger(String className, String methodName, String info){

@@ -1,4 +1,5 @@
 package clientapp.StreamObservers;
+import crstubs.ServerEndpoint;
 import io.grpc.stub.StreamObserver;
 
 public class GetServerEndpointStreamObserver implements StreamObserver<ServerEndpoint> {
