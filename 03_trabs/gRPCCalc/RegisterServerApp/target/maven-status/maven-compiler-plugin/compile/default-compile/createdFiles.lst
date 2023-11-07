@@ -1,1 +1,3 @@
 serverapp\Server.class
+services\CRService.class
+services\SRService.class

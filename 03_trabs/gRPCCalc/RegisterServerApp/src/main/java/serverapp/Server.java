@@ -1,7 +1,7 @@
 package serverapp;
 
 import calcstubs.*;
-import srstubs.*;
+import services.SRService;
 import calcstubs.Number;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
@@ -12,17 +12,20 @@ public class Server extends CalcServiceGrpc.CalcServiceImplBase {
 
     private static int svcPort = 8500;
 
-    private SRServiceGrpc.SRServiceImplBase srService = new SRServiceGrpc.SRServiceImplBase() {
 
-    };
         public static void main(String[] args) {
         try {
             if (args.length > 0) svcPort = Integer.parseInt(args[0]);
+
+            // Create Server
             io.grpc.Server svc = ServerBuilder
                 .forPort(svcPort)
                 .addService(new Server())
+                .addService(new SRService())
                 .build();
             svc.start();
+
+
             System.out.println("Server started, listening on " + svcPort);
             //Scanner scan = new Scanner(System.in);
             //scan.nextLine();
@@ -41,6 +44,8 @@ public class Server extends CalcServiceGrpc.CalcServiceImplBase {
                 + info + "]"
         );
     }
+
+    // TODO - DELETE BELOW
     @Override
     public void add(AddOperands request, StreamObserver<Result> responseObserver) {
         logger("Server", "add", "Start Exec");

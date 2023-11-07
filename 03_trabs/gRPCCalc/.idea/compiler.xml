@@ -6,13 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ClientToServerContract" />
         <module name="RegisterServerApp" />
+        <module name="ClientToServerContract" />
         <module name="ClientToRegisterContract" />
         <module name="ClientApp" />
         <module name="ServerToRegisterContract" />
         <module name="ImgServerApp" />
-        <module name="CalcContract" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

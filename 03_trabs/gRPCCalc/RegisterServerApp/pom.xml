@@ -29,6 +29,12 @@
             <version>1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>cd2324crcontract</groupId>
+            <artifactId>ClientToRegisterContract</artifactId>
+            <version>1.0</version>
+        </dependency>
+
       </dependencies>
 
     <build>
