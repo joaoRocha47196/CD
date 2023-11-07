@@ -1,14 +1,17 @@
 package clientapp;
 
-import calcstubs.*;
+import calcstubs.CalcServiceGrpc;
+import clientapp.StreamObservers.GetServerEndpoint;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.stub.StreamObserver;
 
 import java.util.*;
 
 
 public class Client {
 
+    private static final int MENU_EXIT_OPTION = 9;
     private static String svcIP = "localhost";
     //private static String svcIP = "35.246.73.129";
     private static int svcPort = 8000;
@@ -33,22 +36,28 @@ public class Client {
 
             ServerCaller serverCaller = new ServerCaller(blockingStub, noBlockStub);
 
+            Scanner sc = new Scanner(System.in);
+
             while (true) {
-                switch (Menu()) {
-                    case 1:  // adicionar dois numeros
-                        serverCaller.blockingAdd();
+                int menuOption = getMenuOption();
+                switch (menuOption) {
+                    case 1:
+                        getServerEndpoint();
                         break;
-                    case 2: // calcular as  potencias de x^y
-                        serverCaller.sendCalculatePowersRequest();
+
+                    case 2:
+
                         break;
-                    case 3: //somar a sequencia dos numeros de x a y
+
+                    case 3:
+
                         break;
-                    case 4: //sequencia de operacões de soma x + y
+
+                    case 4:
                         break;
-                    case 99:
+
+                    case MENU_EXIT_OPTION:
                         System.exit(0);
-                    default:
-                        break;
                 }
             }
         } catch (Exception ex) {
@@ -56,32 +65,43 @@ public class Client {
         }
     }
 
-    private static Result blockingAdd(){
-        return blockingStub.add(AddOperands.newBuilder()
-                .setId("50+25")
-                .setOp1(50).setOp2(25)
-                .build());
-    }
 
-
-
-    private static int Menu() {
-        int op;
+    static int getMenuOption() {
         Scanner scan = new Scanner(System.in);
+        int option;
         do {
-            System.out.println();
-            System.out.println("    MENU");
-            System.out.println(" 1 - Case1 - chamada unária: add two numbers");
-            System.out.println(" 2 - Case 2 - chamada com sream de servidor: generate powers");
-            System.out.println(" 3 - Case 3 - chamada com stream de cliente: add a sequence of numbers");
-            System.out.println(" 4 - stream de cliente e de servidor: Multiple add operations ");
-            System.out.println("99 - Exit");
-            System.out.println();
-            System.out.println("Choose an Option?");
-            op = scan.nextInt();
-        } while (!((op >= 1 && op <= 4) || op == 99));
-        return op;
+            printMenuOptions();
+            System.out.print("Enter an Option: \n");
+            option = scan.nextInt();
+        } while (!isValidOption(option));
+        return option;
     }
 
+    static void printMenuOptions() {
+        System.out.println("╔════════════════════════════╗");
+        System.out.println("║            MENU            ║");
+        System.out.println("╠═══╦════════════════════════╣");
+        System.out.println("║ 1 ║ Get Server Endpoint    ║");
+        System.out.println("╠═══╬════════════════════════╣");
+        System.out.println("║ 2 ║ -------------          ║");
+        System.out.println("╠═══╬════════════════════════╣");
+        System.out.println("║ 3 ║ -------------          ║");
+        System.out.println("╠═══╬════════════════════════╣");
+        System.out.println("║ 4 ║ -------------          ║");
+        System.out.println("╠═══╬════════════════════════╣");
+        System.out.println("║ 5 ║ Exit                   ║");
+        System.out.println("╚═══╩════════════════════════╝");
+    }
 
+    private static boolean isValidOption(int option) {
+        return (option >= 1 && option <= 5) || option == MENU_EXIT_OPTION;
+    }
+
+    private static void getServerEndpoint(){
+        StreamObserver<GetServerRequest> streamObserver = blockingStub.GetServerEndpoint(new GetServerEndpoint());
+    }
+
+    private static void registerServer(){
+        StreamObserver<ServerRegistration> streamObserver = blockingStub.RegisterServer(new GetServerEndpoint());
+    }
 }

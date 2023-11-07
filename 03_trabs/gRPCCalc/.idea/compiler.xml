@@ -17,14 +17,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CalcClientApp" target="11" />
-      <module name="CalcContract" target="11" />
-      <module name="ClientApp" target="11" />
-      <module name="ClientToRegisterContract" target="11" />
-      <module name="ClientToServerContract" target="11" />
-      <module name="ImgServerApp" target="11" />
       <module name="ImgServerApp (1)" target="11" />
-      <module name="RegisterServerApp" target="11" />
-      <module name="ServerToRegisterContract" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

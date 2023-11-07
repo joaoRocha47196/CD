@@ -2,7 +2,7 @@ package clientapp.StreamObservers;
 
 import io.grpc.stub.StreamObserver;
 
-public class GetServer implements StreamObserver<ServerEndpoint> {
+public class GetServerEndpoint implements StreamObserver<ServerEndpoint> {
     @Override
     public void onNext(ServerEndpoint serverEndpoint) {
         System.out.println("╔════════════════════════════════════╗");

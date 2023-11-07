@@ -2,15 +2,13 @@ package clientapp.StreamObservers;
 
 import io.grpc.stub.StreamObserver;
 
-public class RegisterServer implements StreamObserver<ServerEndpoint> {
-
+public class RegisterServer implements StreamObserver<EmptyResponse> {
     @Override
-    public void onNext(ServerEndpoint serverEndpoint) {
+    public void onNext(EmptyResponse emptyResponse) {
         System.out.println("╔════════════════════════════════════╗");
-        System.out.println("║        Server Endpoint Info        ║");
+        System.out.println("║    Server Registration Response    ║");
         System.out.println("║------------------------------------║");
-        System.out.println("║ Server IP: " + serverEndpoint.getServerIp());
-        System.out.println("║ Server Port: " + serverEndpoint.getServerPort());
+        System.out.println("║ Server registered successfully.    ║");
         System.out.println("║------------------------------------║");
         System.out.println("╚════════════════════════════════════╝");
     }
@@ -22,6 +20,6 @@ public class RegisterServer implements StreamObserver<ServerEndpoint> {
 
     @Override
     public void onCompleted() {
-        System.out.println("Server endpoint retrieval completed.");
+        System.out.println("Server registration completed.");
     }
 }
