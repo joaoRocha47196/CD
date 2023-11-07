@@ -1,12 +1,15 @@
 package clientapp;
 
 import calcstubs.CalcServiceGrpc;
-import clientapp.StreamObservers.GetServerEndpoint;
+import clientapp.StreamObservers.GetServerEndpointStreamObserver;
+import clientapp.StreamObservers.ProcessImageStreamObserver;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
+import srstubs.ServerRegistration;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 
 public class Client {
@@ -98,10 +101,14 @@ public class Client {
     }
 
     private static void getServerEndpoint(){
-        StreamObserver<GetServerRequest> streamObserver = blockingStub.GetServerEndpoint(new GetServerEndpoint());
+        StreamObserver<GetServerRequest> streamObserver = blockingStub.GetServerEndpoint(new GetServerEndpointStreamObserver());
     }
 
     private static void registerServer(){
-        StreamObserver<ServerRegistration> streamObserver = blockingStub.RegisterServer(new GetServerEndpoint());
+        StreamObserver<ServerRegistration> streamObserver = blockingStub.RegisterServer(new GetServerEndpointStreamObserver());
+    }
+
+    private static void processImage(){
+        StreamObserver<CalcService.ImageRequest> streamObserver = blockingStub.ProcessImage( new ProcessImageStreamObserver());
     }
 }

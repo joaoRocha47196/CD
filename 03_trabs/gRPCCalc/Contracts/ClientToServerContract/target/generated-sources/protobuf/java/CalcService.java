@@ -12,6 +12,2434 @@ public final class CalcService {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  public interface ImageRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ImageRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bytes image_data = 1;</code>
+     * @return The imageData.
+     */
+    com.google.protobuf.ByteString getImageData();
+
+    /**
+     * <code>repeated string keywords = 2;</code>
+     * @return A list containing the keywords.
+     */
+    java.util.List<java.lang.String>
+        getKeywordsList();
+    /**
+     * <code>repeated string keywords = 2;</code>
+     * @return The count of keywords.
+     */
+    int getKeywordsCount();
+    /**
+     * <code>repeated string keywords = 2;</code>
+     * @param index The index of the element to return.
+     * @return The keywords at the given index.
+     */
+    java.lang.String getKeywords(int index);
+    /**
+     * <code>repeated string keywords = 2;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the keywords at the given index.
+     */
+    com.google.protobuf.ByteString
+        getKeywordsBytes(int index);
+  }
+  /**
+   * Protobuf type {@code ImageRequest}
+   */
+  public static final class ImageRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ImageRequest)
+      ImageRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ImageRequest.newBuilder() to construct.
+    private ImageRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ImageRequest() {
+      imageData_ = com.google.protobuf.ByteString.EMPTY;
+      keywords_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ImageRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return CalcService.internal_static_ImageRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return CalcService.internal_static_ImageRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              CalcService.ImageRequest.class, CalcService.ImageRequest.Builder.class);
+    }
+
+    public static final int IMAGE_DATA_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString imageData_;
+    /**
+     * <code>bytes image_data = 1;</code>
+     * @return The imageData.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getImageData() {
+      return imageData_;
+    }
+
+    public static final int KEYWORDS_FIELD_NUMBER = 2;
+    private com.google.protobuf.LazyStringList keywords_;
+    /**
+     * <code>repeated string keywords = 2;</code>
+     * @return A list containing the keywords.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getKeywordsList() {
+      return keywords_;
+    }
+    /**
+     * <code>repeated string keywords = 2;</code>
+     * @return The count of keywords.
+     */
+    public int getKeywordsCount() {
+      return keywords_.size();
+    }
+    /**
+     * <code>repeated string keywords = 2;</code>
+     * @param index The index of the element to return.
+     * @return The keywords at the given index.
+     */
+    public java.lang.String getKeywords(int index) {
+      return keywords_.get(index);
+    }
+    /**
+     * <code>repeated string keywords = 2;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the keywords at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getKeywordsBytes(int index) {
+      return keywords_.getByteString(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!imageData_.isEmpty()) {
+        output.writeBytes(1, imageData_);
+      }
+      for (int i = 0; i < keywords_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, keywords_.getRaw(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!imageData_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, imageData_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < keywords_.size(); i++) {
+          dataSize += computeStringSizeNoTag(keywords_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getKeywordsList().size();
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof CalcService.ImageRequest)) {
+        return super.equals(obj);
+      }
+      CalcService.ImageRequest other = (CalcService.ImageRequest) obj;
+
+      if (!getImageData()
+          .equals(other.getImageData())) return false;
+      if (!getKeywordsList()
+          .equals(other.getKeywordsList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + IMAGE_DATA_FIELD_NUMBER;
+      hash = (53 * hash) + getImageData().hashCode();
+      if (getKeywordsCount() > 0) {
+        hash = (37 * hash) + KEYWORDS_FIELD_NUMBER;
+        hash = (53 * hash) + getKeywordsList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static CalcService.ImageRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static CalcService.ImageRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static CalcService.ImageRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static CalcService.ImageRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static CalcService.ImageRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static CalcService.ImageRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static CalcService.ImageRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static CalcService.ImageRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static CalcService.ImageRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static CalcService.ImageRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static CalcService.ImageRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static CalcService.ImageRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(CalcService.ImageRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ImageRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ImageRequest)
+        CalcService.ImageRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return CalcService.internal_static_ImageRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return CalcService.internal_static_ImageRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                CalcService.ImageRequest.class, CalcService.ImageRequest.Builder.class);
+      }
+
+      // Construct using CalcService.ImageRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        imageData_ = com.google.protobuf.ByteString.EMPTY;
+
+        keywords_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return CalcService.internal_static_ImageRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public CalcService.ImageRequest getDefaultInstanceForType() {
+        return CalcService.ImageRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public CalcService.ImageRequest build() {
+        CalcService.ImageRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public CalcService.ImageRequest buildPartial() {
+        CalcService.ImageRequest result = new CalcService.ImageRequest(this);
+        int from_bitField0_ = bitField0_;
+        result.imageData_ = imageData_;
+        if (((bitField0_ & 0x00000001) != 0)) {
+          keywords_ = keywords_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.keywords_ = keywords_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof CalcService.ImageRequest) {
+          return mergeFrom((CalcService.ImageRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(CalcService.ImageRequest other) {
+        if (other == CalcService.ImageRequest.getDefaultInstance()) return this;
+        if (other.getImageData() != com.google.protobuf.ByteString.EMPTY) {
+          setImageData(other.getImageData());
+        }
+        if (!other.keywords_.isEmpty()) {
+          if (keywords_.isEmpty()) {
+            keywords_ = other.keywords_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureKeywordsIsMutable();
+            keywords_.addAll(other.keywords_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                imageData_ = input.readBytes();
+
+                break;
+              } // case 10
+              case 18: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureKeywordsIsMutable();
+                keywords_.add(s);
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.ByteString imageData_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes image_data = 1;</code>
+       * @return The imageData.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getImageData() {
+        return imageData_;
+      }
+      /**
+       * <code>bytes image_data = 1;</code>
+       * @param value The imageData to set.
+       * @return This builder for chaining.
+       */
+      public Builder setImageData(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        imageData_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes image_data = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearImageData() {
+        
+        imageData_ = getDefaultInstance().getImageData();
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringList keywords_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureKeywordsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          keywords_ = new com.google.protobuf.LazyStringArrayList(keywords_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <code>repeated string keywords = 2;</code>
+       * @return A list containing the keywords.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getKeywordsList() {
+        return keywords_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string keywords = 2;</code>
+       * @return The count of keywords.
+       */
+      public int getKeywordsCount() {
+        return keywords_.size();
+      }
+      /**
+       * <code>repeated string keywords = 2;</code>
+       * @param index The index of the element to return.
+       * @return The keywords at the given index.
+       */
+      public java.lang.String getKeywords(int index) {
+        return keywords_.get(index);
+      }
+      /**
+       * <code>repeated string keywords = 2;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the keywords at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getKeywordsBytes(int index) {
+        return keywords_.getByteString(index);
+      }
+      /**
+       * <code>repeated string keywords = 2;</code>
+       * @param index The index to set the value at.
+       * @param value The keywords to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKeywords(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureKeywordsIsMutable();
+        keywords_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string keywords = 2;</code>
+       * @param value The keywords to add.
+       * @return This builder for chaining.
+       */
+      public Builder addKeywords(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureKeywordsIsMutable();
+        keywords_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string keywords = 2;</code>
+       * @param values The keywords to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllKeywords(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureKeywordsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, keywords_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string keywords = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearKeywords() {
+        keywords_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string keywords = 2;</code>
+       * @param value The bytes of the keywords to add.
+       * @return This builder for chaining.
+       */
+      public Builder addKeywordsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureKeywordsIsMutable();
+        keywords_.add(value);
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ImageRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:ImageRequest)
+    private static final CalcService.ImageRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new CalcService.ImageRequest();
+    }
+
+    public static CalcService.ImageRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ImageRequest>
+        PARSER = new com.google.protobuf.AbstractParser<ImageRequest>() {
+      @java.lang.Override
+      public ImageRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ImageRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ImageRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public CalcService.ImageRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ImageResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ImageResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string image_id = 1;</code>
+     * @return The imageId.
+     */
+    java.lang.String getImageId();
+    /**
+     * <code>string image_id = 1;</code>
+     * @return The bytes for imageId.
+     */
+    com.google.protobuf.ByteString
+        getImageIdBytes();
+
+    /**
+     * <code>bytes processed_image = 2;</code>
+     * @return The processedImage.
+     */
+    com.google.protobuf.ByteString getProcessedImage();
+
+    /**
+     * <code>string status = 3;</code>
+     * @return The status.
+     */
+    java.lang.String getStatus();
+    /**
+     * <code>string status = 3;</code>
+     * @return The bytes for status.
+     */
+    com.google.protobuf.ByteString
+        getStatusBytes();
+  }
+  /**
+   * Protobuf type {@code ImageResponse}
+   */
+  public static final class ImageResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ImageResponse)
+      ImageResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ImageResponse.newBuilder() to construct.
+    private ImageResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ImageResponse() {
+      imageId_ = "";
+      processedImage_ = com.google.protobuf.ByteString.EMPTY;
+      status_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ImageResponse();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return CalcService.internal_static_ImageResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return CalcService.internal_static_ImageResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              CalcService.ImageResponse.class, CalcService.ImageResponse.Builder.class);
+    }
+
+    public static final int IMAGE_ID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object imageId_;
+    /**
+     * <code>string image_id = 1;</code>
+     * @return The imageId.
+     */
+    @java.lang.Override
+    public java.lang.String getImageId() {
+      java.lang.Object ref = imageId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        imageId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string image_id = 1;</code>
+     * @return The bytes for imageId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getImageIdBytes() {
+      java.lang.Object ref = imageId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        imageId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PROCESSED_IMAGE_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString processedImage_;
+    /**
+     * <code>bytes processed_image = 2;</code>
+     * @return The processedImage.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getProcessedImage() {
+      return processedImage_;
+    }
+
+    public static final int STATUS_FIELD_NUMBER = 3;
+    private volatile java.lang.Object status_;
+    /**
+     * <code>string status = 3;</code>
+     * @return The status.
+     */
+    @java.lang.Override
+    public java.lang.String getStatus() {
+      java.lang.Object ref = status_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        status_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string status = 3;</code>
+     * @return The bytes for status.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getStatusBytes() {
+      java.lang.Object ref = status_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        status_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(imageId_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, imageId_);
+      }
+      if (!processedImage_.isEmpty()) {
+        output.writeBytes(2, processedImage_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, status_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(imageId_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, imageId_);
+      }
+      if (!processedImage_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, processedImage_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, status_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof CalcService.ImageResponse)) {
+        return super.equals(obj);
+      }
+      CalcService.ImageResponse other = (CalcService.ImageResponse) obj;
+
+      if (!getImageId()
+          .equals(other.getImageId())) return false;
+      if (!getProcessedImage()
+          .equals(other.getProcessedImage())) return false;
+      if (!getStatus()
+          .equals(other.getStatus())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + IMAGE_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getImageId().hashCode();
+      hash = (37 * hash) + PROCESSED_IMAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getProcessedImage().hashCode();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static CalcService.ImageResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static CalcService.ImageResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static CalcService.ImageResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static CalcService.ImageResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static CalcService.ImageResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static CalcService.ImageResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static CalcService.ImageResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static CalcService.ImageResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static CalcService.ImageResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static CalcService.ImageResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static CalcService.ImageResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static CalcService.ImageResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(CalcService.ImageResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ImageResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ImageResponse)
+        CalcService.ImageResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return CalcService.internal_static_ImageResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return CalcService.internal_static_ImageResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                CalcService.ImageResponse.class, CalcService.ImageResponse.Builder.class);
+      }
+
+      // Construct using CalcService.ImageResponse.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        imageId_ = "";
+
+        processedImage_ = com.google.protobuf.ByteString.EMPTY;
+
+        status_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return CalcService.internal_static_ImageResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public CalcService.ImageResponse getDefaultInstanceForType() {
+        return CalcService.ImageResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public CalcService.ImageResponse build() {
+        CalcService.ImageResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public CalcService.ImageResponse buildPartial() {
+        CalcService.ImageResponse result = new CalcService.ImageResponse(this);
+        result.imageId_ = imageId_;
+        result.processedImage_ = processedImage_;
+        result.status_ = status_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof CalcService.ImageResponse) {
+          return mergeFrom((CalcService.ImageResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(CalcService.ImageResponse other) {
+        if (other == CalcService.ImageResponse.getDefaultInstance()) return this;
+        if (!other.getImageId().isEmpty()) {
+          imageId_ = other.imageId_;
+          onChanged();
+        }
+        if (other.getProcessedImage() != com.google.protobuf.ByteString.EMPTY) {
+          setProcessedImage(other.getProcessedImage());
+        }
+        if (!other.getStatus().isEmpty()) {
+          status_ = other.status_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                imageId_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 10
+              case 18: {
+                processedImage_ = input.readBytes();
+
+                break;
+              } // case 18
+              case 26: {
+                status_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private java.lang.Object imageId_ = "";
+      /**
+       * <code>string image_id = 1;</code>
+       * @return The imageId.
+       */
+      public java.lang.String getImageId() {
+        java.lang.Object ref = imageId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          imageId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string image_id = 1;</code>
+       * @return The bytes for imageId.
+       */
+      public com.google.protobuf.ByteString
+          getImageIdBytes() {
+        java.lang.Object ref = imageId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          imageId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string image_id = 1;</code>
+       * @param value The imageId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setImageId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        imageId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string image_id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearImageId() {
+        
+        imageId_ = getDefaultInstance().getImageId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string image_id = 1;</code>
+       * @param value The bytes for imageId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setImageIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        imageId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString processedImage_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes processed_image = 2;</code>
+       * @return The processedImage.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getProcessedImage() {
+        return processedImage_;
+      }
+      /**
+       * <code>bytes processed_image = 2;</code>
+       * @param value The processedImage to set.
+       * @return This builder for chaining.
+       */
+      public Builder setProcessedImage(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        processedImage_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes processed_image = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearProcessedImage() {
+        
+        processedImage_ = getDefaultInstance().getProcessedImage();
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object status_ = "";
+      /**
+       * <code>string status = 3;</code>
+       * @return The status.
+       */
+      public java.lang.String getStatus() {
+        java.lang.Object ref = status_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          status_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string status = 3;</code>
+       * @return The bytes for status.
+       */
+      public com.google.protobuf.ByteString
+          getStatusBytes() {
+        java.lang.Object ref = status_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          status_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string status = 3;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatus(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string status = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatus() {
+        
+        status_ = getDefaultInstance().getStatus();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string status = 3;</code>
+       * @param value The bytes for status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatusBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ImageResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:ImageResponse)
+    private static final CalcService.ImageResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new CalcService.ImageResponse();
+    }
+
+    public static CalcService.ImageResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ImageResponse>
+        PARSER = new com.google.protobuf.AbstractParser<ImageResponse>() {
+      @java.lang.Override
+      public ImageResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ImageResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ImageResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public CalcService.ImageResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ImageIdentifierOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ImageIdentifier)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string identifier = 1;</code>
+     * @return The identifier.
+     */
+    java.lang.String getIdentifier();
+    /**
+     * <code>string identifier = 1;</code>
+     * @return The bytes for identifier.
+     */
+    com.google.protobuf.ByteString
+        getIdentifierBytes();
+  }
+  /**
+   * Protobuf type {@code ImageIdentifier}
+   */
+  public static final class ImageIdentifier extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ImageIdentifier)
+      ImageIdentifierOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ImageIdentifier.newBuilder() to construct.
+    private ImageIdentifier(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ImageIdentifier() {
+      identifier_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ImageIdentifier();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return CalcService.internal_static_ImageIdentifier_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return CalcService.internal_static_ImageIdentifier_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              CalcService.ImageIdentifier.class, CalcService.ImageIdentifier.Builder.class);
+    }
+
+    public static final int IDENTIFIER_FIELD_NUMBER = 1;
+    private volatile java.lang.Object identifier_;
+    /**
+     * <code>string identifier = 1;</code>
+     * @return The identifier.
+     */
+    @java.lang.Override
+    public java.lang.String getIdentifier() {
+      java.lang.Object ref = identifier_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        identifier_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string identifier = 1;</code>
+     * @return The bytes for identifier.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getIdentifierBytes() {
+      java.lang.Object ref = identifier_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        identifier_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(identifier_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, identifier_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(identifier_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, identifier_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof CalcService.ImageIdentifier)) {
+        return super.equals(obj);
+      }
+      CalcService.ImageIdentifier other = (CalcService.ImageIdentifier) obj;
+
+      if (!getIdentifier()
+          .equals(other.getIdentifier())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + IDENTIFIER_FIELD_NUMBER;
+      hash = (53 * hash) + getIdentifier().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static CalcService.ImageIdentifier parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static CalcService.ImageIdentifier parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static CalcService.ImageIdentifier parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static CalcService.ImageIdentifier parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static CalcService.ImageIdentifier parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static CalcService.ImageIdentifier parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static CalcService.ImageIdentifier parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static CalcService.ImageIdentifier parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static CalcService.ImageIdentifier parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static CalcService.ImageIdentifier parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static CalcService.ImageIdentifier parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static CalcService.ImageIdentifier parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(CalcService.ImageIdentifier prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ImageIdentifier}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ImageIdentifier)
+        CalcService.ImageIdentifierOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return CalcService.internal_static_ImageIdentifier_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return CalcService.internal_static_ImageIdentifier_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                CalcService.ImageIdentifier.class, CalcService.ImageIdentifier.Builder.class);
+      }
+
+      // Construct using CalcService.ImageIdentifier.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        identifier_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return CalcService.internal_static_ImageIdentifier_descriptor;
+      }
+
+      @java.lang.Override
+      public CalcService.ImageIdentifier getDefaultInstanceForType() {
+        return CalcService.ImageIdentifier.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public CalcService.ImageIdentifier build() {
+        CalcService.ImageIdentifier result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public CalcService.ImageIdentifier buildPartial() {
+        CalcService.ImageIdentifier result = new CalcService.ImageIdentifier(this);
+        result.identifier_ = identifier_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof CalcService.ImageIdentifier) {
+          return mergeFrom((CalcService.ImageIdentifier)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(CalcService.ImageIdentifier other) {
+        if (other == CalcService.ImageIdentifier.getDefaultInstance()) return this;
+        if (!other.getIdentifier().isEmpty()) {
+          identifier_ = other.identifier_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                identifier_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+
+      private java.lang.Object identifier_ = "";
+      /**
+       * <code>string identifier = 1;</code>
+       * @return The identifier.
+       */
+      public java.lang.String getIdentifier() {
+        java.lang.Object ref = identifier_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          identifier_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string identifier = 1;</code>
+       * @return The bytes for identifier.
+       */
+      public com.google.protobuf.ByteString
+          getIdentifierBytes() {
+        java.lang.Object ref = identifier_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          identifier_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string identifier = 1;</code>
+       * @param value The identifier to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIdentifier(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        identifier_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string identifier = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIdentifier() {
+        
+        identifier_ = getDefaultInstance().getIdentifier();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string identifier = 1;</code>
+       * @param value The bytes for identifier to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIdentifierBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        identifier_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ImageIdentifier)
+    }
+
+    // @@protoc_insertion_point(class_scope:ImageIdentifier)
+    private static final CalcService.ImageIdentifier DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new CalcService.ImageIdentifier();
+    }
+
+    public static CalcService.ImageIdentifier getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ImageIdentifier>
+        PARSER = new com.google.protobuf.AbstractParser<ImageIdentifier>() {
+      @java.lang.Override
+      public ImageIdentifier parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ImageIdentifier> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ImageIdentifier> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public CalcService.ImageIdentifier getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ImageStatusOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ImageStatus)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code ImageStatus}
+   */
+  public static final class ImageStatus extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ImageStatus)
+      ImageStatusOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ImageStatus.newBuilder() to construct.
+    private ImageStatus(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ImageStatus() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ImageStatus();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return CalcService.internal_static_ImageStatus_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return CalcService.internal_static_ImageStatus_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              CalcService.ImageStatus.class, CalcService.ImageStatus.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof CalcService.ImageStatus)) {
+        return super.equals(obj);
+      }
+      CalcService.ImageStatus other = (CalcService.ImageStatus) obj;
+
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static CalcService.ImageStatus parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static CalcService.ImageStatus parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static CalcService.ImageStatus parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static CalcService.ImageStatus parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static CalcService.ImageStatus parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static CalcService.ImageStatus parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static CalcService.ImageStatus parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static CalcService.ImageStatus parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static CalcService.ImageStatus parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static CalcService.ImageStatus parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static CalcService.ImageStatus parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static CalcService.ImageStatus parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(CalcService.ImageStatus prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ImageStatus}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ImageStatus)
+        CalcService.ImageStatusOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return CalcService.internal_static_ImageStatus_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return CalcService.internal_static_ImageStatus_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                CalcService.ImageStatus.class, CalcService.ImageStatus.Builder.class);
+      }
+
+      // Construct using CalcService.ImageStatus.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return CalcService.internal_static_ImageStatus_descriptor;
+      }
+
+      @java.lang.Override
+      public CalcService.ImageStatus getDefaultInstanceForType() {
+        return CalcService.ImageStatus.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public CalcService.ImageStatus build() {
+        CalcService.ImageStatus result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public CalcService.ImageStatus buildPartial() {
+        CalcService.ImageStatus result = new CalcService.ImageStatus(this);
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof CalcService.ImageStatus) {
+          return mergeFrom((CalcService.ImageStatus)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(CalcService.ImageStatus other) {
+        if (other == CalcService.ImageStatus.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ImageStatus)
+    }
+
+    // @@protoc_insertion_point(class_scope:ImageStatus)
+    private static final CalcService.ImageStatus DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new CalcService.ImageStatus();
+    }
+
+    public static CalcService.ImageStatus getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ImageStatus>
+        PARSER = new com.google.protobuf.AbstractParser<ImageStatus>() {
+      @java.lang.Override
+      public ImageStatus parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ImageStatus> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ImageStatus> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public CalcService.ImageStatus getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ImageRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ImageRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ImageResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ImageResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ImageIdentifier_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ImageIdentifier_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ImageStatus_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ImageStatus_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -21,12 +2449,45 @@ public final class CalcService {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021CalcService.proto"
+      "\n\021CalcService.proto\"4\n\014ImageRequest\022\022\n\ni" +
+      "mage_data\030\001 \001(\014\022\020\n\010keywords\030\002 \003(\t\"J\n\rIma" +
+      "geResponse\022\020\n\010image_id\030\001 \001(\t\022\027\n\017processe" +
+      "d_image\030\002 \001(\014\022\016\n\006status\030\003 \001(\t\"%\n\017ImageId" +
+      "entifier\022\022\n\nidentifier\030\001 \001(\t\"\r\n\013ImageSta" +
+      "tus2\265\001\n\014ImageService\0221\n\014ProcessImage\022\r.I" +
+      "mageRequest\032\020.ImageIdentifier(\001\0224\n\020Check" +
+      "ImageStatus\022\020.ImageIdentifier\032\016.ImageRes" +
+      "ponse\022<\n\026DownloadProcessedImage\022\020.ImageI" +
+      "dentifier\032\016.ImageResponse0\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
+    internal_static_ImageRequest_descriptor =
+      getDescriptor().getMessageTypes().get(0);
+    internal_static_ImageRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ImageRequest_descriptor,
+        new java.lang.String[] { "ImageData", "Keywords", });
+    internal_static_ImageResponse_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_ImageResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ImageResponse_descriptor,
+        new java.lang.String[] { "ImageId", "ProcessedImage", "Status", });
+    internal_static_ImageIdentifier_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_ImageIdentifier_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ImageIdentifier_descriptor,
+        new java.lang.String[] { "Identifier", });
+    internal_static_ImageStatus_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_ImageStatus_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ImageStatus_descriptor,
+        new java.lang.String[] { });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

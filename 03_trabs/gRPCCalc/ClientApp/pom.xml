@@ -34,9 +34,15 @@
             <artifactId>ServerToRegisterContract</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>cd2324cscontract</groupId>
+            <artifactId>ClientToServerContract</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
 
 
-      </dependencies>
+    </dependencies>
 
     <build>
         <plugins>

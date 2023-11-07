@@ -2,7 +2,7 @@ package clientapp.StreamObservers;
 
 import io.grpc.stub.StreamObserver;
 
-public class RegisterServer implements StreamObserver<EmptyResponse> {
+public class RegisterServerStreamObserver implements StreamObserver<EmptyResponse> {
     @Override
     public void onNext(EmptyResponse emptyResponse) {
         System.out.println("╔════════════════════════════════════╗");
