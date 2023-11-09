@@ -24,7 +24,7 @@ import java.util.Arrays;
 public class ImageServerCaller {
     private static final int CHUNCK_SIZE = 32 * 1024;
 
-    private CSServiceGrpc.CSServiceStub imageServerStub;
+    private final CSServiceGrpc.CSServiceStub imageServerStub;
 
     public ImageServerCaller(ManagedChannel channel) {
         this.imageServerStub = CSServiceGrpc.newStub(channel);
@@ -55,27 +55,21 @@ public class ImageServerCaller {
     }
 
     public void checkImageStatus(String imageId) {
-        ImageIdentifier request = ImageIdentifier.newBuilder()
-                .setIdentifier(imageId)
-                .build();
-        imageServerStub.checkImageStatus(request, new CheckImageStatusStreamObserver());
+        ImageIdentifier request = createImageIdentifier(imageId);
+        CheckImageStatusStreamObserver response = new CheckImageStatusStreamObserver();
+        imageServerStub.checkImageStatus(request, response);
     }
 
     public void downloadProcessedImage(String imageId, String destinaionPath){
-        ImageIdentifier request = ImageIdentifier.newBuilder()
-                .setIdentifier(imageId)
-                .build();
-        imageServerStub.downloadProcessedImage(request, new DownloadProcessedImageStreamObserver(destinaionPath));
+        ImageIdentifier request = createImageIdentifier(imageId);
+        DownloadProcessedImageStreamObserver response = new DownloadProcessedImageStreamObserver(destinaionPath);
+        imageServerStub.downloadProcessedImage(request, response);
     }
 
-    public StreamObserver<ImageRequest> processImage(StreamObserver<ImageIdentifier> responseObserver ) {
-        return null;
-        // Todo
+    private ImageIdentifier createImageIdentifier(String imageId){
+        return ImageIdentifier.newBuilder()
+            .setIdentifier(imageId)
+            .build();
     }
-    public void checkImageStatus(ImageIdentifier request, StreamObserver<ImageResponse> responseObserver){
-        // Todo
-    }
-    public void downloadProcessedImage(ImageIdentifier request,StreamObserver<ImageResponse> responseObserver){
-        // Todo
-    }
+
 }

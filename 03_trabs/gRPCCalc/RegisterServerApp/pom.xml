@@ -35,6 +35,12 @@
             <version>1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>cd2324baseserver</groupId>
+            <artifactId>BaseServer</artifactId>
+            <version>1.0</version>
+        </dependency>
+
       </dependencies>
 
     <build>
@@ -49,7 +55,7 @@
                     </descriptors>
                     <archive>
                         <manifest>
-                            <mainClass>serverapp.ImageServer</mainClass>
+                            <mainClass>server.ImageServer</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
