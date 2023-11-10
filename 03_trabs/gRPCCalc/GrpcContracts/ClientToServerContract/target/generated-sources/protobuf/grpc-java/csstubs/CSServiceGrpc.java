@@ -164,6 +164,9 @@ public final class CSServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Returns the state of the Image
+     * </pre>
      */
     default void checkImageStatus(csstubs.ImageIdentifier request,
         io.grpc.stub.StreamObserver<csstubs.StatusResponse> responseObserver) {
@@ -171,6 +174,9 @@ public final class CSServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Obtains a pre processed Image
+     * </pre>
      */
     default void downloadProcessedImage(csstubs.ImageIdentifier request,
         io.grpc.stub.StreamObserver<csstubs.ImageResponse> responseObserver) {
@@ -214,6 +220,9 @@ public final class CSServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Returns the state of the Image
+     * </pre>
      */
     public void checkImageStatus(csstubs.ImageIdentifier request,
         io.grpc.stub.StreamObserver<csstubs.StatusResponse> responseObserver) {
@@ -222,6 +231,9 @@ public final class CSServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Obtains a pre processed Image
+     * </pre>
      */
     public void downloadProcessedImage(csstubs.ImageIdentifier request,
         io.grpc.stub.StreamObserver<csstubs.ImageResponse> responseObserver) {
@@ -247,6 +259,9 @@ public final class CSServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Returns the state of the Image
+     * </pre>
      */
     public csstubs.StatusResponse checkImageStatus(csstubs.ImageIdentifier request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -254,6 +269,9 @@ public final class CSServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Obtains a pre processed Image
+     * </pre>
      */
     public java.util.Iterator<csstubs.ImageResponse> downloadProcessedImage(
         csstubs.ImageIdentifier request) {
@@ -279,6 +297,9 @@ public final class CSServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Returns the state of the Image
+     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<csstubs.StatusResponse> checkImageStatus(
         csstubs.ImageIdentifier request) {

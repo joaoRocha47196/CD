@@ -9,10 +9,10 @@ service CRService {
 
 message GetServerRequest {
   string client_id = 1;
-  }
+}
 
 message ServerEndpoint {
   string server_ip = 1;
   int32 server_port = 2;
-  }
+}
 

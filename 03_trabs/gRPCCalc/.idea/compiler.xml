@@ -8,10 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ClientToServerContract" />
         <module name="RegisterServerApp" />
-        <module name="BaseServer" />
+        <module name="MarkImageApp" />
         <module name="ClientToRegisterContract" />
+        <module name="BaseServer" />
         <module name="ClientApp" />
         <module name="ServerToRegisterContract" />
+        <module name="DockerAPI" />
         <module name="ImgServerApp" />
       </profile>
     </annotationProcessing>

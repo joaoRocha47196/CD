@@ -18,7 +18,6 @@ private static final long serialVersionUID = 0L;
   private ImageResponse() {
     imageId_ = "";
     processedImage_ = com.google.protobuf.ByteString.EMPTY;
-    status_ = 0;
   }
 
   @java.lang.Override
@@ -84,34 +83,41 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int PROCESSED_IMAGE_FIELD_NUMBER = 2;
+  public static final int METADATA_FIELD_NUMBER = 2;
+  private csstubs.Metadata metadata_;
+  /**
+   * <code>.csservice.Metadata metadata = 2;</code>
+   * @return Whether the metadata field is set.
+   */
+  @java.lang.Override
+  public boolean hasMetadata() {
+    return metadata_ != null;
+  }
+  /**
+   * <code>.csservice.Metadata metadata = 2;</code>
+   * @return The metadata.
+   */
+  @java.lang.Override
+  public csstubs.Metadata getMetadata() {
+    return metadata_ == null ? csstubs.Metadata.getDefaultInstance() : metadata_;
+  }
+  /**
+   * <code>.csservice.Metadata metadata = 2;</code>
+   */
+  @java.lang.Override
+  public csstubs.MetadataOrBuilder getMetadataOrBuilder() {
+    return getMetadata();
+  }
+
+  public static final int PROCESSED_IMAGE_FIELD_NUMBER = 3;
   private com.google.protobuf.ByteString processedImage_;
   /**
-   * <code>bytes processed_image = 2;</code>
+   * <code>bytes processed_image = 3;</code>
    * @return The processedImage.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString getProcessedImage() {
     return processedImage_;
-  }
-
-  public static final int STATUS_FIELD_NUMBER = 3;
-  private int status_;
-  /**
-   * <code>.csservice.Status status = 3;</code>
-   * @return The enum numeric value on the wire for status.
-   */
-  @java.lang.Override public int getStatusValue() {
-    return status_;
-  }
-  /**
-   * <code>.csservice.Status status = 3;</code>
-   * @return The status.
-   */
-  @java.lang.Override public csstubs.Status getStatus() {
-    @SuppressWarnings("deprecation")
-    csstubs.Status result = csstubs.Status.valueOf(status_);
-    return result == null ? csstubs.Status.UNRECOGNIZED : result;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -131,11 +137,11 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(imageId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, imageId_);
     }
-    if (!processedImage_.isEmpty()) {
-      output.writeBytes(2, processedImage_);
+    if (metadata_ != null) {
+      output.writeMessage(2, getMetadata());
     }
-    if (status_ != csstubs.Status.SUCCESS.getNumber()) {
-      output.writeEnum(3, status_);
+    if (!processedImage_.isEmpty()) {
+      output.writeBytes(3, processedImage_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -149,13 +155,13 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(imageId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, imageId_);
     }
+    if (metadata_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(2, getMetadata());
+    }
     if (!processedImage_.isEmpty()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBytesSize(2, processedImage_);
-    }
-    if (status_ != csstubs.Status.SUCCESS.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(3, status_);
+        .computeBytesSize(3, processedImage_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -174,9 +180,13 @@ private static final long serialVersionUID = 0L;
 
     if (!getImageId()
         .equals(other.getImageId())) return false;
+    if (hasMetadata() != other.hasMetadata()) return false;
+    if (hasMetadata()) {
+      if (!getMetadata()
+          .equals(other.getMetadata())) return false;
+    }
     if (!getProcessedImage()
         .equals(other.getProcessedImage())) return false;
-    if (status_ != other.status_) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -190,10 +200,12 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + IMAGE_ID_FIELD_NUMBER;
     hash = (53 * hash) + getImageId().hashCode();
+    if (hasMetadata()) {
+      hash = (37 * hash) + METADATA_FIELD_NUMBER;
+      hash = (53 * hash) + getMetadata().hashCode();
+    }
     hash = (37 * hash) + PROCESSED_IMAGE_FIELD_NUMBER;
     hash = (53 * hash) + getProcessedImage().hashCode();
-    hash = (37 * hash) + STATUS_FIELD_NUMBER;
-    hash = (53 * hash) + status_;
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -324,9 +336,13 @@ private static final long serialVersionUID = 0L;
       super.clear();
       imageId_ = "";
 
+      if (metadataBuilder_ == null) {
+        metadata_ = null;
+      } else {
+        metadata_ = null;
+        metadataBuilder_ = null;
+      }
       processedImage_ = com.google.protobuf.ByteString.EMPTY;
-
-      status_ = 0;
 
       return this;
     }
@@ -355,8 +371,12 @@ private static final long serialVersionUID = 0L;
     public csstubs.ImageResponse buildPartial() {
       csstubs.ImageResponse result = new csstubs.ImageResponse(this);
       result.imageId_ = imageId_;
+      if (metadataBuilder_ == null) {
+        result.metadata_ = metadata_;
+      } else {
+        result.metadata_ = metadataBuilder_.build();
+      }
       result.processedImage_ = processedImage_;
-      result.status_ = status_;
       onBuilt();
       return result;
     }
@@ -409,11 +429,11 @@ private static final long serialVersionUID = 0L;
         imageId_ = other.imageId_;
         onChanged();
       }
+      if (other.hasMetadata()) {
+        mergeMetadata(other.getMetadata());
+      }
       if (other.getProcessedImage() != com.google.protobuf.ByteString.EMPTY) {
         setProcessedImage(other.getProcessedImage());
-      }
-      if (other.status_ != 0) {
-        setStatusValue(other.getStatusValue());
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -447,15 +467,17 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 10
             case 18: {
-              processedImage_ = input.readBytes();
+              input.readMessage(
+                  getMetadataFieldBuilder().getBuilder(),
+                  extensionRegistry);
 
               break;
             } // case 18
-            case 24: {
-              status_ = input.readEnum();
+            case 26: {
+              processedImage_ = input.readBytes();
 
               break;
-            } // case 24
+            } // case 26
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -548,9 +570,128 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private csstubs.Metadata metadata_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        csstubs.Metadata, csstubs.Metadata.Builder, csstubs.MetadataOrBuilder> metadataBuilder_;
+    /**
+     * <code>.csservice.Metadata metadata = 2;</code>
+     * @return Whether the metadata field is set.
+     */
+    public boolean hasMetadata() {
+      return metadataBuilder_ != null || metadata_ != null;
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 2;</code>
+     * @return The metadata.
+     */
+    public csstubs.Metadata getMetadata() {
+      if (metadataBuilder_ == null) {
+        return metadata_ == null ? csstubs.Metadata.getDefaultInstance() : metadata_;
+      } else {
+        return metadataBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 2;</code>
+     */
+    public Builder setMetadata(csstubs.Metadata value) {
+      if (metadataBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        metadata_ = value;
+        onChanged();
+      } else {
+        metadataBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 2;</code>
+     */
+    public Builder setMetadata(
+        csstubs.Metadata.Builder builderForValue) {
+      if (metadataBuilder_ == null) {
+        metadata_ = builderForValue.build();
+        onChanged();
+      } else {
+        metadataBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 2;</code>
+     */
+    public Builder mergeMetadata(csstubs.Metadata value) {
+      if (metadataBuilder_ == null) {
+        if (metadata_ != null) {
+          metadata_ =
+            csstubs.Metadata.newBuilder(metadata_).mergeFrom(value).buildPartial();
+        } else {
+          metadata_ = value;
+        }
+        onChanged();
+      } else {
+        metadataBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 2;</code>
+     */
+    public Builder clearMetadata() {
+      if (metadataBuilder_ == null) {
+        metadata_ = null;
+        onChanged();
+      } else {
+        metadata_ = null;
+        metadataBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 2;</code>
+     */
+    public csstubs.Metadata.Builder getMetadataBuilder() {
+      
+      onChanged();
+      return getMetadataFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 2;</code>
+     */
+    public csstubs.MetadataOrBuilder getMetadataOrBuilder() {
+      if (metadataBuilder_ != null) {
+        return metadataBuilder_.getMessageOrBuilder();
+      } else {
+        return metadata_ == null ?
+            csstubs.Metadata.getDefaultInstance() : metadata_;
+      }
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 2;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        csstubs.Metadata, csstubs.Metadata.Builder, csstubs.MetadataOrBuilder> 
+        getMetadataFieldBuilder() {
+      if (metadataBuilder_ == null) {
+        metadataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            csstubs.Metadata, csstubs.Metadata.Builder, csstubs.MetadataOrBuilder>(
+                getMetadata(),
+                getParentForChildren(),
+                isClean());
+        metadata_ = null;
+      }
+      return metadataBuilder_;
+    }
+
     private com.google.protobuf.ByteString processedImage_ = com.google.protobuf.ByteString.EMPTY;
     /**
-     * <code>bytes processed_image = 2;</code>
+     * <code>bytes processed_image = 3;</code>
      * @return The processedImage.
      */
     @java.lang.Override
@@ -558,7 +699,7 @@ private static final long serialVersionUID = 0L;
       return processedImage_;
     }
     /**
-     * <code>bytes processed_image = 2;</code>
+     * <code>bytes processed_image = 3;</code>
      * @param value The processedImage to set.
      * @return This builder for chaining.
      */
@@ -572,66 +713,12 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>bytes processed_image = 2;</code>
+     * <code>bytes processed_image = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearProcessedImage() {
       
       processedImage_ = getDefaultInstance().getProcessedImage();
-      onChanged();
-      return this;
-    }
-
-    private int status_ = 0;
-    /**
-     * <code>.csservice.Status status = 3;</code>
-     * @return The enum numeric value on the wire for status.
-     */
-    @java.lang.Override public int getStatusValue() {
-      return status_;
-    }
-    /**
-     * <code>.csservice.Status status = 3;</code>
-     * @param value The enum numeric value on the wire for status to set.
-     * @return This builder for chaining.
-     */
-    public Builder setStatusValue(int value) {
-      
-      status_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.csservice.Status status = 3;</code>
-     * @return The status.
-     */
-    @java.lang.Override
-    public csstubs.Status getStatus() {
-      @SuppressWarnings("deprecation")
-      csstubs.Status result = csstubs.Status.valueOf(status_);
-      return result == null ? csstubs.Status.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.csservice.Status status = 3;</code>
-     * @param value The status to set.
-     * @return This builder for chaining.
-     */
-    public Builder setStatus(csstubs.Status value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      status_ = value.getNumber();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.csservice.Status status = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearStatus() {
-      
-      status_ = 0;
       onChanged();
       return this;
     }

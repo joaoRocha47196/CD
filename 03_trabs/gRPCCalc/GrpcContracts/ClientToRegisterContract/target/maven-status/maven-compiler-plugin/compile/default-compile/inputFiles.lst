@@ -1,10 +1,6 @@
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\02_labs\02\gRPCCalc\CalcContract\target\generated-sources\protobuf\java\calcstubs\NumberAndMaxExponent.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\02_labs\02\gRPCCalc\CalcContract\target\generated-sources\protobuf\java\calcstubs\AddOperandsOrBuilder.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\02_labs\02\gRPCCalc\CalcContract\target\generated-sources\protobuf\java\calcstubs\Number.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\02_labs\02\gRPCCalc\CalcContract\target\generated-sources\protobuf\java\calcstubs\CalcServiceOuterClass.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\02_labs\02\gRPCCalc\CalcContract\target\generated-sources\protobuf\java\calcstubs\AddOperands.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\02_labs\02\gRPCCalc\CalcContract\target\generated-sources\protobuf\java\calcstubs\Result.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\02_labs\02\gRPCCalc\CalcContract\target\generated-sources\protobuf\grpc-java\calcstubs\CalcServiceGrpc.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\02_labs\02\gRPCCalc\CalcContract\target\generated-sources\protobuf\java\calcstubs\NumberAndMaxExponentOrBuilder.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\02_labs\02\gRPCCalc\CalcContract\target\generated-sources\protobuf\java\calcstubs\NumberOrBuilder.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\02_labs\02\gRPCCalc\CalcContract\target\generated-sources\protobuf\java\calcstubs\ResultOrBuilder.java
+C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\GrpcContracts\ClientToRegisterContract\target\generated-sources\protobuf\java\crstubs\GetServerRequest.java
+C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\GrpcContracts\ClientToRegisterContract\target\generated-sources\protobuf\java\crstubs\ServerEndpoint.java
+C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\GrpcContracts\ClientToRegisterContract\target\generated-sources\protobuf\grpc-java\crstubs\CRServiceGrpc.java
+C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\GrpcContracts\ClientToRegisterContract\target\generated-sources\protobuf\java\crstubs\ServerEndpointOrBuilder.java
+C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\GrpcContracts\ClientToRegisterContract\target\generated-sources\protobuf\java\crstubs\CRServiceOuterClass.java
+C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\GrpcContracts\ClientToRegisterContract\target\generated-sources\protobuf\java\crstubs\GetServerRequestOrBuilder.java

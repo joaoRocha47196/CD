@@ -20,19 +20,23 @@ public interface ImageResponseOrBuilder extends
       getImageIdBytes();
 
   /**
-   * <code>bytes processed_image = 2;</code>
+   * <code>.csservice.Metadata metadata = 2;</code>
+   * @return Whether the metadata field is set.
+   */
+  boolean hasMetadata();
+  /**
+   * <code>.csservice.Metadata metadata = 2;</code>
+   * @return The metadata.
+   */
+  csstubs.Metadata getMetadata();
+  /**
+   * <code>.csservice.Metadata metadata = 2;</code>
+   */
+  csstubs.MetadataOrBuilder getMetadataOrBuilder();
+
+  /**
+   * <code>bytes processed_image = 3;</code>
    * @return The processedImage.
    */
   com.google.protobuf.ByteString getProcessedImage();
-
-  /**
-   * <code>.csservice.Status status = 3;</code>
-   * @return The enum numeric value on the wire for status.
-   */
-  int getStatusValue();
-  /**
-   * <code>.csservice.Status status = 3;</code>
-   * @return The status.
-   */
-  csstubs.Status getStatus();
 }

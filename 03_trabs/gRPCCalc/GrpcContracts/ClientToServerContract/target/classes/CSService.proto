@@ -5,7 +5,11 @@ package csservice; // package do proto
 
 service CSService {
   rpc ProcessImage(stream ImageRequest) returns (ImageIdentifier);
+
+  // Returns the state of the Image
   rpc CheckImageStatus(ImageIdentifier) returns (StatusResponse);
+
+  // Obtains a pre processed Image
   rpc DownloadProcessedImage(ImageIdentifier) returns (stream ImageResponse);
 }
 
@@ -17,8 +21,8 @@ message ImageRequest {
 
 message ImageResponse {
   string image_id = 1;
-  bytes processed_image = 2;
-  Status status = 3;
+  Metadata metadata = 2;
+  bytes processed_image = 3;
 }
 
 message StatusResponse {

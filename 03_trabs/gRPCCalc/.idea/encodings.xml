@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/ClientApp/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ClientApp/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Communs/BaseServer/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Communs/BaseServer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GrpcContracts/CalcContract/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GrpcContracts/CalcContract/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GrpcContracts/ClientToRegisterContract/src/main/java" charset="UTF-8" />
@@ -22,9 +18,19 @@
     <file url="file://$PROJECT_DIR$/GrpcContracts/ServerToRegisterContract/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GrpcContracts/ServerToRegisterContract/target/generated-sources/protobuf/grpc-java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GrpcContracts/ServerToRegisterContract/target/generated-sources/protobuf/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ImgServerApp/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ImgServerApp/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/RegisterServerApp/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/RegisterServerApp/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MarkImageApp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MarkImageApp/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/NetworkComponents/ClientApp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/NetworkComponents/ClientApp/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/NetworkComponents/ImgServerApp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/NetworkComponents/ImgServerApp/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/NetworkComponents/RegisterServerApp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/NetworkComponents/RegisterServerApp/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Utils/BaseServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Utils/BaseServer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Utils/DockerAPI/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Utils/DockerAPI/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Utils/MarkImageApp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Utils/MarkImageApp/src/main/resources" charset="UTF-8" />
   </component>
 </project>
