@@ -45,10 +45,36 @@ private static final long serialVersionUID = 0L;
             csstubs.ImageRequest.class, csstubs.ImageRequest.Builder.class);
   }
 
-  public static final int IMAGE_DATA_FIELD_NUMBER = 1;
+  public static final int METADATA_FIELD_NUMBER = 1;
+  private csstubs.Metadata metadata_;
+  /**
+   * <code>.csservice.Metadata metadata = 1;</code>
+   * @return Whether the metadata field is set.
+   */
+  @java.lang.Override
+  public boolean hasMetadata() {
+    return metadata_ != null;
+  }
+  /**
+   * <code>.csservice.Metadata metadata = 1;</code>
+   * @return The metadata.
+   */
+  @java.lang.Override
+  public csstubs.Metadata getMetadata() {
+    return metadata_ == null ? csstubs.Metadata.getDefaultInstance() : metadata_;
+  }
+  /**
+   * <code>.csservice.Metadata metadata = 1;</code>
+   */
+  @java.lang.Override
+  public csstubs.MetadataOrBuilder getMetadataOrBuilder() {
+    return getMetadata();
+  }
+
+  public static final int IMAGE_DATA_FIELD_NUMBER = 2;
   private com.google.protobuf.ByteString imageData_;
   /**
-   * <code>bytes image_data = 1;</code>
+   * <code>bytes image_data = 2;</code>
    * @return The imageData.
    */
   @java.lang.Override
@@ -56,10 +82,10 @@ private static final long serialVersionUID = 0L;
     return imageData_;
   }
 
-  public static final int KEYWORDS_FIELD_NUMBER = 2;
+  public static final int KEYWORDS_FIELD_NUMBER = 3;
   private com.google.protobuf.LazyStringList keywords_;
   /**
-   * <code>repeated string keywords = 2;</code>
+   * <code>repeated string keywords = 3;</code>
    * @return A list containing the keywords.
    */
   public com.google.protobuf.ProtocolStringList
@@ -67,14 +93,14 @@ private static final long serialVersionUID = 0L;
     return keywords_;
   }
   /**
-   * <code>repeated string keywords = 2;</code>
+   * <code>repeated string keywords = 3;</code>
    * @return The count of keywords.
    */
   public int getKeywordsCount() {
     return keywords_.size();
   }
   /**
-   * <code>repeated string keywords = 2;</code>
+   * <code>repeated string keywords = 3;</code>
    * @param index The index of the element to return.
    * @return The keywords at the given index.
    */
@@ -82,7 +108,7 @@ private static final long serialVersionUID = 0L;
     return keywords_.get(index);
   }
   /**
-   * <code>repeated string keywords = 2;</code>
+   * <code>repeated string keywords = 3;</code>
    * @param index The index of the value to return.
    * @return The bytes of the keywords at the given index.
    */
@@ -105,11 +131,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    if (metadata_ != null) {
+      output.writeMessage(1, getMetadata());
+    }
     if (!imageData_.isEmpty()) {
-      output.writeBytes(1, imageData_);
+      output.writeBytes(2, imageData_);
     }
     for (int i = 0; i < keywords_.size(); i++) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, keywords_.getRaw(i));
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, keywords_.getRaw(i));
     }
     getUnknownFields().writeTo(output);
   }
@@ -120,9 +149,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
+    if (metadata_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(1, getMetadata());
+    }
     if (!imageData_.isEmpty()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBytesSize(1, imageData_);
+        .computeBytesSize(2, imageData_);
     }
     {
       int dataSize = 0;
@@ -147,6 +180,11 @@ private static final long serialVersionUID = 0L;
     }
     csstubs.ImageRequest other = (csstubs.ImageRequest) obj;
 
+    if (hasMetadata() != other.hasMetadata()) return false;
+    if (hasMetadata()) {
+      if (!getMetadata()
+          .equals(other.getMetadata())) return false;
+    }
     if (!getImageData()
         .equals(other.getImageData())) return false;
     if (!getKeywordsList()
@@ -162,6 +200,10 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    if (hasMetadata()) {
+      hash = (37 * hash) + METADATA_FIELD_NUMBER;
+      hash = (53 * hash) + getMetadata().hashCode();
+    }
     hash = (37 * hash) + IMAGE_DATA_FIELD_NUMBER;
     hash = (53 * hash) + getImageData().hashCode();
     if (getKeywordsCount() > 0) {
@@ -296,6 +338,12 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      if (metadataBuilder_ == null) {
+        metadata_ = null;
+      } else {
+        metadata_ = null;
+        metadataBuilder_ = null;
+      }
       imageData_ = com.google.protobuf.ByteString.EMPTY;
 
       keywords_ = com.google.protobuf.LazyStringArrayList.EMPTY;
@@ -327,6 +375,11 @@ private static final long serialVersionUID = 0L;
     public csstubs.ImageRequest buildPartial() {
       csstubs.ImageRequest result = new csstubs.ImageRequest(this);
       int from_bitField0_ = bitField0_;
+      if (metadataBuilder_ == null) {
+        result.metadata_ = metadata_;
+      } else {
+        result.metadata_ = metadataBuilder_.build();
+      }
       result.imageData_ = imageData_;
       if (((bitField0_ & 0x00000001) != 0)) {
         keywords_ = keywords_.getUnmodifiableView();
@@ -381,6 +434,9 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(csstubs.ImageRequest other) {
       if (other == csstubs.ImageRequest.getDefaultInstance()) return this;
+      if (other.hasMetadata()) {
+        mergeMetadata(other.getMetadata());
+      }
       if (other.getImageData() != com.google.protobuf.ByteString.EMPTY) {
         setImageData(other.getImageData());
       }
@@ -421,16 +477,23 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              imageData_ = input.readBytes();
+              input.readMessage(
+                  getMetadataFieldBuilder().getBuilder(),
+                  extensionRegistry);
 
               break;
             } // case 10
             case 18: {
+              imageData_ = input.readBytes();
+
+              break;
+            } // case 18
+            case 26: {
               java.lang.String s = input.readStringRequireUtf8();
               ensureKeywordsIsMutable();
               keywords_.add(s);
               break;
-            } // case 18
+            } // case 26
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -448,9 +511,128 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
+    private csstubs.Metadata metadata_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        csstubs.Metadata, csstubs.Metadata.Builder, csstubs.MetadataOrBuilder> metadataBuilder_;
+    /**
+     * <code>.csservice.Metadata metadata = 1;</code>
+     * @return Whether the metadata field is set.
+     */
+    public boolean hasMetadata() {
+      return metadataBuilder_ != null || metadata_ != null;
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 1;</code>
+     * @return The metadata.
+     */
+    public csstubs.Metadata getMetadata() {
+      if (metadataBuilder_ == null) {
+        return metadata_ == null ? csstubs.Metadata.getDefaultInstance() : metadata_;
+      } else {
+        return metadataBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 1;</code>
+     */
+    public Builder setMetadata(csstubs.Metadata value) {
+      if (metadataBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        metadata_ = value;
+        onChanged();
+      } else {
+        metadataBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 1;</code>
+     */
+    public Builder setMetadata(
+        csstubs.Metadata.Builder builderForValue) {
+      if (metadataBuilder_ == null) {
+        metadata_ = builderForValue.build();
+        onChanged();
+      } else {
+        metadataBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 1;</code>
+     */
+    public Builder mergeMetadata(csstubs.Metadata value) {
+      if (metadataBuilder_ == null) {
+        if (metadata_ != null) {
+          metadata_ =
+            csstubs.Metadata.newBuilder(metadata_).mergeFrom(value).buildPartial();
+        } else {
+          metadata_ = value;
+        }
+        onChanged();
+      } else {
+        metadataBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 1;</code>
+     */
+    public Builder clearMetadata() {
+      if (metadataBuilder_ == null) {
+        metadata_ = null;
+        onChanged();
+      } else {
+        metadata_ = null;
+        metadataBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 1;</code>
+     */
+    public csstubs.Metadata.Builder getMetadataBuilder() {
+      
+      onChanged();
+      return getMetadataFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 1;</code>
+     */
+    public csstubs.MetadataOrBuilder getMetadataOrBuilder() {
+      if (metadataBuilder_ != null) {
+        return metadataBuilder_.getMessageOrBuilder();
+      } else {
+        return metadata_ == null ?
+            csstubs.Metadata.getDefaultInstance() : metadata_;
+      }
+    }
+    /**
+     * <code>.csservice.Metadata metadata = 1;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        csstubs.Metadata, csstubs.Metadata.Builder, csstubs.MetadataOrBuilder> 
+        getMetadataFieldBuilder() {
+      if (metadataBuilder_ == null) {
+        metadataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            csstubs.Metadata, csstubs.Metadata.Builder, csstubs.MetadataOrBuilder>(
+                getMetadata(),
+                getParentForChildren(),
+                isClean());
+        metadata_ = null;
+      }
+      return metadataBuilder_;
+    }
+
     private com.google.protobuf.ByteString imageData_ = com.google.protobuf.ByteString.EMPTY;
     /**
-     * <code>bytes image_data = 1;</code>
+     * <code>bytes image_data = 2;</code>
      * @return The imageData.
      */
     @java.lang.Override
@@ -458,7 +640,7 @@ private static final long serialVersionUID = 0L;
       return imageData_;
     }
     /**
-     * <code>bytes image_data = 1;</code>
+     * <code>bytes image_data = 2;</code>
      * @param value The imageData to set.
      * @return This builder for chaining.
      */
@@ -472,7 +654,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>bytes image_data = 1;</code>
+     * <code>bytes image_data = 2;</code>
      * @return This builder for chaining.
      */
     public Builder clearImageData() {
@@ -490,7 +672,7 @@ private static final long serialVersionUID = 0L;
        }
     }
     /**
-     * <code>repeated string keywords = 2;</code>
+     * <code>repeated string keywords = 3;</code>
      * @return A list containing the keywords.
      */
     public com.google.protobuf.ProtocolStringList
@@ -498,14 +680,14 @@ private static final long serialVersionUID = 0L;
       return keywords_.getUnmodifiableView();
     }
     /**
-     * <code>repeated string keywords = 2;</code>
+     * <code>repeated string keywords = 3;</code>
      * @return The count of keywords.
      */
     public int getKeywordsCount() {
       return keywords_.size();
     }
     /**
-     * <code>repeated string keywords = 2;</code>
+     * <code>repeated string keywords = 3;</code>
      * @param index The index of the element to return.
      * @return The keywords at the given index.
      */
@@ -513,7 +695,7 @@ private static final long serialVersionUID = 0L;
       return keywords_.get(index);
     }
     /**
-     * <code>repeated string keywords = 2;</code>
+     * <code>repeated string keywords = 3;</code>
      * @param index The index of the value to return.
      * @return The bytes of the keywords at the given index.
      */
@@ -522,7 +704,7 @@ private static final long serialVersionUID = 0L;
       return keywords_.getByteString(index);
     }
     /**
-     * <code>repeated string keywords = 2;</code>
+     * <code>repeated string keywords = 3;</code>
      * @param index The index to set the value at.
      * @param value The keywords to set.
      * @return This builder for chaining.
@@ -538,7 +720,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated string keywords = 2;</code>
+     * <code>repeated string keywords = 3;</code>
      * @param value The keywords to add.
      * @return This builder for chaining.
      */
@@ -553,7 +735,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated string keywords = 2;</code>
+     * <code>repeated string keywords = 3;</code>
      * @param values The keywords to add.
      * @return This builder for chaining.
      */
@@ -566,7 +748,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated string keywords = 2;</code>
+     * <code>repeated string keywords = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearKeywords() {
@@ -576,7 +758,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated string keywords = 2;</code>
+     * <code>repeated string keywords = 3;</code>
      * @param value The bytes of the keywords to add.
      * @return This builder for chaining.
      */

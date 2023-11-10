@@ -8,11 +8,20 @@
     <file url="file://$PROJECT_DIR$/GrpcContracts/CalcContract/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GrpcContracts/CalcContract/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GrpcContracts/ClientToRegisterContract/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/GrpcContracts/ClientToRegisterContract/src/main/proto" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GrpcContracts/ClientToRegisterContract/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/GrpcContracts/ClientToRegisterContract/target/generated-sources/protobuf/grpc-java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/GrpcContracts/ClientToRegisterContract/target/generated-sources/protobuf/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GrpcContracts/ClientToServerContract/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/GrpcContracts/ClientToServerContract/src/main/proto" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GrpcContracts/ClientToServerContract/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/GrpcContracts/ClientToServerContract/target/generated-sources/protobuf/grpc-java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/GrpcContracts/ClientToServerContract/target/generated-sources/protobuf/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GrpcContracts/ServerToRegisterContract/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/GrpcContracts/ServerToRegisterContract/src/main/proto" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GrpcContracts/ServerToRegisterContract/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/GrpcContracts/ServerToRegisterContract/target/generated-sources/protobuf/grpc-java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/GrpcContracts/ServerToRegisterContract/target/generated-sources/protobuf/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ImgServerApp/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ImgServerApp/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/RegisterServerApp/src/main/java" charset="UTF-8" />

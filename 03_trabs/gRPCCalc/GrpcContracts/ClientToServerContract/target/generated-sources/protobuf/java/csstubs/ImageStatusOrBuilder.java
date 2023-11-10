@@ -6,4 +6,15 @@ package csstubs;
 public interface ImageStatusOrBuilder extends
     // @@protoc_insertion_point(interface_extends:csservice.ImageStatus)
     com.google.protobuf.MessageOrBuilder {
+
+  /**
+   * <code>.csservice.Status status = 1;</code>
+   * @return The enum numeric value on the wire for status.
+   */
+  int getStatusValue();
+  /**
+   * <code>.csservice.Status status = 1;</code>
+   * @return The status.
+   */
+  csstubs.Status getStatus();
 }

@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * This class uses ImageServerStubs
@@ -35,14 +36,24 @@ public class ImageServerCaller {
 
         try {
             Path path = Paths.get(imagePath);
+            String filename = String.valueOf(path.getFileName());
+            String[] filenameParts = filename.split("\\.");
+            String basename = filenameParts[0];
+            String extension = filenameParts[1];
+
             InputStream inputStream = Files.newInputStream(path);
             byte[] bytes = new byte[CHUNCK_SIZE];
 
             int size;
             while ((size = inputStream.read(bytes)) > 0) {
                 ImageRequest imageRequest = ImageRequest.newBuilder()
+                        .setMetadata(Metadata.newBuilder()
+                                .setName(basename)
+                                .setType(extension)
+                                .build()
+                        .build())
                         .setImageData(ByteString.copyFrom(bytes, 0, size))
-                        .addAllKeywords(Arrays.asList(keywords))
+                        .addAllKeywords(Collections.singletonList(keywords))
                         .build();
                 streamObserver.onNext(imageRequest);
             }
@@ -55,14 +66,16 @@ public class ImageServerCaller {
     }
 
     public void checkImageStatus(String imageId) {
-        ImageIdentifier request = createImageIdentifier(imageId);
+        ImageIdentifier request = ImageIdentifier.newBuilder()
+                .setIdentifier(imageId)
+                .build();
         CheckImageStatusStreamObserver response = new CheckImageStatusStreamObserver();
         imageServerStub.checkImageStatus(request, response);
     }
 
-    public void downloadProcessedImage(String imageId, String destinaionPath){
+    public void downloadProcessedImage(String imageId, String destinationPath){
         ImageIdentifier request = createImageIdentifier(imageId);
-        DownloadProcessedImageStreamObserver response = new DownloadProcessedImageStreamObserver(destinaionPath);
+        DownloadProcessedImageStreamObserver response = new DownloadProcessedImageStreamObserver(destinationPath);
         imageServerStub.downloadProcessedImage(request, response);
     }
 

@@ -3,8 +3,8 @@
 
 package csstubs;
 
-public interface ImageResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:csservice.ImageResponse)
+public interface StatusResponseOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:csservice.StatusResponse)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -18,12 +18,6 @@ public interface ImageResponseOrBuilder extends
    */
   com.google.protobuf.ByteString
       getImageIdBytes();
-
-  /**
-   * <code>bytes processed_image = 2;</code>
-   * @return The processedImage.
-   */
-  com.google.protobuf.ByteString getProcessedImage();
 
   /**
    * <code>.csservice.Status status = 3;</code>

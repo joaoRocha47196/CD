@@ -47,28 +47,28 @@ public final class CSServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<csstubs.ImageIdentifier,
-      csstubs.ImageResponse> getCheckImageStatusMethod;
+      csstubs.StatusResponse> getCheckImageStatusMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "CheckImageStatus",
       requestType = csstubs.ImageIdentifier.class,
-      responseType = csstubs.ImageResponse.class,
+      responseType = csstubs.StatusResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<csstubs.ImageIdentifier,
-      csstubs.ImageResponse> getCheckImageStatusMethod() {
-    io.grpc.MethodDescriptor<csstubs.ImageIdentifier, csstubs.ImageResponse> getCheckImageStatusMethod;
+      csstubs.StatusResponse> getCheckImageStatusMethod() {
+    io.grpc.MethodDescriptor<csstubs.ImageIdentifier, csstubs.StatusResponse> getCheckImageStatusMethod;
     if ((getCheckImageStatusMethod = CSServiceGrpc.getCheckImageStatusMethod) == null) {
       synchronized (CSServiceGrpc.class) {
         if ((getCheckImageStatusMethod = CSServiceGrpc.getCheckImageStatusMethod) == null) {
           CSServiceGrpc.getCheckImageStatusMethod = getCheckImageStatusMethod =
-              io.grpc.MethodDescriptor.<csstubs.ImageIdentifier, csstubs.ImageResponse>newBuilder()
+              io.grpc.MethodDescriptor.<csstubs.ImageIdentifier, csstubs.StatusResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "CheckImageStatus"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   csstubs.ImageIdentifier.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  csstubs.ImageResponse.getDefaultInstance()))
+                  csstubs.StatusResponse.getDefaultInstance()))
               .setSchemaDescriptor(new CSServiceMethodDescriptorSupplier("CheckImageStatus"))
               .build();
         }
@@ -166,7 +166,7 @@ public final class CSServiceGrpc {
     /**
      */
     default void checkImageStatus(csstubs.ImageIdentifier request,
-        io.grpc.stub.StreamObserver<csstubs.ImageResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<csstubs.StatusResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCheckImageStatusMethod(), responseObserver);
     }
 
@@ -216,7 +216,7 @@ public final class CSServiceGrpc {
     /**
      */
     public void checkImageStatus(csstubs.ImageIdentifier request,
-        io.grpc.stub.StreamObserver<csstubs.ImageResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<csstubs.StatusResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCheckImageStatusMethod(), getCallOptions()), request, responseObserver);
     }
@@ -248,7 +248,7 @@ public final class CSServiceGrpc {
 
     /**
      */
-    public csstubs.ImageResponse checkImageStatus(csstubs.ImageIdentifier request) {
+    public csstubs.StatusResponse checkImageStatus(csstubs.ImageIdentifier request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCheckImageStatusMethod(), getCallOptions(), request);
     }
@@ -280,7 +280,7 @@ public final class CSServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<csstubs.ImageResponse> checkImageStatus(
+    public com.google.common.util.concurrent.ListenableFuture<csstubs.StatusResponse> checkImageStatus(
         csstubs.ImageIdentifier request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCheckImageStatusMethod(), getCallOptions()), request);
@@ -310,7 +310,7 @@ public final class CSServiceGrpc {
       switch (methodId) {
         case METHODID_CHECK_IMAGE_STATUS:
           serviceImpl.checkImageStatus((csstubs.ImageIdentifier) request,
-              (io.grpc.stub.StreamObserver<csstubs.ImageResponse>) responseObserver);
+              (io.grpc.stub.StreamObserver<csstubs.StatusResponse>) responseObserver);
           break;
         case METHODID_DOWNLOAD_PROCESSED_IMAGE:
           serviceImpl.downloadProcessedImage((csstubs.ImageIdentifier) request,
@@ -349,7 +349,7 @@ public final class CSServiceGrpc {
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               csstubs.ImageIdentifier,
-              csstubs.ImageResponse>(
+              csstubs.StatusResponse>(
                 service, METHODID_CHECK_IMAGE_STATUS)))
         .addMethod(
           getDownloadProcessedImageMethod(),

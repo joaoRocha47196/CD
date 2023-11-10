@@ -16,6 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ImageStatus() {
+    status_ = 0;
   }
 
   @java.lang.Override
@@ -43,6 +44,25 @@ private static final long serialVersionUID = 0L;
             csstubs.ImageStatus.class, csstubs.ImageStatus.Builder.class);
   }
 
+  public static final int STATUS_FIELD_NUMBER = 1;
+  private int status_;
+  /**
+   * <code>.csservice.Status status = 1;</code>
+   * @return The enum numeric value on the wire for status.
+   */
+  @java.lang.Override public int getStatusValue() {
+    return status_;
+  }
+  /**
+   * <code>.csservice.Status status = 1;</code>
+   * @return The status.
+   */
+  @java.lang.Override public csstubs.Status getStatus() {
+    @SuppressWarnings("deprecation")
+    csstubs.Status result = csstubs.Status.valueOf(status_);
+    return result == null ? csstubs.Status.UNRECOGNIZED : result;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -57,6 +77,9 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    if (status_ != csstubs.Status.SUCCESS.getNumber()) {
+      output.writeEnum(1, status_);
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -66,6 +89,10 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
+    if (status_ != csstubs.Status.SUCCESS.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(1, status_);
+    }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
@@ -81,6 +108,7 @@ private static final long serialVersionUID = 0L;
     }
     csstubs.ImageStatus other = (csstubs.ImageStatus) obj;
 
+    if (status_ != other.status_) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -92,6 +120,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + STATUS_FIELD_NUMBER;
+    hash = (53 * hash) + status_;
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -220,6 +250,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      status_ = 0;
+
       return this;
     }
 
@@ -246,6 +278,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public csstubs.ImageStatus buildPartial() {
       csstubs.ImageStatus result = new csstubs.ImageStatus(this);
+      result.status_ = status_;
       onBuilt();
       return result;
     }
@@ -294,6 +327,9 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(csstubs.ImageStatus other) {
       if (other == csstubs.ImageStatus.getDefaultInstance()) return this;
+      if (other.status_ != 0) {
+        setStatusValue(other.getStatusValue());
+      }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -320,6 +356,11 @@ private static final long serialVersionUID = 0L;
             case 0:
               done = true;
               break;
+            case 8: {
+              status_ = input.readEnum();
+
+              break;
+            } // case 8
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -333,6 +374,60 @@ private static final long serialVersionUID = 0L;
       } finally {
         onChanged();
       } // finally
+      return this;
+    }
+
+    private int status_ = 0;
+    /**
+     * <code>.csservice.Status status = 1;</code>
+     * @return The enum numeric value on the wire for status.
+     */
+    @java.lang.Override public int getStatusValue() {
+      return status_;
+    }
+    /**
+     * <code>.csservice.Status status = 1;</code>
+     * @param value The enum numeric value on the wire for status to set.
+     * @return This builder for chaining.
+     */
+    public Builder setStatusValue(int value) {
+      
+      status_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.csservice.Status status = 1;</code>
+     * @return The status.
+     */
+    @java.lang.Override
+    public csstubs.Status getStatus() {
+      @SuppressWarnings("deprecation")
+      csstubs.Status result = csstubs.Status.valueOf(status_);
+      return result == null ? csstubs.Status.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>.csservice.Status status = 1;</code>
+     * @param value The status to set.
+     * @return This builder for chaining.
+     */
+    public Builder setStatus(csstubs.Status value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      status_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.csservice.Status status = 1;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearStatus() {
+      
+      status_ = 0;
+      onChanged();
       return this;
     }
     @java.lang.Override

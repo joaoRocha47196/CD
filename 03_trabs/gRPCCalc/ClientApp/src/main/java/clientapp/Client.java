@@ -30,7 +30,7 @@ public class Client {
             svcIP = args[0];
             svcPort = Integer.parseInt(args[1]);
         }
-        else{
+        else {
             svcPort = DEFAULT_PORT;
             svcIP = DEFAULT_IP;
         }

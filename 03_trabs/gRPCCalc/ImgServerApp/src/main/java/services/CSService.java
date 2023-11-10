@@ -15,14 +15,22 @@ public class CSService extends CSServiceGrpc.CSServiceImplBase {
     }
 
     @Override
-    public void checkImageStatus(ImageIdentifier request, StreamObserver<ImageResponse> responseObserver){
-        // Todo
+    public void checkImageStatus(ImageIdentifier request, StreamObserver<StatusResponse> responseObserver){
+        System.out.println(":: Checking Image Status ::");
+        StatusResponse status = StatusResponse.newBuilder()
+                .setStatus() //ver o estado atual da imagem na vm (se ja esta pronta para ser downloaded)
+                .build();
+
+        responseObserver.onNext(status);
+        responseObserver.onCompleted();
+
 
     }
 
     @Override
     public void downloadProcessedImage(ImageIdentifier request,StreamObserver<ImageResponse> responseObserver){
-        // Todo
+        System.out.println(":: Getting marked image ::");
+
     }
 
 

@@ -4,20 +4,19 @@
 package csstubs;
 
 /**
- * Protobuf type {@code csservice.ImageResponse}
+ * Protobuf type {@code csservice.StatusResponse}
  */
-public final class ImageResponse extends
+public final class StatusResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:csservice.ImageResponse)
-    ImageResponseOrBuilder {
+    // @@protoc_insertion_point(message_implements:csservice.StatusResponse)
+    StatusResponseOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use ImageResponse.newBuilder() to construct.
-  private ImageResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use StatusResponse.newBuilder() to construct.
+  private StatusResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private ImageResponse() {
+  private StatusResponse() {
     imageId_ = "";
-    processedImage_ = com.google.protobuf.ByteString.EMPTY;
     status_ = 0;
   }
 
@@ -25,7 +24,7 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new ImageResponse();
+    return new StatusResponse();
   }
 
   @java.lang.Override
@@ -35,15 +34,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return csstubs.CSServiceOuterClass.internal_static_csservice_ImageResponse_descriptor;
+    return csstubs.CSServiceOuterClass.internal_static_csservice_StatusResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return csstubs.CSServiceOuterClass.internal_static_csservice_ImageResponse_fieldAccessorTable
+    return csstubs.CSServiceOuterClass.internal_static_csservice_StatusResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            csstubs.ImageResponse.class, csstubs.ImageResponse.Builder.class);
+            csstubs.StatusResponse.class, csstubs.StatusResponse.Builder.class);
   }
 
   public static final int IMAGE_ID_FIELD_NUMBER = 1;
@@ -84,17 +83,6 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int PROCESSED_IMAGE_FIELD_NUMBER = 2;
-  private com.google.protobuf.ByteString processedImage_;
-  /**
-   * <code>bytes processed_image = 2;</code>
-   * @return The processedImage.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getProcessedImage() {
-    return processedImage_;
-  }
-
   public static final int STATUS_FIELD_NUMBER = 3;
   private int status_;
   /**
@@ -131,9 +119,6 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(imageId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, imageId_);
     }
-    if (!processedImage_.isEmpty()) {
-      output.writeBytes(2, processedImage_);
-    }
     if (status_ != csstubs.Status.SUCCESS.getNumber()) {
       output.writeEnum(3, status_);
     }
@@ -149,10 +134,6 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(imageId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, imageId_);
     }
-    if (!processedImage_.isEmpty()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBytesSize(2, processedImage_);
-    }
     if (status_ != csstubs.Status.SUCCESS.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(3, status_);
@@ -167,15 +148,13 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof csstubs.ImageResponse)) {
+    if (!(obj instanceof csstubs.StatusResponse)) {
       return super.equals(obj);
     }
-    csstubs.ImageResponse other = (csstubs.ImageResponse) obj;
+    csstubs.StatusResponse other = (csstubs.StatusResponse) obj;
 
     if (!getImageId()
         .equals(other.getImageId())) return false;
-    if (!getProcessedImage()
-        .equals(other.getProcessedImage())) return false;
     if (status_ != other.status_) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
@@ -190,8 +169,6 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + IMAGE_ID_FIELD_NUMBER;
     hash = (53 * hash) + getImageId().hashCode();
-    hash = (37 * hash) + PROCESSED_IMAGE_FIELD_NUMBER;
-    hash = (53 * hash) + getProcessedImage().hashCode();
     hash = (37 * hash) + STATUS_FIELD_NUMBER;
     hash = (53 * hash) + status_;
     hash = (29 * hash) + getUnknownFields().hashCode();
@@ -199,69 +176,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static csstubs.ImageResponse parseFrom(
+  public static csstubs.StatusResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static csstubs.ImageResponse parseFrom(
+  public static csstubs.StatusResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static csstubs.ImageResponse parseFrom(
+  public static csstubs.StatusResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static csstubs.ImageResponse parseFrom(
+  public static csstubs.StatusResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static csstubs.ImageResponse parseFrom(byte[] data)
+  public static csstubs.StatusResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static csstubs.ImageResponse parseFrom(
+  public static csstubs.StatusResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static csstubs.ImageResponse parseFrom(java.io.InputStream input)
+  public static csstubs.StatusResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static csstubs.ImageResponse parseFrom(
+  public static csstubs.StatusResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static csstubs.ImageResponse parseDelimitedFrom(java.io.InputStream input)
+  public static csstubs.StatusResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static csstubs.ImageResponse parseDelimitedFrom(
+  public static csstubs.StatusResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static csstubs.ImageResponse parseFrom(
+  public static csstubs.StatusResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static csstubs.ImageResponse parseFrom(
+  public static csstubs.StatusResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -274,7 +251,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(csstubs.ImageResponse prototype) {
+  public static Builder newBuilder(csstubs.StatusResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -290,26 +267,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code csservice.ImageResponse}
+   * Protobuf type {@code csservice.StatusResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:csservice.ImageResponse)
-      csstubs.ImageResponseOrBuilder {
+      // @@protoc_insertion_point(builder_implements:csservice.StatusResponse)
+      csstubs.StatusResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return csstubs.CSServiceOuterClass.internal_static_csservice_ImageResponse_descriptor;
+      return csstubs.CSServiceOuterClass.internal_static_csservice_StatusResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return csstubs.CSServiceOuterClass.internal_static_csservice_ImageResponse_fieldAccessorTable
+      return csstubs.CSServiceOuterClass.internal_static_csservice_StatusResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              csstubs.ImageResponse.class, csstubs.ImageResponse.Builder.class);
+              csstubs.StatusResponse.class, csstubs.StatusResponse.Builder.class);
     }
 
-    // Construct using csstubs.ImageResponse.newBuilder()
+    // Construct using csstubs.StatusResponse.newBuilder()
     private Builder() {
 
     }
@@ -324,8 +301,6 @@ private static final long serialVersionUID = 0L;
       super.clear();
       imageId_ = "";
 
-      processedImage_ = com.google.protobuf.ByteString.EMPTY;
-
       status_ = 0;
 
       return this;
@@ -334,17 +309,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return csstubs.CSServiceOuterClass.internal_static_csservice_ImageResponse_descriptor;
+      return csstubs.CSServiceOuterClass.internal_static_csservice_StatusResponse_descriptor;
     }
 
     @java.lang.Override
-    public csstubs.ImageResponse getDefaultInstanceForType() {
-      return csstubs.ImageResponse.getDefaultInstance();
+    public csstubs.StatusResponse getDefaultInstanceForType() {
+      return csstubs.StatusResponse.getDefaultInstance();
     }
 
     @java.lang.Override
-    public csstubs.ImageResponse build() {
-      csstubs.ImageResponse result = buildPartial();
+    public csstubs.StatusResponse build() {
+      csstubs.StatusResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -352,10 +327,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public csstubs.ImageResponse buildPartial() {
-      csstubs.ImageResponse result = new csstubs.ImageResponse(this);
+    public csstubs.StatusResponse buildPartial() {
+      csstubs.StatusResponse result = new csstubs.StatusResponse(this);
       result.imageId_ = imageId_;
-      result.processedImage_ = processedImage_;
       result.status_ = status_;
       onBuilt();
       return result;
@@ -395,22 +369,19 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof csstubs.ImageResponse) {
-        return mergeFrom((csstubs.ImageResponse)other);
+      if (other instanceof csstubs.StatusResponse) {
+        return mergeFrom((csstubs.StatusResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(csstubs.ImageResponse other) {
-      if (other == csstubs.ImageResponse.getDefaultInstance()) return this;
+    public Builder mergeFrom(csstubs.StatusResponse other) {
+      if (other == csstubs.StatusResponse.getDefaultInstance()) return this;
       if (!other.getImageId().isEmpty()) {
         imageId_ = other.imageId_;
         onChanged();
-      }
-      if (other.getProcessedImage() != com.google.protobuf.ByteString.EMPTY) {
-        setProcessedImage(other.getProcessedImage());
       }
       if (other.status_ != 0) {
         setStatusValue(other.getStatusValue());
@@ -446,11 +417,6 @@ private static final long serialVersionUID = 0L;
 
               break;
             } // case 10
-            case 18: {
-              processedImage_ = input.readBytes();
-
-              break;
-            } // case 18
             case 24: {
               status_ = input.readEnum();
 
@@ -548,40 +514,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.google.protobuf.ByteString processedImage_ = com.google.protobuf.ByteString.EMPTY;
-    /**
-     * <code>bytes processed_image = 2;</code>
-     * @return The processedImage.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString getProcessedImage() {
-      return processedImage_;
-    }
-    /**
-     * <code>bytes processed_image = 2;</code>
-     * @param value The processedImage to set.
-     * @return This builder for chaining.
-     */
-    public Builder setProcessedImage(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      processedImage_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bytes processed_image = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearProcessedImage() {
-      
-      processedImage_ = getDefaultInstance().getProcessedImage();
-      onChanged();
-      return this;
-    }
-
     private int status_ = 0;
     /**
      * <code>.csservice.Status status = 3;</code>
@@ -648,23 +580,23 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:csservice.ImageResponse)
+    // @@protoc_insertion_point(builder_scope:csservice.StatusResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:csservice.ImageResponse)
-  private static final csstubs.ImageResponse DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:csservice.StatusResponse)
+  private static final csstubs.StatusResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new csstubs.ImageResponse();
+    DEFAULT_INSTANCE = new csstubs.StatusResponse();
   }
 
-  public static csstubs.ImageResponse getDefaultInstance() {
+  public static csstubs.StatusResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<ImageResponse>
-      PARSER = new com.google.protobuf.AbstractParser<ImageResponse>() {
+  private static final com.google.protobuf.Parser<StatusResponse>
+      PARSER = new com.google.protobuf.AbstractParser<StatusResponse>() {
     @java.lang.Override
-    public ImageResponse parsePartialFrom(
+    public StatusResponse parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -683,17 +615,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<ImageResponse> parser() {
+  public static com.google.protobuf.Parser<StatusResponse> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<ImageResponse> getParserForType() {
+  public com.google.protobuf.Parser<StatusResponse> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public csstubs.ImageResponse getDefaultInstanceForType() {
+  public csstubs.StatusResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 
