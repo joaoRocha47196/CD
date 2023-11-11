@@ -3,10 +3,12 @@ package clientapp;
 import clientapp.StreamObservers.GetServerEndpointStreamObserver;
 import clientapp.servercallers.ImageServerCaller;
 import clientapp.servercallers.RegisterServerCaller;
+import crstubs.ServerEndpoint;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
 import java.util.Scanner;
+import java.util.concurrent.CompletableFuture;
 
 
 public class Client {
@@ -39,8 +41,8 @@ public class Client {
             registerServerPort = Integer.parseInt(args[3]);
         }
         else {
-            imageServerPort = IMAGE_DEFAULT_PORT;
-            imageServerIp = IMAGE_DEFAULT_IP;
+            //imageServerPort = IMAGE_DEFAULT_PORT;
+            //imageServerIp = IMAGE_DEFAULT_IP;
             registerServerPort = REGISTER_DEAFULT_PORT;
             registerServerIp = REGISTER_DEFAULT_IP;
         }
@@ -54,13 +56,17 @@ public class Client {
 
     static void initImageServerConnection(){
         // First get a free server that create a connection with that port and ip
-        registerServerCaller.getServerEndpoint();
-        //imageServerIp = vals.ip;
-        //imageServerPort = vals.port;
+        CompletableFuture<ServerEndpoint> future = registerServerCaller.getServerEndpoint();
+        future.thenCompose(serverEndpoint -> {
+            imageServerIp = serverEndpoint.getServerIp();
+            imageServerPort = serverEndpoint.getServerPort();
+            System.out.println("connect to image server in: " + imageServerIp + ":" + imageServerPort);
 
-        System.out.println("connect to image server in:" + imageServerIp + ":" + imageServerPort);
-        ManagedChannel imageChannel = createChannel(imageServerIp, imageServerPort);
-        imageServerCaller = new ImageServerCaller(imageChannel);
+            ManagedChannel imageChannel = createChannel(imageServerIp, imageServerPort);
+            imageServerCaller = new ImageServerCaller(imageChannel);
+
+            return CompletableFuture.completedFuture(null);
+        });
     }
 
     static ManagedChannel createChannel(String ip, int port){
@@ -68,7 +74,6 @@ public class Client {
             .usePlaintext()
             .build();
     }
-
 
     static void processClientOperations(){
         Scanner sc = new Scanner(System.in);

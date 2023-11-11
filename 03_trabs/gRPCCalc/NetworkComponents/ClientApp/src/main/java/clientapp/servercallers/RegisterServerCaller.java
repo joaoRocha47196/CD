@@ -3,7 +3,10 @@ package clientapp.servercallers;
 import clientapp.StreamObservers.GetServerEndpointStreamObserver;
 import crstubs.CRServiceGrpc;
 import crstubs.GetServerRequest;
+import crstubs.ServerEndpoint;
 import io.grpc.ManagedChannel;
+
+import java.util.concurrent.CompletableFuture;
 
 public class RegisterServerCaller {
     private CRServiceGrpc.CRServiceStub registerServerStub;
@@ -12,12 +15,12 @@ public class RegisterServerCaller {
         this.registerServerStub = CRServiceGrpc.newStub(channel);
     }
 
-    public GetServerEndpointStreamObserver getServerEndpoint() {
+    public CompletableFuture<ServerEndpoint> getServerEndpoint() {
         GetServerRequest request = GetServerRequest.newBuilder()
             .setClientId("clientTest")
             .build();
-        GetServerEndpointStreamObserver g = new GetServerEndpointStreamObserver();
-        registerServerStub.getServerEndpoint(request, new GetServerEndpointStreamObserver());
-        return g;
+        GetServerEndpointStreamObserver getServerEndpointStrmObsrvr = new GetServerEndpointStreamObserver();
+        registerServerStub.getServerEndpoint(request, getServerEndpointStrmObsrvr);
+        return getServerEndpointStrmObsrvr.getFuture();
     }
 }

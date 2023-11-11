@@ -10,7 +10,6 @@ import srstubs.ServerRegistration;
  */
 public class CRService extends CRServiceGrpc.CRServiceImplBase {
 
-
     @Override
     public void getServerEndpoint(GetServerRequest request, StreamObserver<ServerEndpoint> responseObserver) {
         System.out.println(":: Getting Server Endpoint ::");
@@ -26,8 +25,8 @@ public class CRService extends CRServiceGrpc.CRServiceImplBase {
 
     private ServerEndpoint createServerEndpoint(String serverIp, int serverPort){
         return ServerEndpoint.newBuilder()
-                .setServerIp(serverIp) // Example endpoint; replace with your logic
-                .setServerPort(serverPort) // Example port; replace with your logic
+                .setServerIp(serverIp)
+                .setServerPort(serverPort)
                 .build();
     }
     public ServerRegistration chooseAvailableServer(StreamObserver<ServerEndpoint> responseObserver) {

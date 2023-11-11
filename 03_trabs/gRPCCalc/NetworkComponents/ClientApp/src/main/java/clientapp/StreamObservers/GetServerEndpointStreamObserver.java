@@ -2,9 +2,15 @@ package clientapp.StreamObservers;
 import crstubs.ServerEndpoint;
 import io.grpc.stub.StreamObserver;
 
+import java.util.concurrent.CompletableFuture;
+
 public class GetServerEndpointStreamObserver implements StreamObserver<ServerEndpoint> {
-    public String ip;
-    public int port;
+    private CompletableFuture<ServerEndpoint> future = new CompletableFuture<>();
+
+    public CompletableFuture<ServerEndpoint> getFuture() {
+        return future;
+    }
+
     @Override
     public void onNext(ServerEndpoint serverEndpoint) {
         System.out.println("╔════════════════════════════════════╗");
@@ -14,13 +20,13 @@ public class GetServerEndpointStreamObserver implements StreamObserver<ServerEnd
         System.out.println("║ Server Port: " + serverEndpoint.getServerPort());
         System.out.println("║------------------------------------║");
         System.out.println("╚════════════════════════════════════╝");
-        this.ip =serverEndpoint.getServerIp();
-        this.port = serverEndpoint.getServerPort();
+        future.complete(serverEndpoint);
     }
 
     @Override
     public void onError(Throwable t) {
         System.err.println("Error: " + t.getMessage());
+        future.completeExceptionally(t);
     }
 
     @Override
