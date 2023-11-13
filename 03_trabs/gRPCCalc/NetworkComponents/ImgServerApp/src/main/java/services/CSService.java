@@ -2,16 +2,15 @@ package services;
 
 
 import StreamObservers.ProcessImageStreamObserver;
-import api.MarkImageApp;
 import com.google.protobuf.ByteString;
 import csstubs.*;
 import io.grpc.stub.StreamObserver;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 public class CSService extends CSServiceGrpc.CSServiceImplBase {
+
+    public static final int CHUCK_SIZE = 32 * 1024;
 
     @Override
     public StreamObserver<ImageRequest> processImage(StreamObserver<ImageIdentifier> responseObserver ){
@@ -24,18 +23,28 @@ public class CSService extends CSServiceGrpc.CSServiceImplBase {
     public void checkImageStatus(ImageIdentifier request, StreamObserver<StatusResponse> responseObserver){
         System.out.println(":: Checking Image Status ::");
 
-        /*
-        StatusResponse status = StatusResponse.newBuilder()
-                .setStatus() //ver o estado atual da imagem na vm (se ja esta pronta para ser downloaded)
-                .build();
+        String imageID = request.getIdentifier();
+        String imagePath = "C:\\Users\\user\\Pictures\\" + imageID; 
+
+        File imageFile = new File(imagePath);
+        boolean isImageReady = imageFile.exists();
+
+        StatusResponse status;
+        if (isImageReady)
+            status = getStatusResponse("Image is ready to download");
+        else
+            status = getStatusResponse("Image is not yet available");
 
         responseObserver.onNext(status);
         responseObserver.onCompleted();
-        */
+    }
 
-
-
-
+    private static StatusResponse getStatusResponse(String statusMessage) {
+        StatusResponse status;
+        status = StatusResponse.newBuilder()
+                .setStatus(statusMessage)
+                .build();
+        return status;
     }
 
     @Override
@@ -43,29 +52,23 @@ public class CSService extends CSServiceGrpc.CSServiceImplBase {
         System.out.println(":: Getting marked image ::");
 
         String imageID = request.getIdentifier();
-        String[] filenameParts = imageID.split("\\.");
-        String basename = filenameParts[0];
-        String extension = filenameParts[1];
+        String imagePath = "/usr/images/" + imageID;
 
-        try {
-            byte[] imageBytes = null;//get annotated image from vm
+        try (FileInputStream fileInputStream = new FileInputStream(imagePath)) {
+            byte[] buffer = new byte[CHUCK_SIZE];
 
-            InputStream inputStream = new ByteArrayInputStream(imageBytes);
-
-            byte[] bytes = new byte[4096];
-            int size;
-            while ((size = inputStream.read(bytes)) > 0) {
-                Metadata metadata = createMetaData(basename, extension);
-                ByteString bs = ByteString.copyFrom(bytes, 0, size);
+            int bytesRead;
+            while ((bytesRead = fileInputStream.read(buffer)) != -1) {
+                ByteString bs = ByteString.copyFrom(buffer, 0, bytesRead);
+                Metadata metadata = createMetaData(imageID);
                 ImageResponse response = createImageResponse(bs, metadata);
                 responseObserver.onNext(response);
             }
-            inputStream.close();
             responseObserver.onCompleted();
-            System.out.println("Finished request");
+
         } catch (IOException e) {
             e.printStackTrace();
-            responseObserver.onError(new Throwable());
+            responseObserver.onError(e);
         }
     }
 
@@ -76,10 +79,10 @@ public class CSService extends CSServiceGrpc.CSServiceImplBase {
             .build();
     }
 
-    private Metadata createMetaData(String baseName, String extension){
+    private Metadata createMetaData(String baseName){
         return Metadata.newBuilder()
             .setName(baseName)
-            .setType(extension)
+            .setType("jpg")
             .build();
     }
 }

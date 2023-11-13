@@ -1,2 +1,7 @@
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\ClientApp\src\main\java\clientapp\ServerCaller.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\ClientApp\src\main\java\clientapp\Client.java
+C:\ISEL\Mestrado-1Semestre\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents\ClientApp\src\main\java\clientapp\servercallers\RegisterServerCaller.java
+C:\ISEL\Mestrado-1Semestre\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents\ClientApp\src\main\java\clientapp\StreamObservers\CheckImageStatusStreamObserver.java
+C:\ISEL\Mestrado-1Semestre\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents\ClientApp\src\main\java\clientapp\servercallers\ImageServerCaller.java
+C:\ISEL\Mestrado-1Semestre\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents\ClientApp\src\main\java\clientapp\Client.java
+C:\ISEL\Mestrado-1Semestre\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents\ClientApp\src\main\java\clientapp\StreamObservers\ProcessImageStreamObserver.java
+C:\ISEL\Mestrado-1Semestre\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents\ClientApp\src\main\java\clientapp\StreamObservers\DownloadProcessedImageStreamObserver.java
+C:\ISEL\Mestrado-1Semestre\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents\ClientApp\src\main\java\clientapp\StreamObservers\GetServerEndpointStreamObserver.java

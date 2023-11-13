@@ -1,6 +1,5 @@
 package clientapp;
 
-import clientapp.StreamObservers.GetServerEndpointStreamObserver;
 import clientapp.servercallers.ImageServerCaller;
 import clientapp.servercallers.RegisterServerCaller;
 import crstubs.ServerEndpoint;
@@ -41,8 +40,8 @@ public class Client {
             registerServerPort = Integer.parseInt(args[3]);
         }
         else {
-            //imageServerPort = IMAGE_DEFAULT_PORT;
-            //imageServerIp = IMAGE_DEFAULT_IP;
+            imageServerPort = IMAGE_DEFAULT_PORT;
+            imageServerIp = IMAGE_DEFAULT_IP;
             registerServerPort = REGISTER_DEAFULT_PORT;
             registerServerIp = REGISTER_DEFAULT_IP;
         }
@@ -125,11 +124,11 @@ public class Client {
         System.out.println("╔════════════════════════════╗");
         System.out.println("║            MENU            ║");
         System.out.println("╠═══╦════════════════════════╣");
-        System.out.println("║ 1 ║ Get Server Endpoint    ║");
+        System.out.println("║ 1 ║ Process Image          ║");
         System.out.println("╠═══╬════════════════════════╣");
-        System.out.println("║ 2 ║ -------------          ║");
+        System.out.println("║ 2 ║ Check Image Status     ║");
         System.out.println("╠═══╬════════════════════════╣");
-        System.out.println("║ 3 ║ -------------          ║");
+        System.out.println("║ 3 ║ Download Marked Image  ║");
         System.out.println("╠═══╬════════════════════════╣");
         System.out.println("║ 4 ║ Exit                   ║");
         System.out.println("╚═══╩════════════════════════╝");

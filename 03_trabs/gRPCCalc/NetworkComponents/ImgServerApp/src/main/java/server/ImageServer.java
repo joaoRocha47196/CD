@@ -51,7 +51,7 @@ public class ImageServer {
     }
 
     public static void initRegisterServerConnection(){
-        System.out.println("connect to register server in:" + registerServerIp + ":" + registerServerPort);
+        System.out.println("connect to register server in: " + registerServerIp + ":" + registerServerPort);
         ManagedChannel channel = createChannel(registerServerIp, registerServerPort);
         registerServerCaller = new RegisterServerCaller(channel);
     }
@@ -69,6 +69,7 @@ public class ImageServer {
                 .usePlaintext()
                 .build();
     }
+
     public static void logger(String className, String methodName, String info){
         System.out.println("[INFO]" + " ["
                 + className + " - "

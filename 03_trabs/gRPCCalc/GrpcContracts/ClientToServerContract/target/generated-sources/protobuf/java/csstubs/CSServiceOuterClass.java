@@ -35,11 +35,6 @@ public final class CSServiceOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_csservice_ImageIdentifier_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_csservice_ImageStatus_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_csservice_ImageStatus_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_csservice_Metadata_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -58,19 +53,17 @@ public final class CSServiceOuterClass {
       "ata\022\022\n\nimage_data\030\002 \001(\014\022\020\n\010keywords\030\003 \003(" +
       "\t\"a\n\rImageResponse\022\020\n\010image_id\030\001 \001(\t\022%\n\010" +
       "metadata\030\002 \001(\0132\023.csservice.Metadata\022\027\n\017p" +
-      "rocessed_image\030\003 \001(\014\"E\n\016StatusResponse\022\020" +
-      "\n\010image_id\030\001 \001(\t\022!\n\006status\030\003 \001(\0162\021.csser" +
-      "vice.Status\"%\n\017ImageIdentifier\022\022\n\nidenti" +
-      "fier\030\001 \001(\t\"0\n\013ImageStatus\022!\n\006status\030\001 \001(" +
-      "\0162\021.csservice.Status\"&\n\010Metadata\022\014\n\004name" +
-      "\030\001 \001(\t\022\014\n\004type\030\002 \001(\t*\"\n\006Status\022\013\n\007SUCCES" +
-      "S\020\000\022\013\n\007FAILURE\020\0012\357\001\n\tCSService\022E\n\014Proces" +
-      "sImage\022\027.csservice.ImageRequest\032\032.csserv" +
-      "ice.ImageIdentifier(\001\022I\n\020CheckImageStatu" +
-      "s\022\032.csservice.ImageIdentifier\032\031.csservic" +
-      "e.StatusResponse\022P\n\026DownloadProcessedIma" +
-      "ge\022\032.csservice.ImageIdentifier\032\030.csservi" +
-      "ce.ImageResponse0\001B\013\n\007csstubsP\001b\006proto3"
+      "rocessed_image\030\003 \001(\014\"2\n\016StatusResponse\022\020" +
+      "\n\010image_id\030\001 \001(\t\022\016\n\006status\030\003 \001(\t\"%\n\017Imag" +
+      "eIdentifier\022\022\n\nidentifier\030\001 \001(\t\"&\n\010Metad" +
+      "ata\022\014\n\004name\030\001 \001(\t\022\014\n\004type\030\002 \001(\t2\357\001\n\tCSSe" +
+      "rvice\022E\n\014ProcessImage\022\027.csservice.ImageR" +
+      "equest\032\032.csservice.ImageIdentifier(\001\022I\n\020" +
+      "CheckImageStatus\022\032.csservice.ImageIdenti" +
+      "fier\032\031.csservice.StatusResponse\022P\n\026Downl" +
+      "oadProcessedImage\022\032.csservice.ImageIdent" +
+      "ifier\032\030.csservice.ImageResponse0\001B\013\n\007css" +
+      "tubsP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -100,14 +93,8 @@ public final class CSServiceOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_csservice_ImageIdentifier_descriptor,
         new java.lang.String[] { "Identifier", });
-    internal_static_csservice_ImageStatus_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_csservice_ImageStatus_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_csservice_ImageStatus_descriptor,
-        new java.lang.String[] { "Status", });
     internal_static_csservice_Metadata_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_csservice_Metadata_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_csservice_Metadata_descriptor,

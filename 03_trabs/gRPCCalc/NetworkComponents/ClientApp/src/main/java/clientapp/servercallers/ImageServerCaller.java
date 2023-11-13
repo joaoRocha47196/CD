@@ -1,5 +1,6 @@
 package clientapp.servercallers;
 
+import clientapp.StreamObservers.CheckImageStatusStreamObserver;
 import clientapp.StreamObservers.DownloadProcessedImageStreamObserver;
 import clientapp.StreamObservers.ProcessImageStreamObserver;
 import com.google.protobuf.ByteString;
@@ -58,13 +59,11 @@ public class ImageServerCaller {
     }
 
     public void checkImageStatus(String imageId) {
-        /*
         ImageIdentifier request = ImageIdentifier.newBuilder()
                 .setIdentifier(imageId)
                 .build();
         CheckImageStatusStreamObserver response = new CheckImageStatusStreamObserver();
         imageServerStub.checkImageStatus(request, response);
-           */
     }
 
     public void downloadProcessedImage(String imageId, String destinationPath){

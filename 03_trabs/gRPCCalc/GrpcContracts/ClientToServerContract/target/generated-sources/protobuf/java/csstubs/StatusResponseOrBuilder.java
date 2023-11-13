@@ -20,13 +20,14 @@ public interface StatusResponseOrBuilder extends
       getImageIdBytes();
 
   /**
-   * <code>.csservice.Status status = 3;</code>
-   * @return The enum numeric value on the wire for status.
-   */
-  int getStatusValue();
-  /**
-   * <code>.csservice.Status status = 3;</code>
+   * <code>string status = 3;</code>
    * @return The status.
    */
-  csstubs.Status getStatus();
+  java.lang.String getStatus();
+  /**
+   * <code>string status = 3;</code>
+   * @return The bytes for status.
+   */
+  com.google.protobuf.ByteString
+      getStatusBytes();
 }

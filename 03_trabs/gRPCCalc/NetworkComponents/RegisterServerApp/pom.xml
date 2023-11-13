@@ -40,8 +40,14 @@
             <artifactId>BaseServer</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>cd2324srcontract</groupId>
+            <artifactId>ServerToRegisterContract</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
 
-      </dependencies>
+    </dependencies>
 
     <build>
         <plugins>
@@ -55,7 +61,7 @@
                     </descriptors>
                     <archive>
                         <manifest>
-                            <mainClass>server.ImageServer</mainClass>
+                            <mainClass>server.RegisterServer</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

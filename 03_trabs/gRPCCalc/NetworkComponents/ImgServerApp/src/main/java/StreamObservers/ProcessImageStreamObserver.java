@@ -1,12 +1,12 @@
 package StreamObservers;
 
-import api.MarkImageApp;
+import api.DockerAPI;
 import csstubs.ImageIdentifier;
 import csstubs.ImageRequest;
-import csstubs.Status;
 import io.grpc.stub.StreamObserver;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,6 @@ public class ProcessImageStreamObserver implements StreamObserver<ImageRequest> 
     private List<String> keywords;
     private String filename;
     private String filetype;
-    private Status status = Status.SUCCESS;
-
 
     public ProcessImageStreamObserver(StreamObserver<ImageIdentifier> responseObserver){
         this.writer = new ByteArrayOutputStream();
@@ -47,29 +45,49 @@ public class ProcessImageStreamObserver implements StreamObserver<ImageRequest> 
 
     @Override
     public void onError(Throwable t) {
-        status = Status.FAILURE;
+        System.err.println("Error: " + t.getMessage());
     }
 
     @Override
     public void onCompleted() {
         try {
             writer.close();
-            String[] args = new String[this.keywords.size() + 2];
-            String inputImagePath = "" ;
-            String outputImagePath = "";
 
-            args[0] = inputImagePath;
-            args[1] = outputImagePath;
+            String imageOutputName = UUID.randomUUID() + "_annotated_" + this.filename + "." + this.filetype;
+            String inputPath = "/usr/images/" + this.filename + "." + this.filetype;
+            String outputPath = "/usr/datafiles/" + imageOutputName;
+
+
+            FileOutputStream fileOutputStream = new FileOutputStream(inputPath);
+            writer.writeTo(fileOutputStream);
+            fileOutputStream.close();
+
+
+            String[] args = new String[this.keywords.size() + 2];
+            args[0] = inputPath;
+            args[1] = outputPath;
 
             int index = 2;
             for (String keyword : this.keywords)
                 args[index++] = keyword;
 
-            MarkImageApp.main(args);
+            // Define the arguments for DockerAPI
+            List<String> dockerArgs = new ArrayList<>();
+            dockerArgs.add("tcp://localhost:2375"); // Docker host URI
+            dockerArgs.add("contMarkimage");        // Container name
+            dockerArgs.add("/usr/images");          // Volume or directory path
+            dockerArgs.add("markimage");            // Docker image name
+            dockerArgs.add("java");
+            dockerArgs.add("-jar");
+            dockerArgs.add("MarkImageApp-1.0-jar-with-dependencies.jar");
+            dockerArgs.add(inputPath);
+            dockerArgs.add(outputPath);
+            dockerArgs.addAll(this.keywords);
 
-            String imageId = this.filename + "-" + UUID.randomUUID() + "." + this.filetype;
+            DockerAPI.main(dockerArgs.toArray(new String[0]));
+
             ImageIdentifier response = ImageIdentifier.newBuilder()
-                    .setIdentifier(imageId)
+                    .setIdentifier(imageOutputName)
                     .build();
 
             replies.onNext(response);

@@ -1,8 +1,6 @@
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\ImgServerApp\src\main\java\server\ImageServer.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\ImgServerApp\src\main\java\services\CSService.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\ImgServerApp\src\main\java\servercallers\RegisterServerCaller.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\ImgServerApp\src\main\java\StreamObservers\GetServerEndpointStreamObserver.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\ImgServerApp\src\main\java\StreamObservers\CheckImageStatusStreamObserver.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\ImgServerApp\src\main\java\StreamObservers\DownloadProcessedImageStreamObserver.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\ImgServerApp\src\main\java\StreamObservers\RegisterServerStreamObserver.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\ImgServerApp\src\main\java\StreamObservers\ProcessImageStreamObserver.java
+C:\ISEL\Mestrado-1Semestre\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents\ImgServerApp\src\main\java\server\ImageServer.java
+C:\ISEL\Mestrado-1Semestre\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents\ImgServerApp\src\main\java\services\CSService.java
+C:\ISEL\Mestrado-1Semestre\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents\ImgServerApp\src\main\java\StreamObservers\ProcessImageStreamObserver.java
+C:\ISEL\Mestrado-1Semestre\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents\ImgServerApp\src\main\java\repo\Repo.java
+C:\ISEL\Mestrado-1Semestre\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents\ImgServerApp\src\main\java\StreamObservers\RegisterServerStreamObserver.java
+C:\ISEL\Mestrado-1Semestre\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents\ImgServerApp\src\main\java\servercallers\RegisterServerCaller.java

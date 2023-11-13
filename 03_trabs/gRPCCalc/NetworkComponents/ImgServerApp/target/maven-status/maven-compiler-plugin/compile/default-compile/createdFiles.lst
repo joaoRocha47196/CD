@@ -1,7 +1,6 @@
-server\ImageServer.class
-servercallers\RegisterServerCaller.class
-StreamObservers\DownloadProcessedImageStreamObserver.class
 services\CSService.class
 StreamObservers\ProcessImageStreamObserver.class
+server\ImageServer.class
 StreamObservers\RegisterServerStreamObserver.class
-StreamObservers\CheckImageStatusStreamObserver.class
+repo\Repo.class
+servercallers\RegisterServerCaller.class

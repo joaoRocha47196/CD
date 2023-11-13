@@ -30,7 +30,7 @@ public class GrpcBaseServer {
     public void start(){
         try {
             serverInstance.start();
-            System.out.println("Stared Server ");
+            System.out.println("Server Started ");
         } catch (Exception ex) {
             System.out.println("Error");
             ex.printStackTrace();

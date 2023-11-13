@@ -45,7 +45,7 @@ public class DownloadProcessedImageStreamObserver implements StreamObserver<Imag
     public void onCompleted() {
         try {
             writer.close();
-            Path path = Paths.get(destinationPath + "\\" + this.filename + "." + this.filetype);
+            Path path = Paths.get(destinationPath + this.filename + "." + this.filetype);
             File imageFile = path.toFile();
 
             InputStream is = new ByteArrayInputStream(writer.toByteArray());
