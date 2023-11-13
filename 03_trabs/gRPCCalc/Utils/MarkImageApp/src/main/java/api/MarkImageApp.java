@@ -11,12 +11,15 @@ public class MarkImageApp {
     public static void main(String[] args) {
         // args[0] - image pathname; args[1] - image result pathname
         // args[2]...args[n] keywords to mark image
+        System.out.println("Inside main");
         String inputPath=args[0];
         String outputPath=args[1];
+        System.out.println(outputPath);
         ArrayList<String> keywords=new ArrayList<>();
         for (int i=2; i < args.length; i++) keywords.add(args[i]);
         BufferedImage img = null;
         try {
+            System.out.println("Creating annotated image");
             img = ImageIO.read(Path.of(inputPath).toFile());
             annotateImage(img, keywords);
             ImageIO.write(img, "jpg", Path.of(outputPath).toFile());

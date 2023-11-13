@@ -24,7 +24,7 @@ public class CSService extends CSServiceGrpc.CSServiceImplBase {
         System.out.println(":: Checking Image Status ::");
 
         String imageID = request.getIdentifier();
-        String imagePath = "C:\\Users\\user\\Pictures\\" + imageID; 
+        String imagePath = "./usr/images/" + imageID;
 
         File imageFile = new File(imagePath);
         boolean isImageReady = imageFile.exists();
@@ -52,7 +52,7 @@ public class CSService extends CSServiceGrpc.CSServiceImplBase {
         System.out.println(":: Getting marked image ::");
 
         String imageID = request.getIdentifier();
-        String imagePath = "/usr/images/" + imageID;
+        String imagePath = "./usr/images/" + imageID;
 
         try (FileInputStream fileInputStream = new FileInputStream(imagePath)) {
             byte[] buffer = new byte[CHUCK_SIZE];
@@ -68,7 +68,7 @@ public class CSService extends CSServiceGrpc.CSServiceImplBase {
 
         } catch (IOException e) {
             e.printStackTrace();
-            responseObserver.onError(e);
+            responseObserver.onError(new Exception("Error downloading processed image"));
         }
     }
 

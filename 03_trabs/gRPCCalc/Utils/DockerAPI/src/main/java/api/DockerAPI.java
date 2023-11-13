@@ -21,8 +21,11 @@ public class DockerAPI {
         try {
             String HOST_URI = args[0]; String containerName = args[1];
             String pathVolDir = args[2]; String imageName = args[3];
+            System.out.println("Inside docker api");
+            System.out.println(pathVolDir);
             List<String> command=new ArrayList<>();
             for (int i=4; i < args.length; i++) command.add(args[i]);
+            System.out.println(command);
             DockerClient dockerclient = DockerClientBuilder
                     .getInstance()
                     .withDockerHttpClient(
@@ -42,11 +45,21 @@ public class DockerAPI {
             dockerclient.startContainerCmd(containerResponse.getId()).exec();
             InspectContainerResponse inspResp = dockerclient
                     .inspectContainerCmd(containerName).exec();
-            System.out.println("Container Status: " + inspResp.getState().getStatus());
-            // if container is running
-            dockerclient.killContainerCmd(containerName).exec();
-            // remove container
-            dockerclient.removeContainerCmd(containerName).exec();
+
+            String status = inspResp.getState().getStatus();
+            System.out.println("Container Status: " + status);
+
+            /*
+            if (status != null && status.equals("running")) {
+                System.out.println("versao nova dentro do if");
+                dockerclient.killContainerCmd(containerName).exec();
+                dockerclient.removeContainerCmd(containerName).exec();
+                System.out.println("Container Killed");
+            } else {
+                System.out.println("versao nova dentro do else");
+                System.out.println("Container is not running. No need to kill.");
+            }*/
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }

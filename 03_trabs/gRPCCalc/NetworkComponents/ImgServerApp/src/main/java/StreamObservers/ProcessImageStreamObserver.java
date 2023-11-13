@@ -54,32 +54,27 @@ public class ProcessImageStreamObserver implements StreamObserver<ImageRequest> 
             writer.close();
 
             String imageOutputName = UUID.randomUUID() + "_annotated_" + this.filename + "." + this.filetype;
-            String inputPath = "/usr/images/" + this.filename + "." + this.filetype;
-            String outputPath = "/usr/datafiles/" + imageOutputName;
+
+            String inputPath = "./usr/images/" + this.filename + "." + this.filetype;
+
+            String outputPath = "./usr/datafiles/" + imageOutputName;
+
+            String inputPathDocker = this.filename + "." + this.filetype;
 
 
             FileOutputStream fileOutputStream = new FileOutputStream(inputPath);
             writer.writeTo(fileOutputStream);
             fileOutputStream.close();
 
-
-            String[] args = new String[this.keywords.size() + 2];
-            args[0] = inputPath;
-            args[1] = outputPath;
-
-            int index = 2;
-            for (String keyword : this.keywords)
-                args[index++] = keyword;
-
             // Define the arguments for DockerAPI
             List<String> dockerArgs = new ArrayList<>();
-            dockerArgs.add("tcp://localhost:2375"); // Docker host URI
-            dockerArgs.add("contMarkimage");        // Container name
+            dockerArgs.add("unix:///var/run/docker.sock"); // Docker host URI
+            dockerArgs.add(imageOutputName);        // Container name
             dockerArgs.add("/usr/images");          // Volume or directory path
             dockerArgs.add("markimage");            // Docker image name
             dockerArgs.add("java");
             dockerArgs.add("-jar");
-            dockerArgs.add("MarkImageApp-1.0-jar-with-dependencies.jar");
+            dockerArgs.add("/usr/datafiles/MarkImageApp-1.0-jar-with-dependencies.jar");
             dockerArgs.add(inputPath);
             dockerArgs.add(outputPath);
             dockerArgs.addAll(this.keywords);

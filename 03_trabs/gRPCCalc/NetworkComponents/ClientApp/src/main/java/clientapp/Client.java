@@ -12,10 +12,10 @@ import java.util.concurrent.CompletableFuture;
 
 public class Client {
     private static final int MENU_EXIT_OPTION = 4;
-    private static final int IMAGE_DEFAULT_PORT = 8080;
-    private static final String IMAGE_DEFAULT_IP = "localhost";
-    private static int REGISTER_DEAFULT_PORT = 8500;
-    private static final String REGISTER_DEFAULT_IP = "localhost";
+    private static final int IMAGE_DEFAULT_PORT = 7003;
+    private static final String IMAGE_DEFAULT_IP = "34.175.82.68";
+    private static int REGISTER_DEAFULT_PORT = 8001;
+    private static final String REGISTER_DEFAULT_IP = "34.175.82.68";
 
     private static String imageServerIp; // "35.246.73.129";
     private static int imageServerPort;
