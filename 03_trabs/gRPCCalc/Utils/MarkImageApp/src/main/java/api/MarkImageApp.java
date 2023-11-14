@@ -21,6 +21,7 @@ public class MarkImageApp {
         try {
             System.out.println("Creating annotated image");
             img = ImageIO.read(Path.of(inputPath).toFile());
+            System.out.println("File Read Success");
             annotateImage(img, keywords);
             ImageIO.write(img, "jpg", Path.of(outputPath).toFile());
         } catch (IOException e) {

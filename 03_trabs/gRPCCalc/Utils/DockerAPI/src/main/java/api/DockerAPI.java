@@ -49,16 +49,9 @@ public class DockerAPI {
             String status = inspResp.getState().getStatus();
             System.out.println("Container Status: " + status);
 
-            /*
-            if (status != null && status.equals("running")) {
-                System.out.println("versao nova dentro do if");
-                dockerclient.killContainerCmd(containerName).exec();
-                dockerclient.removeContainerCmd(containerName).exec();
-                System.out.println("Container Killed");
-            } else {
-                System.out.println("versao nova dentro do else");
-                System.out.println("Container is not running. No need to kill.");
-            }*/
+            //dockerclient.killContainerCmd(containerName).exec();
+            //dockerclient.removeContainerCmd(containerName).exec();
+            //System.out.println("container removed");
 
         } catch (Exception ex) {
             ex.printStackTrace();

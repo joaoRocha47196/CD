@@ -12,10 +12,10 @@ import java.util.concurrent.CompletableFuture;
 
 public class Client {
     private static final int MENU_EXIT_OPTION = 4;
-    private static final int IMAGE_DEFAULT_PORT = 7003;
-    private static final String IMAGE_DEFAULT_IP = "34.175.82.68";
-    private static int REGISTER_DEAFULT_PORT = 8001;
-    private static final String REGISTER_DEFAULT_IP = "34.175.82.68";
+    private static final int IMAGE_DEFAULT_PORT = 7008;
+    private static final String IMAGE_DEFAULT_IP = "34.175.229.136";
+    private static int REGISTER_DEAFULT_PORT = 8009;
+    private static final String REGISTER_DEFAULT_IP = "34.175.229.136";
 
     private static String imageServerIp; // "35.246.73.129";
     private static int imageServerPort;
@@ -40,8 +40,8 @@ public class Client {
             registerServerPort = Integer.parseInt(args[3]);
         }
         else {
-            imageServerPort = IMAGE_DEFAULT_PORT;
-            imageServerIp = IMAGE_DEFAULT_IP;
+            //imageServerPort = IMAGE_DEFAULT_PORT;
+            //imageServerIp = IMAGE_DEFAULT_IP;
             registerServerPort = REGISTER_DEAFULT_PORT;
             registerServerIp = REGISTER_DEFAULT_IP;
         }
@@ -62,6 +62,7 @@ public class Client {
             System.out.println("connect to image server in: " + imageServerIp + ":" + imageServerPort);
 
             ManagedChannel imageChannel = createChannel(imageServerIp, imageServerPort);
+            System.out.println(imageChannel);
             imageServerCaller = new ImageServerCaller(imageChannel);
 
             return CompletableFuture.completedFuture(null);

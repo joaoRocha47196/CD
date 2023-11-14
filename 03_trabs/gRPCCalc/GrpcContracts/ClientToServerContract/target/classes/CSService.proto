@@ -15,6 +15,10 @@ message ImageRequest {
   repeated string keywords = 3;
 }
 
+message ImageIdentifier {
+  string identifier = 1;
+}
+
 message ImageResponse {
   string image_id = 1;
   Metadata metadata = 2;
@@ -25,11 +29,6 @@ message StatusResponse {
   string image_id = 1;
   string status = 3;
 }
-
-message ImageIdentifier {
-  string identifier = 1;
-}
-
 
 message Metadata {
   string name=1;

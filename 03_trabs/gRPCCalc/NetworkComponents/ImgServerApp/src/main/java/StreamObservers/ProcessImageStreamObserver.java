@@ -53,36 +53,34 @@ public class ProcessImageStreamObserver implements StreamObserver<ImageRequest> 
         try {
             writer.close();
 
-            String imageOutputName = UUID.randomUUID() + "_annotated_" + this.filename + "." + this.filetype;
+            String volumePath = "/usr/datafiles/";
+            String inputFileName = this.filename + "." + this.filetype;
+            String outputFileName = UUID.randomUUID() + "-annotated-" + inputFileName;
 
-            String inputPath = "./usr/images/" + this.filename + "." + this.filetype;
+            String vmRootDir = "./usr/images/" + this.filename + "." + this.filetype;
 
-            String outputPath = "./usr/datafiles/" + imageOutputName;
+            String containerInputPath = volumePath + inputFileName;
+            String containerOutPath = volumePath + outputFileName;
 
-            String inputPathDocker = this.filename + "." + this.filetype;
-
-
-            FileOutputStream fileOutputStream = new FileOutputStream(inputPath);
+            // Write file in VM FileSystem
+            FileOutputStream fileOutputStream = new FileOutputStream(vmRootDir);
             writer.writeTo(fileOutputStream);
             fileOutputStream.close();
 
-            // Define the arguments for DockerAPI
+            // Run Container do process file
             List<String> dockerArgs = new ArrayList<>();
-            dockerArgs.add("unix:///var/run/docker.sock"); // Docker host URI
-            dockerArgs.add(imageOutputName);        // Container name
-            dockerArgs.add("/usr/images");          // Volume or directory path
-            dockerArgs.add("markimage");            // Docker image name
-            dockerArgs.add("java");
-            dockerArgs.add("-jar");
-            dockerArgs.add("/usr/datafiles/MarkImageApp-1.0-jar-with-dependencies.jar");
-            dockerArgs.add(inputPath);
-            dockerArgs.add(outputPath);
+            dockerArgs.add("unix:///var/run/docker.sock");  // Docker host URI
+            dockerArgs.add(outputFileName);                 // Container name
+            dockerArgs.add("/usr/images");                  // Volume or directory path
+            dockerArgs.add("markimage");                    // Docker image name
+            dockerArgs.add(containerInputPath);
+            dockerArgs.add(containerOutPath);
             dockerArgs.addAll(this.keywords);
 
             DockerAPI.main(dockerArgs.toArray(new String[0]));
 
             ImageIdentifier response = ImageIdentifier.newBuilder()
-                    .setIdentifier(imageOutputName)
+                    .setIdentifier(outputFileName)
                     .build();
 
             replies.onNext(response);
