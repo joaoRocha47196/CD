@@ -33,11 +33,11 @@ public class Client {
     }
 
     public static void initConnections(String[] args){
-        if (args.length == 4) {
-            imageServerIp = args[0];
-            imageServerPort = Integer.parseInt(args[1]);
-            registerServerIp = args[2];
-            registerServerPort = Integer.parseInt(args[3]);
+        if (args.length == 2) {
+            //imageServerIp = args[0];
+            //imageServerPort = Integer.parseInt(args[1]);
+            registerServerIp = args[0];
+            registerServerPort = Integer.parseInt(args[1]);
         }
         else {
             //imageServerPort = IMAGE_DEFAULT_PORT;
