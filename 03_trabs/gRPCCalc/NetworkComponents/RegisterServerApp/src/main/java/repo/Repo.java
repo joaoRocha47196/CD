@@ -26,7 +26,6 @@ public class Repo {
 
     public static ServerRegistration getServer(){
         int nextIndex = roundRobin.getNextIndex(registeredServers.size());
-        roundRobin.updateState(nextIndex);
         return registeredServers.get(nextIndex);
     }
 }

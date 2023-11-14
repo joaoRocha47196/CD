@@ -57,7 +57,7 @@ public class ProcessImageStreamObserver implements StreamObserver<ImageRequest> 
             String inputFileName = this.filename + "." + this.filetype;
             String outputFileName = UUID.randomUUID() + "-annotated-" + inputFileName;
 
-            String vmRootDir = "./usr/images/" + this.filename + "." + this.filetype;
+            String vmRootDir = "/usr/images/" + this.filename + "." + this.filetype;
 
             String containerInputPath = volumePath + inputFileName;
             String containerOutPath = volumePath + outputFileName;

@@ -9,12 +9,17 @@ class RoundRobin {
     }
 
     public int getNextIndex(int listSize) {
-        int nextIndex = currentIndex;
+        int res = currentIndex;
         currentIndex = (currentIndex + 1) % listSize;
-        return nextIndex;
+        return res;
     }
 
-    public void updateState(int newIndex) {
-        currentIndex = newIndex;
+    public int getNextIndex2(int listSize) {
+        int res = currentIndex;
+        currentIndex++;
+        if(currentIndex == listSize)
+            currentIndex = 0;
+        return res;
     }
+
 }
