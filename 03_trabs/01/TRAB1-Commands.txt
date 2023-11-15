@@ -1,0 +1,72 @@
+### Image input path
+C:\Users\joaoc\Downloads\in\isel.jpg
+
+### Image output path
+C:\Users\joaoc\Downloads\out\
+
+### Project dir in VM
+/usr/project
+
+### Run RegisterServer
+java -jar RegisterServerApp-1.0-jar-with-dependencies.jar 8001
+
+### Run ImgServer
+sudo java -jar ImgServerApp-1.0-jar-with-dependencies.jar 34.17229.136 7002 34.175.229.136 8001
+
+### Run Client
+
+
+####################################
+# Comandos iniciais
+####################################
+necessario systemctl docker start
+criei package project na diretoria principal
+meti la dockerFile youapp.jar e criei pasta iamges
+em iamges meti o isel.jpg
+
+####################################
+# Correr contianer em diretoria raiz
+####################################
+docker run -d -v /usr/images:/usr/datafiles imagewithentrypoint "/usr/datafiles/isel.jpg" "/usr/datafiles/isel-marked-2.jpg" "ISEL" "CD" "2"
+ 
+ 
+####################################
+# Correr contianer em diretoria do usr
+####################################
+docker run -d -v $(pwd)/images:/usr/datafiles imagewithentrypoint "/usr/datafiles/isel.jpg" "/usr/datafiles/isel-marked-2.jpg" "ISEL" "CD" "2"
+
+####################################
+# DockerFile
+####################################
+# Use a base image with Java
+FROM openjdk:11
+
+# Set the working directory inside the container
+WORKDIR /usr
+
+# Copy the JAR file into the container at /usr/app
+COPY MarkImageApp-1.0-jar-with-dependencies.jar .
+
+# Define the command to run your application
+ENTRYPOINT ["java", "-jar", "MarkImageApp-1.0-jar-with-dependencies.jar"]
+
+####################################
+# Client jar args
+####################################
+java -jar 34.175.229.136 7010 34.175.229.136 8001
+
+imageServerIp = args[0];
+imageServerPort = Integer.parseInt(args[1]);
+registerServerIp = args[2];
+registerServerPort = Integer.parseInt(args[3]);
+
+####################################
+# Image Server jar args
+####################################
+java -jar 34.175.229.136 7010 34.175.229.136 8001
+
+thisIp = args[0];
+thisPort = Integer.parseInt(args[1]);
+registerServerIp = args[2];
+registerServerPort = Integer.parseInt(args[3]);
+
