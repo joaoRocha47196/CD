@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7d619c1a-a626-49ce-afc4-1482545b4b9f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Client/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/runClient.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/proto/CN2223TFService.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/CN2223TFService.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LandMarkApp/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../LandMarkApp/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LandMarkApp/runworker.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LookUpFunctionApp/deploy.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LookUpFunctionApp/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../LookUpFunctionApp/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gRPCServer/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../gRPCServer/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gRPCServer/runserver.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../relatórioCN2223TF.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../~$latórioCN.docx" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2QIIavtp5x64mumsmiI4QuL8rUr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/ISEL/8 semestre/CN/cn-FamousPlaces/Entrega/Contract",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7d619c1a-a626-49ce-afc4-1482545b4b9f" name="Changes" comment="" />
+      <created>1685034736432</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1685034736432</updated>
+      <workItem from="1685034737472" duration="11000" />
+      <workItem from="1686007999541" duration="1071000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

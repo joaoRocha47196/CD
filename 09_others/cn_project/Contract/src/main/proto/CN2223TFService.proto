@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "cn2223tf";
+
+package cn2223tf;
+
+service CN2223TFService {
+  rpc imageSubmit (stream ImageUploadRequest) returns (IdentifierResponse);
+  rpc getLandmarks (IdentifierRequest) returns (LandmarksResponse);
+  rpc getStaticMap (IdentifierRequest) returns (stream StaticMapResponse);
+  rpc getImagesByConfidence (ConfidenceRequest) returns (FilteredImagesResponse);
+}
+
+message ImageUploadRequest {
+  Image image = 1;
+}
+
+message IdentifierResponse {
+  string name = 1;
+  Status status = 2;
+}
+
+message IdentifierRequest {
+  string name = 1;
+}
+
+message LandmarksResponse {
+  repeated Landmark landmark = 1;
+}
+
+
+message StaticMapResponse {
+  Image image = 1;
+}
+
+message ConfidenceRequest {
+  double confidence = 1;
+}
+
+message ImageWithLandmark {
+  string imageName = 1;
+  string landmarkName = 2;
+}
+
+message FilteredImagesResponse {
+  repeated ImageWithLandmark imageList = 1;
+}
+
+message Image {
+  Metadata metadata=1;
+  bytes content = 2;
+}
+
+message Metadata {
+  string name=1;
+  string type=2;
+}
+
+enum Status {
+  SUCCESS = 0;
+  FAILURE = 1;
+}
+
+message Landmark {
+  string local = 1;
+  double confidence = 2;
+  double latitude = 3;
+  double longitude = 4;
+}
+
+
+
+
+
