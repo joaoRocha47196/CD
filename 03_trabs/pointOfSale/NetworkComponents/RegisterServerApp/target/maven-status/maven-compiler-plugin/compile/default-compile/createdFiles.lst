@@ -1,6 +1,0 @@
-services\CRService.class
-StreamObservers\GetServerEndpointStreamObserver.class
-repo\RoundRobin.class
-services\SRService.class
-server\RegisterServer.class
-repo\Repo.class

@@ -17,23 +17,6 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>exgrpc</groupId>
-            <artifactId>CalcContract</artifactId>
-            <version>1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cd2324cscontract</groupId>
-            <artifactId>ClientToServerContract</artifactId>
-            <version>1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cd2324srcontract</groupId>
-            <artifactId>ServerToRegisterContract</artifactId>
-            <version>1.0</version>
-        </dependency>
 
         <dependency>
             <groupId>cd2324baseserver</groupId>
@@ -68,7 +51,7 @@
                     </descriptors>
                     <archive>
                         <manifest>
-                            <mainClass>server.ImageServer</mainClass>
+                            <mainClass>server.ManagerServer</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
