@@ -1,0 +1,30 @@
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/CalcContract/pom.xml" />
+        <option value="$PROJECT_DIR$/CalcClientApp/pom.xml" />
+        <option value="$PROJECT_DIR$/CalcServerApp/pom.xml" />
+        <option value="$PROJECT_DIR$/Contracts/ClientToRegisterContract/pom.xml" />
+        <option value="$PROJECT_DIR$/ClientApp/pom.xml" />
+        <option value="$PROJECT_DIR$/Contracts/ClientToServerContract/pom.xml" />
+        <option value="$PROJECT_DIR$/Contracts/ServerToRegisterContract/pom.xml" />
+        <option value="$PROJECT_DIR$/GrpcContracts/ServerToRegisterContract/pom.xml" />
+        <option value="$PROJECT_DIR$/GrpcContracts/ClientToServerContract/pom.xml" />
+        <option value="$PROJECT_DIR$/Communs/BaseServer/pom.xml" />
+        <option value="$PROJECT_DIR$/GrpcContracts/ClientToRegisterContract/pom.xml" />
+        <option value="$PROJECT_DIR$/RegisterServerApp/pom.xml" />
+        <option value="$PROJECT_DIR$/ImgServerApp/pom.xml" />
+        <option value="$PROJECT_DIR$/MarkImageApp/pom.xml" />
+        <option value="$PROJECT_DIR$/NetworkComponents/ClientApp/pom.xml" />
+        <option value="$PROJECT_DIR$/NetworkComponents/ImgServerApp/pom.xml" />
+        <option value="$PROJECT_DIR$/NetworkComponents/RegisterServerApp/pom.xml" />
+        <option value="$PROJECT_DIR$/Utils/MarkImageApp/pom.xml" />
+        <option value="$PROJECT_DIR$/Utils/BaseServer/pom.xml" />
+        <option value="$PROJECT_DIR$/Utils/DockerAPI/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK" />
+</project>

@@ -1,0 +1,7 @@
+clientapp\servercallers\RegisterServerCaller.class
+clientapp\StreamObservers\ProcessImageStreamObserver.class
+clientapp\Client.class
+clientapp\StreamObservers\DownloadProcessedImageStreamObserver.class
+clientapp\StreamObservers\GetServerEndpointStreamObserver.class
+clientapp\StreamObservers\CheckImageStatusStreamObserver.class
+clientapp\servercallers\ImageServerCaller.class

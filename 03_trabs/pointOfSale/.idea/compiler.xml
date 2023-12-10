@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ClientToServerContract" />
+        <module name="RegisterServerApp" />
+        <module name="MarkImageApp" />
+        <module name="ClientToRegisterContract" />
+        <module name="BaseServer" />
+        <module name="ClientApp" />
+        <module name="ServerToRegisterContract" />
+        <module name="DockerAPI" />
+        <module name="ImgServerApp" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CalcClientApp" target="11" />
+      <module name="ClientToRegisterContract (1) (cd2324crcontract)" target="11" />
+      <module name="ImgServerApp (1)" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b69cd605-4768-4de7-9596-4320149ee653" name="Changes" comment="" />
+    <list id="2802508f-cded-479e-8f10-0cf10cc063ab" name="Changes by silva" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Wu9xWi8XtdPhlkhgd5EDA7qo9i" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pointOfSale" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\Utils" />
+      <recent name="C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc" />
+      <recent name="C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\MarkImageApp\src\main\java\app" />
+      <recent name="C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\Communs\BaseServer" />
+      <recent name="C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\Communs\BaseServer\src\main\java" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\Utils" />
+      <recent name="C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\NetworkComponents" />
+      <recent name="C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\gRPCCalc\Contracts" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="StreamObservers" />
+      <recent name="serverapp" />
+      <recent name="services" />
+      <recent name="clientapp.StreamObservers" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean" />
+      <command value="mvn install" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="clientapp.Client" />
+      <module name="ClientApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="clientapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DockerAPI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="api.DockerAPI" />
+      <module name="DockerAPI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="api.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ImageServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.ImageServer" />
+      <module name="ImgServerApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegisterServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.RegisterServer" />
+      <module name="RegisterServerApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.ImageServer" />
+        <item itemvalue="Application.DockerAPI" />
+        <item itemvalue="Application.RegisterServer" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b69cd605-4768-4de7-9596-4320149ee653" name="Changes" comment="" />
+      <created>1697571852756</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1697571852756</updated>
+      <workItem from="1697571855623" duration="7686000" />
+      <workItem from="1699121886067" duration="453000" />
+      <workItem from="1699122537265" duration="5642000" />
+      <workItem from="1699384515414" duration="13372000" />
+      <workItem from="1699543194559" duration="8912000" />
+      <workItem from="1699631860089" duration="15991000" />
+      <workItem from="1699714386967" duration="3184000" />
+      <workItem from="1699804646416" duration="23699000" />
+      <workItem from="1699975484581" duration="9835000" />
+      <workItem from="1702225840767" duration="65000" />
+      <workItem from="1702225986390" duration="243000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/../../.." />
+    </ignored-roots>
+  </component>
+</project>

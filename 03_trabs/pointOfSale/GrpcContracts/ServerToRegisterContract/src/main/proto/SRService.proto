@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "srstubs";
+package srservice; // package do proto
+
+service SRService {
+  rpc RegisterServer(ServerRegistration) returns (EmptyResponse);
+}
+
+message ServerRegistration {
+  string server_id = 1;
+  string server_ip = 2;
+  int32 server_port = 3;
+}
+
+message EmptyResponse {}
