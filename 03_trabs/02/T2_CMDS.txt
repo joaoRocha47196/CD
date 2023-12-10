@@ -1,0 +1,172 @@
+
+# Criar uma VM instance com Ubuntu versão 20.04 LTS e2-medium (2 vCPU, 1 core, 4 GB memory)
+# Inicialmente basta instalar o software necessário numa única VM que designamos vm-base.
+# Após confirmar que está tudo OK e fazer Stop à VM pode-se criar uma Machine Image que
+# permitirá criar novas VM com o Boot Disk igual ao da VM inicial vm-base
+##
+## INSTALATION PHASE																																																													
+##
+# Download package information and update package versions
+sudo apt update
+
+# Install C Compiler: GCC, make .... required to install Spread
+sudo apt install build-essential
+# verificar que se tem compilador de C
+gcc --version
+
+# Install JAVA
+sudo apt install default-jdk
+# Verificar que o Java 11 está instalado
+java -version
+
+# Install Docker
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+# Add the repository to Apt sources:
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+# Install the latest version
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin 
+# Test Docker
+sudo docker run hello-world
+
+# Install Spread
+/usr/local/spread
+# criar diretoria de instalação e dar permissões totais
+sudo mkdir /usr/local/spread
+sudo chmod 777 /usr/local/spread
+cd /usr/local/spread
+#Fazer download das sources do Spread Toolkit e copiar para esta diretoria o ficheiro spread-src-5.0.1.tar
+# Extract sources to spread-src-5.0.1 diretory
+tar -xf spread-src-5.0.1.tar
+cd spread-src-5.0.1
+./configure
+make
+sudo make install
+#testar com o segmento localhost, isto é com o daemon em execução na VM
+spread
+
+# Intall Gluster
+sudo add-apt-repository ppa:gluster/glusterfs-7
+sudo apt update
+sudo apt install glusterfs-server
+# Lançar o daemon do Gluster e verificar que está em execução
+sudo service glusterd start
+# Observar o estado do serviço gluster
+sudo service glusterd status
+
+# Criar diretoria com permissões totais que vai ser um Brick de um gluster volume
+sudo mkdir -p /var/gluster/brick
+sudo chmod 777 /var/gluster/brick
+
+# Criar diretoria para armazenar ficheiros das aplicações que criam/usam
+# ficheiros no sistema de ficheros distribuídos (gluster)
+# Esta diretoria será Mounted em cada nó computacional formando um volume gluster 
+sudo mkdir /var/sharedfiles 
+sudo chmod 777 /var/sharedfiles
+
+# Fazer STOP à vm-base onde se instalou o software
+
+# Criar imagem da vm-base para posteriormente criar 3 nós computacionais com o mesmo Boot Disk
+# No browser do Compute Engine, na VM vm-base selecionar no menu (3 pontos) "Create new machine image"
+# A imagem fica disponível no menu "Machine images" a partir da qual se podem criar novas inatâncias de VM
+# no menu (3 pontos) "Create instance"
+
+# As instruções seguintes assumem um cenário em que foram criados 3 nós computacionais (3 VM)
+# com os nomes tf-node1, tf-node2 e tf-node3
+#
+
+##
+## CONFIGURATION PHASE
+##
+Criar firewall rules aplicáveis a todas as instâncias para:
+Spread: Port 4803
+RabbitMQ: Ports 5672 e 15672
+
+# Configure Spread
+# Colocar em /usr/local/etc um ficheiro de configuração com os segmentos onde se executa
+# o Spread indicando os nomes e os IP internos dos 3 nós computacionais
+
+# begin vmsSpread.conf file
+Spread_Segment  10.132.0.3:4803 {
+   	tf-node1      	10.132.0.3
+}
+Spread_Segment  10.132.0.4:4803 {
+   	tf-node2      	10.132.0.4
+}
+Spread_Segment  10.132.0.5:4803 {
+   	tf-node3      	10.132.0.5
+}
+# Linux user e group para o spread
+DaemonUser = spread
+DaemonGroup = spread
+# Facilitates quick daemon restarts
+SocketPortReuse = AUTO
+# end vmsSpread.config file
+
+# Lançar em cada VM o daemon Spread como processo background e logs para ficheiro /tmp/spreadlogs
+/usr/local/sbin/spread -c /usr/local/etc/vmsSpread.conf > /tmp/spreadlogs 2>&1 &
+
+
+# Configure Gluster
+# Em cada VM lançar o daemon do Gluster e verificar que está em execução
+sudo service glusterd start
+# Pode ser util observar o estado do serviço gluster em execução através do comando:
+sudo service glusterd status
+
+# Colocar no ficheiro /etc/hosts de todos os nodes a associação de nomes dos nodes e
+# os IP internos dos 3 nós computacioanais
+10.132.0.11 tf-node1 
+10.132.0.12 tf-node2
+10.132.0.13 tf-node3
+
+# Definir nós peers do Gluster (ATENÇÃO: só executar num node, por exemplo tf-node1)
+sudo gluster peer probe tf-node2
+sudo gluster peer probe tf-node3
+
+# Em cada nó verificar que já são gluster peers dos outros nodes
+sudo gluster peer status
+
+# Criar um Gluster volume.
+# ATENÇÃO: É necessário executar unicamente num só nó, por exemplo tf-node1
+sudo gluster volume create glustervol replica 3 tf-node1:/var/gluster/brick tf-node2:/var/gluster/brick tf-node3:/var/gluster/brick force
+# No mesmo nó onde se criou o volume, por exemplo tf-node1
+sudo gluster volume start glustervol
+
+# Em cada nó associar (mount) a diretoria /var/sharedfiles para o gluster volume
+# Por exemplo no tf-node1 
+sudo mount -t glusterfs tf-node1:/glustervol /var/sharedfiles
+
+# Note que não é possível fazer mount do gluster brick como diretoria partilhada
+sudo mount -t glusterfs tf-node1:/glustervol /var/gluster/brick
+
+# Para testar que todos os nós partiham um volume com réplicas de ficheiros
+# execute num dos nós o comando linux
+date > /var/sharedfiles/date.txt
+# verifique que o ficheiro está replicado nos 3 nós na diretoria /var/sharedFiles
+
+# Lançar o Docker daemon
+sudo service docker start
+
+##VM INIT SCRIPT
+## Sequencia de comandos após cada start das VMs (script de inicialização)
+##
+# lançar o daemon gluster nos 3 nodes
+sudo service glusterd start
+# Após lançar aguardar 10 segundos até daemon estar lançado para que o mount não falhe
+sleep 10
+# Em cada VM fazer mount substituindo tf-node1 tf-node2 tf-node3
+sudo mount -t glusterfs tf-node1:/glustervol /var/sharedfiles
+# Lançar Spread em cada nó
+/usr/local/sbin/spread -c /usr/local/etc/vmsSpread.conf > /tmp/spreadlogs 2>&1 &
+
+# A partir daqui os 3 nós computacioanais formam uma infraestrutura computacional distribuída
+# onde pode fazer deployment, executar, testar e demonstrar as componentes distribuídas que
+# desenvolver como resposta ao enunciado do trabalho final
