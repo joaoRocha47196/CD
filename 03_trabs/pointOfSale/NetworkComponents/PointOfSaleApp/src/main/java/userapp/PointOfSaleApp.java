@@ -3,23 +3,18 @@ package userapp;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
-
 public class PointOfSaleApp {
-    private static final String RABBITMQ_DEFAULT_HOST = "34.175.229.136";
-    private static final int RABBITMQ_DEFAULT_PORT = 7008;
+    private static final String RABBITMQ_DEFAULT_HOST = "localhost"; // Update with your RabbitMQ host
+    private static final int RABBITMQ_DEFAULT_PORT = 5672; // Update with your RabbitMQ port
     private static final int MENU_EXIT_OPTION = 2;
 
     private static String rabbitMQHost;
     private static int rabbitMQPort;
-
-
+    private static String exchangeName = "ExgSales";
 
     public static void main(String[] args) {
         initConnections(args);
@@ -27,19 +22,18 @@ public class PointOfSaleApp {
         processClientOperations();
     }
 
-    public static void initConnections(String[] args){
+    public static void initConnections(String[] args) {
         if (args.length == 2) {
             rabbitMQHost = args[0];
             rabbitMQPort = Integer.parseInt(args[1]);
-        }
-        else {
+        } else {
             rabbitMQHost = RABBITMQ_DEFAULT_HOST;
             rabbitMQPort = RABBITMQ_DEFAULT_PORT;
         }
     }
 
-    static void initRabbitMQConnection(){
-        System.out.println("connect to RabbitMQ server in:" + rabbitMQHost + ":" + rabbitMQPort);
+    static void initRabbitMQConnection() {
+        System.out.println("Connect to RabbitMQ server at:" + rabbitMQHost + ":" + rabbitMQPort);
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(rabbitMQHost);
         factory.setPort(rabbitMQPort);
@@ -48,35 +42,29 @@ public class PointOfSaleApp {
             Connection connection = factory.newConnection();
             Channel channel = connection.createChannel();
 
-            // Declare any necessary RabbitMQ entities (exchanges, queues, etc.)
-            // For simplicity, you can skip this if they already exist.
+            // Declare the global fanout exchange ExgSales if it doesn't exist
+            channel.exchangeDeclare(exchangeName, "fanout");
+            System.out.println("Connected to RabbitMQ successfully!");
 
-            // Set up the RabbitMQ channel for publishing messages
-            // (you might want to adjust this based on your RabbitMQ setup)
-            channel.exchangeDeclare("your_exchange_name", "fanout");
-
-            // Assuming you have a direct exchange named "your_exchange_name"
-            // You can change the exchange type and name based on your setup
-
-            // Set up any other configurations as needed
-
-            // Close the channel and connection
             channel.close();
             connection.close();
         } catch (IOException | TimeoutException e) {
-            System.out.println("Error connecting to RabbitMQ");
+            System.out.println("Error connecting to RabbitMQ" + e.getMessage());
+        }
+    }
+
+    static void publishSale(Channel channel, String message, String productCategory) {
+        try {
+            // Publish the sale information to the global fanout exchange ExgSales
+            channel.basicPublish(exchangeName, productCategory, null, message.getBytes());
+            System.out.println("Sale information published successfully!");
+        } catch (IOException e) {
+            System.out.println("Error publishing sale information");
             e.printStackTrace();
         }
     }
 
-
-    static ManagedChannel createChannel(String ip, int port){
-        return ManagedChannelBuilder.forAddress(ip, port)
-            .usePlaintext()
-            .build();
-    }
-
-    static void processClientOperations(){
+    static void processClientOperations() {
         Scanner sc = new Scanner(System.in);
 
         while (true) {
@@ -87,6 +75,8 @@ public class PointOfSaleApp {
                     String code = sc.nextLine();
                     System.out.println("Enter the product name: ");
                     String name = sc.nextLine();
+                    System.out.println("Enter the product category (ALIMENTAR or CASA): ");
+                    String productCategory = sc.nextLine();
                     System.out.println("Enter the product quantity: ");
                     String quantity = sc.nextLine();
                     System.out.println("Enter the product price: ");
@@ -95,13 +85,21 @@ public class PointOfSaleApp {
                     System.out.println("Enter IVA: ");
                     String iva = sc.nextLine();
 
-                    //Send Sale to pub/sub broker (RabbitMQ)
-
-
+                    String saleMessage = buildSaleMessage(code, name, quantity, price, totalPrice, iva);
+                    ConnectAndPublishRabbitMQ(saleMessage, productCategory);
                     break;
                 case MENU_EXIT_OPTION:
                     System.exit(0);
             }
+        }
+    }
+
+    private static void ConnectAndPublishRabbitMQ(String saleMessage, String productCategory) {
+        try (Connection connection = new ConnectionFactory().newConnection();
+            Channel channel = connection.createChannel()) {
+            publishSale(channel, saleMessage, productCategory);
+        } catch (IOException | TimeoutException e) {
+            System.out.println("Error connecting to RabbitMQ");
         }
     }
 
@@ -130,4 +128,11 @@ public class PointOfSaleApp {
         return (option >= 1 && option <= 2) || option == MENU_EXIT_OPTION;
     }
 
+    static String buildSaleMessage(String code, String name, String quantity, String price, float totalPrice, String iva) {
+        return String.format(
+                "Sale Information:\nProduct Code: %s\nProduct Name: %s\nQuantity: %s\nPrice: %s\nTotal Price: %.2f\nIVA: %s",
+                code, name, quantity, price, totalPrice, iva
+        );
+    }
 }
+
