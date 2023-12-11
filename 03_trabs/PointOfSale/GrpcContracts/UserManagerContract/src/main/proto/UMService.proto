@@ -1,0 +1,38 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "umstubs";
+package UMService; // package do proto
+
+// UserToManagerService
+service UMService {
+    // Pedido entre Server e Spread Group
+    // Necessita enviar o nome do exchange e do nome do ficheiro a ser gerado
+    rpc resumeSales(ResumeInfo) returns (EmptyResponse);
+
+    // Peiddo entre servidor e spread Group
+    // When the notification arrives do grpcServer file is ready to dowllaod
+    rpc downloadFile(FileIdentifier) returns (stream FileResponse);
+
+}
+message ResumeInfo {
+    string exchangeName = 1;
+    string fileName = 2;
+}
+
+message FileIdentifier{
+    string fileId = 1;
+}
+
+message FileResponse{
+    string fileId = 1;
+    bytes processedBytes = 2;
+}
+
+message EmptyResponse {}
+
+
+// OTHER
+
+// Mensgem entre o Rabbit e o servidor
+// notificar que o ficheiro esta pronto
+   // rpc notify(Empty) returns (FileIdentifier);

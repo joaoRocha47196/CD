@@ -33,7 +33,8 @@ public class GroupMember {
             connection = new SpreadConnection();
             connection.connect(InetAddress.getByName(address), port, user, false, true);
 
-            msgHandling =new MessageHandling(connection); connection.add(msgHandling);
+            msgHandling =new MessageHandling(connection);
+            connection.add(msgHandling);
             //advancedMsgHandling=new AdvancedMessageHandling(connection); connection.add(advancedMsgHandling);
         }
         catch(SpreadException e)  {

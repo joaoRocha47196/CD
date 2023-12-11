@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="MarkImageApp" />
         <module name="BaseServer" />
+        <module name="UserApp (2)" />
         <module name="ManageServerApp" />
         <module name="UserApp (1)" />
         <module name="DockerAPI" />
@@ -23,6 +24,7 @@
       <module name="PointOfSaleContract" target="11" />
       <module name="RegisterServerApp" target="11" />
       <module name="ServerToRegisterContract" target="11" />
+      <module name="UserApp" target="11" />
       <module name="UserAppContract" target="11" />
     </bytecodeTargetLevel>
   </component>

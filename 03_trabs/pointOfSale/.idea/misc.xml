@@ -36,10 +36,8 @@
       <set>
         <option value="$PROJECT_DIR$/GrpcContracts/ServerToRegisterContract/pom.xml" />
         <option value="$PROJECT_DIR$/NetworkComponents/RegisterServerApp/pom.xml" />
-        <option value="$PROJECT_DIR$/NetworkComponents/UserApp/pom.xml" />
       </set>
     </option>
-    <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK" />
 </project>

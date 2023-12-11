@@ -2,6 +2,7 @@ package server;
 
 import io.grpc.*;
 import servercallers.RegisterServerCaller;
+import servercallers.SpreadGroupCaller;
 import services.CSService;
 
 import java.util.List;
@@ -19,13 +20,12 @@ public class ManagerServer {
     private static String workersServerIp; // "35.246.73.129";
 
     private static GrpcBaseServer server;
-    private static RegisterServerCaller registerServerCaller;
+    private static SpreadGroupCaller spreadGroupCaller;
 
     public static void main(String[] args) {
         initConnections(args);
-        initRegisterServerConnection();
+        initSpreadGroupConnection();
         startImageServer();
-        registerImageServer();
         awaitServer();
     }
 
@@ -44,25 +44,20 @@ public class ManagerServer {
         }
     }
 
-    public static void startImageServer(){
-        server = new GrpcBaseServer();
-        server.init(thisPort, List.of(new CSService()));
-        server.start();
+    public static void initSpreadGroupConnection(){
+        spreadGroupCaller = new SpreadGroupCaller(workersServerPort, workersServerIp);
     }
 
-    public static void initRegisterServerConnection(){
-        System.out.println("connect to manager server in: " +  + ":" + registerServerPort);
-        ManagedChannel channel = createChannel(registerServerIp, registerServerPort);
-        registerServerCaller = new RegisterServerCaller(channel);
+    public static void startImageServer(){
+        server = new GrpcBaseServer();
+        server.init(thisPort, List.of(new UMService(spreadGroupCaller)));
+        server.start();
     }
 
     public static void awaitServer(){
         server.awaitTermination();
     }
 
-    public static void registerImageServer(){
-        registerServerCaller.registerServer(thisIp, thisPort);
-    }
 
     static ManagedChannel createChannel(String ip, int port){
         return ManagedChannelBuilder.forAddress(ip, port)

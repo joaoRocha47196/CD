@@ -1,51 +1,58 @@
 package workerapp;
 
 import com.rabbitmq.client.*;
+import spread.SpreadConnection;
+import spread.SpreadException;
 import spread.SpreadGroup;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeoutException;
 
 public class Worker {
-    private static final String RABBITMQ_DEFAULT_HOST = "localhost"; // Update with your RabbitMQ host
-    private static final int RABBITMQ_DEFAULT_PORT = 5672; // Update with your RabbitMQ port
-    private static final String QUEUE_NAME_ALIMENTAR = "QueueAlimentar";
-    private static final String QUEUE_NAME_CASA = "QueueCasa";
+    private static final String RABBITMQ_DEFAULT_HOST = "localhost";
+    private static final int RABBITMQ_DEFAULT_PORT = 5672;
     private static final String SPREAD_GROUP_NAME = "SalesWorkers";
     private static final String GLUSTER_DIRECTORY_PATH = "/path/to/gluster/directory/";
-    private static final String exchangeName = "ExgSales";
+    private static final String EXCHANGE_NAME = "ExgSales";
+    private static final int SPREAD_PORT = 4803;
+
 
     private static String rabbitMQHost;
     private static int rabbitMQPort;
+    private static String spreadIP;
+    private static String queueName;
+    private static Channel rabbitChannel;
 
     public static void main(String[] args) {
+        initConnections(args);
+        createGlusterDirectories();
         initRabbitMQConnection();
         initSpreadGroup();
 
-        // Register the callback for Spread group
-        WorkerSpreadListener workerSpreadListener = new WorkerSpreadListener();
-        SpreadGroup spreadGroup = new SpreadGroup();
-        spreadGroup.join(workerSpreadListener, SPREAD_GROUP_NAME);
-
-        // Start consuming messages from RabbitMQ queues
-        consumeMessages(QUEUE_NAME_ALIMENTAR);
-        consumeMessages(QUEUE_NAME_CASA);
+        if (queueName.equals("ALIMENTAR"))
+            consumeMessages("QueueAlimentar", "ALIMENTAR");
+        else
+            consumeMessages("QueueCasa", "CASA");
     }
 
-    public static void initConnections(String[] args) {
-        if (args.length == 2) {
+    private static void initConnections(String[] args) {
+        if (args.length == 3) {
             rabbitMQHost = args[0];
             rabbitMQPort = Integer.parseInt(args[1]);
+            spreadIP = args[2];
+            queueName = args[3];
         } else {
             rabbitMQHost = RABBITMQ_DEFAULT_HOST;
             rabbitMQPort = RABBITMQ_DEFAULT_PORT;
+            spreadIP = "";
         }
     }
 
-    static void initRabbitMQConnection() {
+    private static void initRabbitMQConnection() {
         System.out.println("Connect to RabbitMQ server at:" + rabbitMQHost + ":" + rabbitMQPort);
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(rabbitMQHost);
@@ -53,55 +60,49 @@ public class Worker {
 
         try {
             Connection connection = factory.newConnection();
-            Channel channel = connection.createChannel();
-
-            // Declare the global fanout exchange ExgSales if it doesn't exist
-            channel.exchangeDeclare(exchangeName, "fanout");
+            rabbitChannel = connection.createChannel();
             System.out.println("Connected to RabbitMQ successfully!");
 
-            channel.close();
-            connection.close();
         } catch (IOException | TimeoutException e) {
             System.out.println("Error connecting to RabbitMQ" + e.getMessage());
         }
     }
 
-    static void initSpreadGroup() {
-        // Initialize Spread group
+    private static void initSpreadGroup() {
+        try {
+            SpreadConnection connection = new SpreadConnection();
+            connection.connect(InetAddress.getByName(spreadIP), SPREAD_PORT, "worker_username", false, true);
+
+            SpreadGroup group = new SpreadGroup();
+            group.join(connection, SPREAD_GROUP_NAME);
+
+            System.out.println("Connected to Spread group successfully!");
+        } catch (SpreadException e) {
+            System.out.println("Error connecting to Spread group: " + e.getMessage());
+        } catch (java.net.UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    static void consumeMessages(String queueName) {
+    private static void consumeMessages(String queueName, String routingKey) {
         try {
-            ConnectionFactory factory = new ConnectionFactory();
-            factory.setHost(RABBITMQ_DEFAULT_HOST);
-            factory.setPort(RABBITMQ_DEFAULT_PORT);
-
-            Connection connection = factory.newConnection();
-            Channel channel = connection.createChannel();
-
-            channel.queueDeclare(queueName, true, false, false, null);
+            rabbitChannel.queueDeclare(queueName, true, false, false, null);
+            rabbitChannel.queueBind(queueName, EXCHANGE_NAME, routingKey);
             System.out.println(" [*] Waiting for messages. To exit, press Ctrl+C");
 
-            DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-                String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
-                System.out.println(" [x] Received '" + message + "'");
+            WorkerCallback workerCallback = new WorkerCallback(queueName);
+            WorkerCallbackCancel cancelCallback = new WorkerCallbackCancel();
 
-                // Process the sale message and write it to a file
-                processAndWriteToFile(queueName, message);
-            };
-
-            channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {
-            });
-        } catch (IOException | TimeoutException e) {
+            rabbitChannel.basicConsume(queueName, true, workerCallback, cancelCallback);
+        } catch (IOException e) {
             System.out.println("Error connecting to RabbitMQ");
         }
     }
 
-    static void processAndWriteToFile(String queueName, String saleMessage) {
-        // Process the sale message
-        // Extract relevant information and write it to a file
-
-        String fileName = GLUSTER_DIRECTORY_PATH + "f_" + queueName.toLowerCase() + ".txt";
+    /*
+    private static void processAndWriteToFile(String queueName, String saleMessage) {
+        String queueType = queueName.toLowerCase();
+        String fileName = GLUSTER_DIRECTORY_PATH + queueType + "/f_" + queueType + ".txt";
 
         try (FileWriter fileWriter = new FileWriter(fileName, true)) {
             fileWriter.write(saleMessage + "\n");
@@ -110,12 +111,22 @@ public class Worker {
             System.out.println("Error writing to file");
         }
     }
-}
+    */
 
-class WorkerSpreadListener implements SpreadMessageListener {
-    @Override
-    public void regularMessageReceived(SpreadMessage spreadMessage) {
-        // Handle multicast messages received in the Spread group
-        // You may implement specific logic based on your requirements
+
+    private static void createGlusterDirectories() {
+        createGlusterDirectory("alimentar");
+        createGlusterDirectory("casa");
+    }
+
+    private static void createGlusterDirectory(String queueType) {
+        String directoryPath = GLUSTER_DIRECTORY_PATH + queueType;
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            if (directory.mkdirs())
+                System.out.println("Created Gluster directory: " + directoryPath);
+            else
+                System.out.println("Failed to create Gluster directory: " + directoryPath);
+        }
     }
 }

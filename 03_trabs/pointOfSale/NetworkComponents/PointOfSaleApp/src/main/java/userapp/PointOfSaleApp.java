@@ -11,10 +11,11 @@ public class PointOfSaleApp {
     private static final String RABBITMQ_DEFAULT_HOST = "localhost";
     private static final int RABBITMQ_DEFAULT_PORT = 5672;
     private static final int MENU_EXIT_OPTION = 2;
+    private static final String EXCHANGE_NAME = "ExgSales";
 
     private static String rabbitMQHost;
     private static int rabbitMQPort;
-    private static String exchangeName = "ExgSales";
+    private static Channel rabbitChannel;
 
     public static void main(String[] args) {
         initConnections(args);
@@ -40,27 +41,13 @@ public class PointOfSaleApp {
 
         try {
             Connection connection = factory.newConnection();
-            Channel channel = connection.createChannel();
+            rabbitChannel = connection.createChannel();
 
-            // Declare the global fanout exchange ExgSales if it doesn't exist
-            channel.exchangeDeclare(exchangeName, "fanout");
+            rabbitChannel.exchangeDeclare(EXCHANGE_NAME, "direct");
             System.out.println("Connected to RabbitMQ successfully!");
 
-            channel.close();
-            connection.close();
         } catch (IOException | TimeoutException e) {
             System.out.println("Error connecting to RabbitMQ" + e.getMessage());
-        }
-    }
-
-    static void publishSale(Channel channel, String message, String productCategory) {
-        try {
-            // Publish the sale information to the global fanout exchange ExgSales
-            channel.basicPublish(exchangeName, productCategory, null, message.getBytes());
-            System.out.println("Sale information published successfully!");
-        } catch (IOException e) {
-            System.out.println("Error publishing sale information");
-            e.printStackTrace();
         }
     }
 
@@ -86,7 +73,7 @@ public class PointOfSaleApp {
                     String iva = sc.nextLine();
 
                     String saleMessage = buildSaleMessage(code, name, quantity, price, totalPrice, iva);
-                    ConnectAndPublishRabbitMQ(saleMessage, productCategory);
+                    publishSale(saleMessage, productCategory);
                     break;
                 case MENU_EXIT_OPTION:
                     System.exit(0);
@@ -94,12 +81,13 @@ public class PointOfSaleApp {
         }
     }
 
-    private static void ConnectAndPublishRabbitMQ(String saleMessage, String productCategory) {
-        try (Connection connection = new ConnectionFactory().newConnection();
-            Channel channel = connection.createChannel()) {
-            publishSale(channel, saleMessage, productCategory);
-        } catch (IOException | TimeoutException e) {
-            System.out.println("Error connecting to RabbitMQ");
+
+    static void publishSale(String saleMessage, String productCategory) {
+        try {
+            rabbitChannel.basicPublish(EXCHANGE_NAME, productCategory, null, saleMessage.getBytes());
+            System.out.println("Sale information published successfully!");
+        } catch (IOException e) {
+            System.out.println("Error publishing sale information");
         }
     }
 
@@ -125,7 +113,7 @@ public class PointOfSaleApp {
     }
 
     private static boolean isValidOption(int option) {
-        return (option >= 1 && option <= 2) || option == MENU_EXIT_OPTION;
+        return (option >= 1 && option <= 2);
     }
 
     static String buildSaleMessage(String code, String name, String quantity, String price, float totalPrice, String iva) {
