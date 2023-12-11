@@ -8,10 +8,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="MarkImageApp" />
         <module name="BaseServer" />
-        <module name="UserApp" />
         <module name="ManageServerApp" />
         <module name="UserApp (1)" />
         <module name="DockerAPI" />
+        <module name="Worker" />
+        <module name="DemoSpreadMaven" />
         <module name="ImgServerApp" />
         <module name="ManagerServerApp" />
       </profile>

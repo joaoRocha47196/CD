@@ -8,8 +8,8 @@ import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public class PointOfSaleApp {
-    private static final String RABBITMQ_DEFAULT_HOST = "localhost"; // Update with your RabbitMQ host
-    private static final int RABBITMQ_DEFAULT_PORT = 5672; // Update with your RabbitMQ port
+    private static final String RABBITMQ_DEFAULT_HOST = "localhost";
+    private static final int RABBITMQ_DEFAULT_PORT = 5672;
     private static final int MENU_EXIT_OPTION = 2;
 
     private static String rabbitMQHost;

@@ -30,6 +30,8 @@
     <file url="file://$PROJECT_DIR$/NetworkComponents/RegisterServerApp/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/NetworkComponents/UserApp/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/NetworkComponents/UserApp/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/NetworkComponents/Worker/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/NetworkComponents/Worker/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Utils/BaseServer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Utils/BaseServer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Utils/DockerAPI/src/main/java" charset="UTF-8" />

@@ -1,12 +1,13 @@
-package workerapp.Worker;
+package workerapp;
 
 import com.rabbitmq.client.*;
-import org.spread.core.*;
+import spread.SpreadGroup;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeoutException;
 
 public class Worker {
     private static final String RABBITMQ_DEFAULT_HOST = "localhost"; // Update with your RabbitMQ host
@@ -15,6 +16,10 @@ public class Worker {
     private static final String QUEUE_NAME_CASA = "QueueCasa";
     private static final String SPREAD_GROUP_NAME = "SalesWorkers";
     private static final String GLUSTER_DIRECTORY_PATH = "/path/to/gluster/directory/";
+    private static final String exchangeName = "ExgSales";
+
+    private static String rabbitMQHost;
+    private static int rabbitMQPort;
 
     public static void main(String[] args) {
         initRabbitMQConnection();
@@ -30,8 +35,35 @@ public class Worker {
         consumeMessages(QUEUE_NAME_CASA);
     }
 
+    public static void initConnections(String[] args) {
+        if (args.length == 2) {
+            rabbitMQHost = args[0];
+            rabbitMQPort = Integer.parseInt(args[1]);
+        } else {
+            rabbitMQHost = RABBITMQ_DEFAULT_HOST;
+            rabbitMQPort = RABBITMQ_DEFAULT_PORT;
+        }
+    }
+
     static void initRabbitMQConnection() {
-        // Similar to the PointOfSaleApp
+        System.out.println("Connect to RabbitMQ server at:" + rabbitMQHost + ":" + rabbitMQPort);
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost(rabbitMQHost);
+        factory.setPort(rabbitMQPort);
+
+        try {
+            Connection connection = factory.newConnection();
+            Channel channel = connection.createChannel();
+
+            // Declare the global fanout exchange ExgSales if it doesn't exist
+            channel.exchangeDeclare(exchangeName, "fanout");
+            System.out.println("Connected to RabbitMQ successfully!");
+
+            channel.close();
+            connection.close();
+        } catch (IOException | TimeoutException e) {
+            System.out.println("Error connecting to RabbitMQ" + e.getMessage());
+        }
     }
 
     static void initSpreadGroup() {
@@ -62,7 +94,6 @@ public class Worker {
             });
         } catch (IOException | TimeoutException e) {
             System.out.println("Error connecting to RabbitMQ");
-            e.printStackTrace();
         }
     }
 
@@ -77,7 +108,6 @@ public class Worker {
             System.out.println(" [x] Sale information written to file: " + fileName);
         } catch (IOException e) {
             System.out.println("Error writing to file");
-            e.printStackTrace();
         }
     }
 }

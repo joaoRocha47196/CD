@@ -27,12 +27,16 @@
         <option value="$PROJECT_DIR$/NetworkComponents/UserApp/pom.xml" />
         <option value="$PROJECT_DIR$/NetworkComponents/ManagerServerApp/pom.xml" />
         <option value="$PROJECT_DIR$/NetworkComponents/PointOfSaleApp/pom.xml" />
+        <option value="$PROJECT_DIR$/NetworkComponents/Worker/pom.xml" />
+        <option value="$USER_HOME$/Downloads/SpreadDemo/DemoSpreadMaven/pom.xml" />
+        <option value="$PROJECT_DIR$/DemoSpreadMaven/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/GrpcContracts/ServerToRegisterContract/pom.xml" />
         <option value="$PROJECT_DIR$/NetworkComponents/RegisterServerApp/pom.xml" />
+        <option value="$PROJECT_DIR$/NetworkComponents/UserApp/pom.xml" />
       </set>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />
