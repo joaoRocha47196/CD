@@ -1,7 +1,8 @@
 package StreamObservers;
 
+
 import io.grpc.stub.StreamObserver;
-import srstubs.EmptyResponse;
+import umstubs.EmptyResponse;
 
 public class RegisterServerStreamObserver implements StreamObserver<EmptyResponse> {
     @Override

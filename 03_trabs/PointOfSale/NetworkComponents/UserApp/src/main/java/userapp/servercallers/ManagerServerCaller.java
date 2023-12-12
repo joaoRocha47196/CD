@@ -1,35 +1,39 @@
 package userapp.servercallers;
 
-import csstubs.Category;
-import csstubs.ResumeSales;
-import csstubs.UserAppServiceGrpc;
 import io.grpc.ManagedChannel;
+import umstubs.FileIdentifier;
+import umstubs.ResumeInfo;
+import umstubs.UMServiceGrpc;
+import userapp.StreamObservers.DownloadFileStreamObserver;
 import userapp.StreamObservers.ResumeSalesStreamObserver;
+
+import java.io.FileNotFoundException;
 
 
 public class ManagerServerCaller {
     private final UMServiceGrpc.UMServiceStub managerServiceStub;
 
     public ManagerServerCaller(ManagedChannel channel) {
-        this.managerServiceStub = ManagerServiceGrpc.newStub(channel);
+        this.managerServiceStub = UMServiceGrpc.newStub(channel);
     }
 
-    public void resumeSales(String exchangeName, String filename) {
+    public void resumeSales(String exchangeName, String filename, String productType) {
         ResumeInfo request = ResumeInfo.newBuilder()
             .setExchangeName(exchangeName)
-            .setFilename(filename)
+            .setFileName(filename)
+            .setProductType(productType)
             .build();
 
         ResumeSalesStreamObserver response = new ResumeSalesStreamObserver();
         managerServiceStub.resumeSales(request, response);
     }
 
-    public void downloadFile(String fileId, String destinationPath) {
+    public void downloadFile(String fileId, String destinationPath) throws FileNotFoundException {
         FileIdentifier request = FileIdentifier.newBuilder()
                 .setFileId(fileId)
                 .build();
 
-        DownloadProcessedImageStreamObserver response = new DownloadFileStreamObserver(destinationPath);
+        DownloadFileStreamObserver response = new DownloadFileStreamObserver(destinationPath);
         managerServiceStub.downloadFile(request, response);
     }
 }

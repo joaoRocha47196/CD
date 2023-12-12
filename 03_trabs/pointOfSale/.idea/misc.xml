@@ -30,6 +30,7 @@
         <option value="$PROJECT_DIR$/NetworkComponents/Worker/pom.xml" />
         <option value="$USER_HOME$/Downloads/SpreadDemo/DemoSpreadMaven/pom.xml" />
         <option value="$PROJECT_DIR$/DemoSpreadMaven/pom.xml" />
+        <option value="$PROJECT_DIR$/GrpcContracts/UserManagerContract/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -38,6 +39,7 @@
         <option value="$PROJECT_DIR$/NetworkComponents/RegisterServerApp/pom.xml" />
       </set>
     </option>
+    <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK" />
 </project>

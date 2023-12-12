@@ -1,10 +1,5 @@
 package StreamObservers;
 
-import api.DockerAPI;
-import csstubs.ImageIdentifier;
-import csstubs.ImageRequest;
-import io.grpc.stub.StreamObserver;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;

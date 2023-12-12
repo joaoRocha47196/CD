@@ -1,12 +1,10 @@
-package clientapp;
+package userapp;
 
-import clientapp.servercallers.ImageServerCaller;
-import clientapp.servercallers.RegisterServerCaller;
-import crstubs.ServerEndpoint;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import userapp.servercallers.ManagerServerCaller;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
@@ -20,9 +18,9 @@ public class UserApp {
 
     private static ManagerServerCaller managerServerCaller;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         initConnections(args);
-        initImageServerConnection();
+        initManagerServerConnection();
         processClientOperations();
     }
 
@@ -38,7 +36,7 @@ public class UserApp {
     }
     
 
-    static void initImageServerConnection(){
+    static void initManagerServerConnection(){
         ManagedChannel imageChannel = createChannel(manageServerIp, managerServerPort);
         managerServerCaller = new ManagerServerCaller(imageChannel);
     }
@@ -49,7 +47,7 @@ public class UserApp {
             .build();
     }
 
-    static void processClientOperations(){
+    static void processClientOperations() throws FileNotFoundException {
         Scanner sc = new Scanner(System.in);
 
         while (true) {
@@ -58,8 +56,10 @@ public class UserApp {
                 case 1:
                     System.out.println("\nInsert the fileName to write sales");
                     String fileName = sc.nextLine();
+                    System.out.println("\nInsert the product type (ALIMENTAR or CASA)");
+                    String productType = sc.nextLine();
                     String exchangeName = "ExgSales";
-                    managerServerCaller.resumeSales(exchangeName, fileName);
+                    managerServerCaller.resumeSales(exchangeName, fileName, productType);
                     break;
 
                 case 2:

@@ -1,32 +1,32 @@
 package services;
-
-
-import java.io.*;
-
-package services;
-
-import com.google.protobuf.ByteString;
-import csstubs.*;
 import io.grpc.stub.StreamObserver;
+import servercallers.SpreadGroupCaller;
+import spread.SpreadException;
+import spread.SpreadMessage;
+import umstubs.*;
+import com.google.protobuf.ByteString;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class UMService extends UMServiceGrpc.UMServiceImplBase {
+    private static final String SPREAD_GROUP_NAME = "SalesWorkers";
+    private static final int CHUNK_SIZE = 32 * 1024;
     private SpreadGroupCaller spreadGroupCaller;
-    public static final int CHUCK_SIZE = 32 * 1024;
 
     // Constructor to accept SpreadGroupCaller parameter
     public UMService(SpreadGroupCaller spreadGroupCaller) {
         this.spreadGroupCaller = spreadGroupCaller;
     }
 
-    // Other methods remain unchanged...
 
     @Override
     public void resumeSales(ResumeInfo request, StreamObserver<EmptyResponse> responseObserver) {
-        System.out.println(":: Asking Resume of Sales ::");
+        System.out.println(":: Asking Spread Group for Resume Sales File ::");
         String exchangeName = request.getExchangeName();
-        String fileName = request.getFileName();
+        String productType = request.getProductType();
+        String filename = request.getFileName();
 
-        sendResumeRequestToSG();
+        sendResumeRequestToSG(exchangeName, productType, filename);
 
         responseObserver.onNext(EmptyResponse.newBuilder().build());
         responseObserver.onCompleted();
@@ -37,38 +37,46 @@ public class UMService extends UMServiceGrpc.UMServiceImplBase {
     public void downloadFile(FileIdentifier request, StreamObserver<FileResponse> responseObserver) {
         System.out.println(":: Getting resume Of Sales File ::");
 
+        //GET FILE FROM THE PUB/SUB
+
         String fileId = request.getFileId();
         String filePath = "/usr/images/" + fileId;
 
-        try (FileInputStream fileInputStream = new FileInputStream(fileId)) {
-            byte[] buffer = new byte[CHUCK_SIZE];
+        try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
+            byte[] buffer = new byte[CHUNK_SIZE];
 
             int bytesRead;
             while ((bytesRead = fileInputStream.read(buffer)) != -1) {
-                // TODO
-            }
-            responseObserver.onCompleted();
 
+                FileResponse fileResponse = FileResponse.newBuilder()
+                        .setFileId(fileId)
+                        .setProcessedBytes(ByteString.copyFrom(buffer, 0, bytesRead))
+                        .build();
+                responseObserver.onNext(fileResponse);
+            }
+
+            responseObserver.onCompleted();
         } catch (IOException e) {
-            e.printStackTrace();
             responseObserver.onError(new Exception("Error downloading processed image"));
         }
     }
 
-    private void sendResumeRequestToSG() {
-        // Use the SpreadGroupCaller here...
-        if (spreadGroupCaller != null) {
-            spreadGroupCaller.callMethod(); // Replace callMethod with the method you want to call
+    private void sendResumeRequestToSG(String exchangeName, String productType, String filename) {
+        try {
+            if (spreadGroupCaller != null) {
+                SpreadMessage spreadMessage = new SpreadMessage();
+                spreadMessage.addGroup(SPREAD_GROUP_NAME);
+
+                // Add any additional information needed for the workers to process the resume request
+                spreadMessage.setObject(exchangeName);
+                spreadMessage.setObject(productType);
+
+                // Send the multicast message
+                spreadGroupCaller.sendMulticast(spreadMessage);
+            }
+        } catch (SpreadException e) {
+            System.err.println("Error sending multicast message to Spread Group: " + e.getMessage());
         }
 
-        // TODO
-        /**
-         Para tal o servidor
-         Manager gRPC, envia uma mensagem resume (d) em multicast para o grupo de Workers pedindo a
-         operação de resumo de vendas de produtos ALIMENTAR ou CASA, indicando o nome de um Exchange
-         para onde deve ser enviada a notificação (f) que o resumo está realizado, incluindo o nome do ficheiro
-         onde deve ser escrito o resumo;
-         */
     }
-
 }

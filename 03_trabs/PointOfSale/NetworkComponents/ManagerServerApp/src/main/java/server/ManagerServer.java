@@ -1,11 +1,12 @@
 package server;
 
 import io.grpc.*;
-import servercallers.RegisterServerCaller;
 import servercallers.SpreadGroupCaller;
-import services.CSService;
+import services.UMService;
 
+import java.io.IOException;
 import java.util.List;
+
 
 public class ManagerServer {
 
@@ -21,11 +22,12 @@ public class ManagerServer {
 
     private static GrpcBaseServer server;
     private static SpreadGroupCaller spreadGroupCaller;
+    private static UMService service;
 
     public static void main(String[] args) {
         initConnections(args);
         initSpreadGroupConnection();
-        startImageServer();
+        startManagerServer();
         awaitServer();
     }
 
@@ -44,15 +46,16 @@ public class ManagerServer {
         }
     }
 
-    public static void initSpreadGroupConnection(){
-        spreadGroupCaller = new SpreadGroupCaller(workersServerPort, workersServerIp);
-    }
-
-    public static void startImageServer(){
+    public static void startManagerServer(){
         server = new GrpcBaseServer();
         server.init(thisPort, List.of(new UMService(spreadGroupCaller)));
         server.start();
     }
+
+    public static void initSpreadGroupConnection(){
+        spreadGroupCaller = new SpreadGroupCaller(workersServerPort, workersServerIp);
+    }
+
 
     public static void awaitServer(){
         server.awaitTermination();

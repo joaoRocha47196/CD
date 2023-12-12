@@ -1,12 +1,13 @@
 package userapp.StreamObservers;
 
-import csstubs.ResumeNotification;
-import io.grpc.stub.StreamObserver;
 
-public class ResumeSalesStreamObserver implements StreamObserver<Empty> {
+import io.grpc.stub.StreamObserver;
+import umstubs.EmptyResponse;
+
+public class ResumeSalesStreamObserver implements StreamObserver<EmptyResponse> {
 
     @Override
-    public void onNext( Empty notification) {
+    public void onNext( EmptyResponse notification) {
         // Handle the onNext event (summary received)
         System.out.println("Resume Sales notification received: ");
     }
