@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cd2324userapp</groupId>
-    <artifactId>UserApp</artifactId>
+    <groupId>cd2324pointofsaleapp</groupId>
+    <artifactId>PointOfSaleApp</artifactId>
     <version>1.0</version>
 
     <properties>
@@ -44,7 +44,7 @@
                     </descriptors>
                     <archive>
                         <manifest>
-                            <mainClass>userapp.UserApp</mainClass>
+                            <mainClass>app.UserApp</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

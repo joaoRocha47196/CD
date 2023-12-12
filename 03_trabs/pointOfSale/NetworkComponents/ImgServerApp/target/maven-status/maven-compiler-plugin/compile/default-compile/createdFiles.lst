@@ -1,6 +1,0 @@
-services\CSService.class
-StreamObservers\ProcessImageStreamObserver.class
-server\ImageServer.class
-StreamObservers\RegisterServerStreamObserver.class
-repo\Repo.class
-servercallers\RegisterServerCaller.class

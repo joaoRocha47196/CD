@@ -6,15 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MarkImageApp" />
         <module name="BaseServer" />
         <module name="UserApp (2)" />
-        <module name="ManageServerApp" />
-        <module name="UserApp (1)" />
-        <module name="DockerAPI" />
+        <module name="UserApp" />
         <module name="Worker" />
         <module name="DemoSpreadMaven" />
-        <module name="ImgServerApp" />
+        <module name="PointOfSaleApp" />
         <module name="ManagerServerApp" />
         <module name="UserManagerContract" />
       </profile>
@@ -22,9 +19,13 @@
     <bytecodeTargetLevel>
       <module name="CalcClientApp" target="11" />
       <module name="ClientToRegisterContract (1) (cd2324crcontract)" target="11" />
+      <module name="DockerAPI" target="11" />
+      <module name="ImgServerApp" target="11" />
+      <module name="ManageServerApp" target="11" />
+      <module name="MarkImageApp" target="11" />
       <module name="RegisterServerApp" target="11" />
       <module name="ServerToRegisterContract" target="11" />
-      <module name="UserApp" target="11" />
+      <module name="UserApp (1)" target="11" />
       <module name="UserAppContract" target="11" />
     </bytecodeTargetLevel>
   </component>

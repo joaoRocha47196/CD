@@ -19,18 +19,15 @@
         <option value="$PROJECT_DIR$/ImgServerApp/pom.xml" />
         <option value="$PROJECT_DIR$/MarkImageApp/pom.xml" />
         <option value="$PROJECT_DIR$/NetworkComponents/ClientApp/pom.xml" />
-        <option value="$PROJECT_DIR$/NetworkComponents/ImgServerApp/pom.xml" />
         <option value="$PROJECT_DIR$/NetworkComponents/RegisterServerApp/pom.xml" />
-        <option value="$PROJECT_DIR$/Utils/MarkImageApp/pom.xml" />
         <option value="$PROJECT_DIR$/Utils/BaseServer/pom.xml" />
-        <option value="$PROJECT_DIR$/Utils/DockerAPI/pom.xml" />
-        <option value="$PROJECT_DIR$/NetworkComponents/UserApp/pom.xml" />
-        <option value="$PROJECT_DIR$/NetworkComponents/ManagerServerApp/pom.xml" />
-        <option value="$PROJECT_DIR$/NetworkComponents/PointOfSaleApp/pom.xml" />
         <option value="$PROJECT_DIR$/NetworkComponents/Worker/pom.xml" />
         <option value="$USER_HOME$/Downloads/SpreadDemo/DemoSpreadMaven/pom.xml" />
         <option value="$PROJECT_DIR$/DemoSpreadMaven/pom.xml" />
         <option value="$PROJECT_DIR$/GrpcContracts/UserManagerContract/pom.xml" />
+        <option value="$PROJECT_DIR$/NetworkComponents/ManagerServerApp/pom.xml" />
+        <option value="$PROJECT_DIR$/NetworkComponents/PointOfSaleApp/pom.xml" />
+        <option value="$PROJECT_DIR$/NetworkComponents/UserApp/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -39,7 +36,6 @@
         <option value="$PROJECT_DIR$/NetworkComponents/RegisterServerApp/pom.xml" />
       </set>
     </option>
-    <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK" />
 </project>

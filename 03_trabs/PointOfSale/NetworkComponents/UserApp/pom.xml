@@ -48,7 +48,7 @@
                     </descriptors>
                     <archive>
                         <manifest>
-                            <mainClass>userapp.UserApp</mainClass>
+                            <mainClass>app.UserApp</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
