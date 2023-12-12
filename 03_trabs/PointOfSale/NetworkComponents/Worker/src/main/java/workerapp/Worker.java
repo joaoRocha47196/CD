@@ -76,6 +76,8 @@ public class Worker {
             SpreadGroup group = new SpreadGroup();
             group.join(connection, SPREAD_GROUP_NAME);
 
+            connection.add(new SpreadMessageListener());
+
             System.out.println("Connected to Spread group successfully!");
         } catch (SpreadException e) {
             System.out.println("Error connecting to Spread group: " + e.getMessage());

@@ -3,8 +3,6 @@ package server;
 import io.grpc.*;
 import servercallers.SpreadGroupCaller;
 import services.UMService;
-
-import java.io.IOException;
 import java.util.List;
 
 
