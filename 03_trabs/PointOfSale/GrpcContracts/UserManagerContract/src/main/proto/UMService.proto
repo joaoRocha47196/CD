@@ -3,15 +3,13 @@ option java_multiple_files = true;
 option java_package = "umstubs";
 package UMService; // package do proto
 
-// UserToManagerService
+
 service UMService {
-    // Necessita enviar o nome do exchange e do nome do ficheiro a ser gerado
     rpc resumeSales(ResumeInfo) returns (EmptyResponse);
-
-    // When the notification arrives do grpcServer file is ready to dowllaod
     rpc downloadFile(FileIdentifier) returns (stream FileResponse);
-
 }
+
+
 message ResumeInfo {
     string exchangeName = 1;
     string fileName = 2;

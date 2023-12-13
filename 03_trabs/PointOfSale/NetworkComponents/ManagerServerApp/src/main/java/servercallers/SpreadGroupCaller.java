@@ -2,9 +2,7 @@ package servercallers;
 
 import spread.SpreadConnection;
 import spread.SpreadException;
-import spread.SpreadGroup;
 import spread.SpreadMessage;
-
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 

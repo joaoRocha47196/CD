@@ -27,7 +27,7 @@ public class Worker {
 
     public static void main(String[] args) throws IOException {
         initConnections(args);
-        //createGlusterDirectories();
+        createGlusterDirectories();
         initSpreadGroup();
         initRabbit();
         //Channel rabbitChannel = initRabbitMQConnection();
@@ -35,12 +35,12 @@ public class Worker {
     }
 
     private static void initConnections(String[] args) {
-        if (args.length == 3) {
+        if (args.length == 4) {
             rabbitMQHost = args[0];
             rabbitMQPort = Integer.parseInt(args[1]);
             routingKey = args[2];
             //spreadIP = args[3];
-            workerName = args[4];
+            workerName = args[3];
         } else {
             rabbitMQHost = RABBITMQ_DEFAULT_HOST;
             rabbitMQPort = RABBITMQ_DEFAULT_PORT;
@@ -110,8 +110,8 @@ public class Worker {
 */
 
     private static void createGlusterDirectories() {
-        createGlusterDirectory("alimentar");
-        createGlusterDirectory("casa");
+        createGlusterDirectory("/alimentar");
+        createGlusterDirectory("/casa");
     }
 
 
