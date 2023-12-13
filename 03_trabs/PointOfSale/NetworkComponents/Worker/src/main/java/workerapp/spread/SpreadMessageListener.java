@@ -1,7 +1,15 @@
 package workerapp.spread;
 
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 import spread.*;
 import workerapp.gluster.GlusterFileManager;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+import static workerapp.Worker.sendNotification;
 
 public class SpreadMessageListener implements BasicMessageListener {
     private SpreadConnection connection;
@@ -33,13 +41,16 @@ public class SpreadMessageListener implements BasicMessageListener {
                 processElectionMessage(spreadMessage, (ElectionInfo)retrievedObject);
 
             // Merge All Files
-            if (isLeader)
+            if (isLeader) {
                 GlusterFileManager.mergeFilesByRoutingKey(this.type, this.fileName);
+                sendNotification(this.exchangeName, this.fileName);
+            }
 
         } catch (SpreadException e) {
             e.printStackTrace();
         }
     }
+
 
     private void processResumeMessage(SpreadMessage spreadMessage, ResumoInfo retrievedObject) {
         MembershipInfo info = spreadMessage.getMembershipInfo();

@@ -1,9 +1,6 @@
 package workerapp.gluster;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,9 +14,9 @@ public class GlusterFileManager implements Serializable {
         return routingKey.toLowerCase() + "/file_" + workerName + ".txt";
     }
 
-    public static void mergeFilesByRoutingKey(String routingKey, String mergedFileName) {
+    public static void mergeFilesByRoutingKey(String routingKey, String filename) {
         String directoryPath = GLUSTER_DIRECTORY_PATH + routingKey.toLowerCase();
-        //String mergedFileName = BASE_LCOATION + routingKey.toLowerCase() + "_merged.txt";
+        String fileDirectory = directoryPath + filename;
 
         try {
             List<Path> filesInDirectory = Files.list(Paths.get(directoryPath))
@@ -27,7 +24,7 @@ public class GlusterFileManager implements Serializable {
                     .filter(path -> path.toString().endsWith(".txt"))
                     .collect(Collectors.toList());
 
-            try (BufferedWriter mergedFileWriter = Files.newBufferedWriter(Paths.get(mergedFileName))) {
+            try (BufferedWriter mergedFileWriter = Files.newBufferedWriter(Paths.get(filename))) {
                 for (Path filePath : filesInDirectory) {
                     List<String> lines = Files.readAllLines(filePath);
                     for (String line : lines) {
@@ -36,7 +33,7 @@ public class GlusterFileManager implements Serializable {
                     }
                 }
                 System.out.println("All files in directory for routing key " + routingKey +
-                        " have been merged into " + mergedFileName);
+                        " have been merged into " + filename);
             } catch (IOException e) {
                 System.out.println("Error writing to merged file: " + e.getMessage());
             }
@@ -45,14 +42,30 @@ public class GlusterFileManager implements Serializable {
         }
     }
 
-    public static void writeToFile(String content, String routingKey, String workerName) {
-        String fileName = GLUSTER_DIRECTORY_PATH + generateFileName(routingKey, workerName);
 
-        try (FileWriter fileWriter = new FileWriter(fileName, true)) {
-            fileWriter.write(content + "\n");
-            System.out.println(" [x] Sale information written to file: " + fileName);
+
+    public static void writeToFile(String content, String routingKey, String workerName) {
+        String directoryPath = GLUSTER_DIRECTORY_PATH;
+        String fileName = directoryPath + "file_" + workerName + ".txt";
+
+        try {
+            File file = new File(fileName);
+            // Create the file if it doesn't exist
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // Use FileWriter with append mode
+            try (FileWriter fileWriter = new FileWriter(file, true)) {
+                fileWriter.write(content + "\n");
+                System.out.println(" [x] Sale information written to file: " + fileName);
+            }catch (IOException e) {
+                System.out.println("Error writing to file: " + e.getMessage());
+                e.printStackTrace();
+            }
         } catch (IOException e) {
-            System.out.println("Error writing to file: " + e.getMessage());
+            System.out.println("Error creating file: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

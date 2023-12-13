@@ -27,7 +27,7 @@ public class SpreadGroupCaller {
             spreadMessage.setSafe();
             spreadMessage.addGroup(SPREAD_GROUP_NAME);
 
-            spreadMessage.setObject(new ResumoInfo(exchangeName, productType, filename));
+            spreadMessage.setObject(new ResumeInfo(exchangeName, productType, filename));
             sendMulticast(spreadMessage);
         } catch (SpreadException e) {
             System.err.println("Error sending multicast message to Spread Group: " + e.getMessage());

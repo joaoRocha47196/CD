@@ -58,8 +58,9 @@ public class UserApp {
                     String fileName = sc.nextLine();
                     System.out.println("\nInsert the product type (ALIMENTAR or CASA)");
                     String productType = sc.nextLine();
-                    String exchangeName = "ExgSales";
-                    managerServerCaller.resumeSales(exchangeName, fileName, productType);
+                    System.out.println("\nInsert the Exchange Name to notify");
+                    String exchangeNotify = sc.nextLine();
+                    managerServerCaller.resumeSales(exchangeNotify, fileName, productType);
                     break;
 
                 case 2:

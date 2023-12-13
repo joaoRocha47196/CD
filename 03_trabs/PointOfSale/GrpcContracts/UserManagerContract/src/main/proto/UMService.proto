@@ -28,8 +28,3 @@ message FileResponse{
 message EmptyResponse {}
 
 
-// OTHER
-
-// Mensgem entre o Rabbit e o servidor
-// notificar que o ficheiro esta pronto
-   // rpc notify(Empty) returns (FileIdentifier);

@@ -34,9 +34,8 @@ public class UMService extends UMServiceGrpc.UMServiceImplBase {
     public void downloadFile(FileIdentifier request, StreamObserver<FileResponse> responseObserver) {
         System.out.println(":: Getting resume Of Sales File ::");
 
-        //GET FILE FROM THE PUB/SUB
         String fileId = request.getFileId();
-        String filePath = "/usr/images/" + fileId;
+        String filePath = "/var/sharedfiles/" + fileId;
 
         try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
             byte[] buffer = new byte[CHUNK_SIZE];

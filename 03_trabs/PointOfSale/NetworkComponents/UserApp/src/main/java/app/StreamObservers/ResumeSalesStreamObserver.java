@@ -5,6 +5,11 @@ import io.grpc.stub.StreamObserver;
 import umstubs.EmptyResponse;
 
 public class ResumeSalesStreamObserver implements StreamObserver<EmptyResponse> {
+    private String exchangeName;
+
+    public ResumeSalesStreamObserver(String exchangeName) {
+        this.exchangeName = exchangeName;
+    }
 
     @Override
     public void onNext( EmptyResponse notification) {

@@ -2,12 +2,12 @@ package servercallers;
 
 import java.io.Serializable;
 
-public class ResumoInfo implements Serializable {
+public class ResumeInfo implements Serializable {
     private String exchangeName;
     private String productType;
     private String filename;
 
-    public ResumoInfo(String exchangeName, String productType, String filename) {
+    public ResumeInfo(String exchangeName, String productType, String filename) {
         this.exchangeName = exchangeName;
         this.productType = productType;
     }

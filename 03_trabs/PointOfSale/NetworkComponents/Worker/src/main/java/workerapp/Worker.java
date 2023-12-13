@@ -1,5 +1,6 @@
 package workerapp;
 
+import workerapp.rabbit.RabbitProducer;
 import workerapp.spread.GroupMember;
 import workerapp.rabbit.RabbitConsumer;
 
@@ -59,6 +60,12 @@ public class Worker {
         RabbitConsumer rabbitBroker = new RabbitConsumer(rabbitMQHost, rabbitMQPort, routingKey, workerName);
         rabbitBroker.initConnection();
         rabbitBroker.declareQueue();
+    }
+
+    public static void sendNotification(String exchangeName, String fileName) {
+        RabbitProducer rabbitBroker = new RabbitProducer(rabbitMQHost, rabbitMQPort);
+        rabbitBroker.initConnection();
+        rabbitBroker.publishMessage(exchangeName, fileName);
     }
 
     /*

@@ -24,7 +24,7 @@ public class ManagerServerCaller {
             .setProductType(productType)
             .build();
 
-        ResumeSalesStreamObserver response = new ResumeSalesStreamObserver();
+        ResumeSalesStreamObserver response = new ResumeSalesStreamObserver(exchangeName);
         managerServiceStub.resumeSales(request, response);
     }
 
