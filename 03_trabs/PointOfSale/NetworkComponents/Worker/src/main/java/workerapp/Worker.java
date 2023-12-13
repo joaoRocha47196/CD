@@ -1,14 +1,10 @@
 package workerapp;
 
-import com.rabbitmq.client.*;
-import spread.SpreadConnection;
-import spread.SpreadException;
-import spread.SpreadGroup;
+import workerapp.spread.GroupMember;
+import workerapp.rabbit.RabbitConsumer;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.util.concurrent.TimeoutException;
 
 public class Worker {
     // RABBIT
@@ -33,21 +29,9 @@ public class Worker {
         initConnections(args);
         //createGlusterDirectories();
         initSpreadGroup();
-        Channel rabbitChannel = initRabbitMQConnection();
-        rabbitconfig(rabbitChannel);
-    }
-
-    private static void rabbitconfig( Channel rabbitChannel) throws IOException {
-        if (routingKey.equals("ALIMENTAR")){
-            rabbitChannel.queueDeclare("QueueAlimentar", true, false, false, null);
-            rabbitChannel.queueBind("QueueAlimentar", EXCHANGE_NAME, routingKey);
-            consumeMessages(rabbitChannel,"QueueAlimentar");
-        }
-        else {
-            rabbitChannel.queueDeclare("QueueCasa", true, false, false, null);
-            rabbitChannel.queueBind("QueueCasa", EXCHANGE_NAME, routingKey);
-            consumeMessages(rabbitChannel,"QueueCasa");
-        }
+        initRabbit();
+        //Channel rabbitChannel = initRabbitMQConnection();
+        //rabbitconfig(rabbitChannel);
     }
 
     private static void initConnections(String[] args) {
@@ -66,6 +50,18 @@ public class Worker {
         }
     }
 
+    private static void initSpreadGroup() {
+        GroupMember groupMember = new GroupMember(spreadIP, SPREAD_PORT, workerName);
+        groupMember.joinGroup();
+    }
+
+    private static void initRabbit(){
+        RabbitConsumer rabbitBroker = new RabbitConsumer(rabbitMQHost, rabbitMQPort, routingKey, workerName);
+        rabbitBroker.initConnection();
+        rabbitBroker.declareQueue();
+    }
+
+    /*
     private static Channel initRabbitMQConnection() {
         System.out.println("Connect to RabbitMQ server at:" + rabbitMQHost + ":" + rabbitMQPort);
         ConnectionFactory factory = new ConnectionFactory();
@@ -86,21 +82,16 @@ public class Worker {
         }
     }
 
-    private static void initSpreadGroup() {
-        try {
-            SpreadConnection connection = new SpreadConnection();
-            connection.connect(InetAddress.getByName(spreadIP), SPREAD_PORT, workerName, false, true);
-
-            SpreadGroup group = new SpreadGroup();
-            group.join(connection, SPREAD_GROUP_NAME);
-
-            connection.add(new SpreadMessageListener(connection, 1));
-
-            System.out.println("Connected to Spread group successfully!");
-        } catch (SpreadException e) {
-            System.out.println("Error connecting to Spread group: " + e.getMessage());
-        } catch (java.net.UnknownHostException e) {
-            throw new RuntimeException(e);
+    private static void rabbitconfig( Channel rabbitChannel) throws IOException {
+        if (routingKey.equals("ALIMENTAR")){
+            rabbitChannel.queueDeclare("QueueAlimentar", true, false, false, null);
+            rabbitChannel.queueBind("QueueAlimentar", EXCHANGE_NAME, routingKey);
+            consumeMessages(rabbitChannel,"QueueAlimentar");
+        }
+        else {
+            rabbitChannel.queueDeclare("QueueCasa", true, false, false, null);
+            rabbitChannel.queueBind("QueueCasa", EXCHANGE_NAME, routingKey);
+            consumeMessages(rabbitChannel,"QueueCasa");
         }
     }
 
@@ -116,7 +107,7 @@ public class Worker {
             System.out.println("Error connecting to RabbitMQ");
         }
     }
-
+*/
 
     private static void createGlusterDirectories() {
         createGlusterDirectory("alimentar");

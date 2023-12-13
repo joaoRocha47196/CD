@@ -26,11 +26,10 @@ public class SpreadGroupCaller {
     public void sendResumeRequest(String exchangeName, String productType, String filename) {
         try {
             SpreadMessage spreadMessage = new SpreadMessage();
+            spreadMessage.setSafe();
             spreadMessage.addGroup(SPREAD_GROUP_NAME);
 
-            // Add any additional information needed for the workers to process the resume request
-            spreadMessage.setObject(exchangeName);
-            spreadMessage.setObject(productType);
+            spreadMessage.setObject(new ResumoInfo(exchangeName, productType, filename));
             sendMulticast(spreadMessage);
         } catch (SpreadException e) {
             System.err.println("Error sending multicast message to Spread Group: " + e.getMessage());
