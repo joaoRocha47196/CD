@@ -1,6 +1,6 @@
 package workerapp;
 
-import spread.*;
+import com.rabbitmq.client.Channel;
 import spread.*;
 
 public class SpreadMessageListener implements BasicMessageListener {
@@ -10,10 +10,52 @@ public class SpreadMessageListener implements BasicMessageListener {
     private boolean isLeader;
 
     public SpreadMessageListener(SpreadConnection connection, int workerId) {
+
         this.workerId = workerId;
         this.isLeader = false;
         this.connection = connection;
+
     }
+
+    @Override
+    public void messageReceived(SpreadMessage spreadMessage) {
+        byte[] data = spreadMessage.getData();
+        String receivedMessage = new String(data);
+
+        if (receivedMessage.equals("ELECTION")) {
+            // Give a negative acknowledgment to stop processing requests -- ???
+            //TODO
+            // Respond to election message and handle leader election logic
+            // Logic for Bully Algorithm: compare worker ID and decide leadership
+            int receivedWorkerId = 1;//spreadMessage.getSender().getPrivateAddress().hashCode();
+
+            // If this worker has a higher ID, it can become the leader
+            //DAR UM NEGATIVE ACKNOWLEGE PARA O WORKER PARA DE PROCESSAR MENSAGENS
+            if (workerId > receivedWorkerId) {
+                // Announce leadership
+                SpreadMessage leaderAnnouncement = new SpreadMessage();
+                leaderAnnouncement.setSafe();
+                leaderAnnouncement.setData("LEADER".getBytes());
+                try {
+                    connection.multicast(leaderAnnouncement);
+                } catch (SpreadException e) {
+                    e.printStackTrace();
+                }
+            }
+            // Handle other cases as needed for your specific leader election logic
+        } else if (receivedMessage.equals("LEADER")) {
+            isLeader = true;
+            processAndWriteSummary();
+            // Handle the case where this server received a LEADER announcement
+            // Possibly update internal state to acknowledge the leader
+            // Set isLeader flag or perform leader-related tasks
+        } else {
+            // NORMAL MESSAGE, LIKE SENT BY ManageServer
+            // Start the election process
+            startElection();
+        }
+    }
+
 
     // Method to start an election process
     private void startElection() {
@@ -28,38 +70,20 @@ public class SpreadMessageListener implements BasicMessageListener {
         }
     }
 
-    // Implementing BasicMessageListener's messageReceived method
-    @Override
-    public void messageReceived(SpreadMessage spreadMessage) {
-        byte[] data = spreadMessage.getData();
-        String receivedMessage = new String(data);
+    // Method to process and write the summary when this worker is the leader
+    private void processAndWriteSummary() {
+        // Implement logic to process and write the summary file
+        // This could involve reading files from other workers and combining them into one file
+        // Once the summary is ready, notify the Exchange (send a message with the summary file information)
 
-       if (receivedMessage.equals("ELECTION")) {
-            // Respond to election message and handle leader election logic
-            // Logic for Bully Algorithm: compare worker ID and decide leadership
-            int receivedWorkerId = 1;//spreadMessage.getSender().getPrivateAddress().hashCode();
+        SpreadMessage summaryMessage = new SpreadMessage();
+        summaryMessage.setSafe();
+        summaryMessage.setData("SUMMARY_FILE_NAME".getBytes());  // Replace with the actual summary file name
 
-            // If this worker has a higher ID, it can become the leader
-            if (workerId > receivedWorkerId) {
-                // Announce leadership
-                SpreadMessage leaderAnnouncement = new SpreadMessage();
-                leaderAnnouncement.setSafe();
-                leaderAnnouncement.setData("LEADER".getBytes());
-                try {
-                    connection.multicast(leaderAnnouncement);
-                } catch (SpreadException e) {
-                    e.printStackTrace();
-                }
-            }
-            // Handle other cases as needed for your specific leader election logic
-        } else if (receivedMessage.equals("LEADER")) {
-            // Handle the case where this server received a LEADER announcement
-            // Possibly update internal state to acknowledge the leader
-            // Set isLeader flag or perform leader-related tasks
-        }else {
-            // NORMAL MESSAGE, LIKE SENT BY ManageServer
-            // Start the election process
-            startElection();
+        try {
+            connection.multicast(summaryMessage);
+        } catch (SpreadException e) {
+            e.printStackTrace();
         }
     }
 

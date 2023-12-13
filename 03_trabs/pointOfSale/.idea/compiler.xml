@@ -9,6 +9,8 @@
         <module name="BaseServer" />
         <module name="UserApp (2)" />
         <module name="UserApp" />
+        <module name="ManageServerApp" />
+        <module name="UserApp (1)" />
         <module name="Worker" />
         <module name="DemoSpreadMaven" />
         <module name="PointOfSaleApp" />
@@ -21,11 +23,9 @@
       <module name="ClientToRegisterContract (1) (cd2324crcontract)" target="11" />
       <module name="DockerAPI" target="11" />
       <module name="ImgServerApp" target="11" />
-      <module name="ManageServerApp" target="11" />
       <module name="MarkImageApp" target="11" />
       <module name="RegisterServerApp" target="11" />
       <module name="ServerToRegisterContract" target="11" />
-      <module name="UserApp (1)" target="11" />
       <module name="UserAppContract" target="11" />
     </bytecodeTargetLevel>
   </component>

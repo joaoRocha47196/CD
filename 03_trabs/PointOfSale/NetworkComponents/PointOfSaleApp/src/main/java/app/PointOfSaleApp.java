@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public class PointOfSaleApp {
-    private static final String RABBITMQ_DEFAULT_HOST = "localhost";
+    private static final String RABBITMQ_DEFAULT_HOST = "34.28.226.254";
     private static final int RABBITMQ_DEFAULT_PORT = 5672;
     private static final int MENU_EXIT_OPTION = 2;
     private static final String EXCHANGE_NAME = "ExgSales";
@@ -38,16 +38,24 @@ public class PointOfSaleApp {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(rabbitMQHost);
         factory.setPort(rabbitMQPort);
+        factory.setUsername("rabbit");
+        factory.setPassword("rabbit");
 
         try {
             Connection connection = factory.newConnection();
             rabbitChannel = connection.createChannel();
 
             rabbitChannel.exchangeDeclare(EXCHANGE_NAME, "direct");
+
+            rabbitChannel.queueDeclare("QueueCasa", true, false, false, null);
+            rabbitChannel.queueBind("QueueCasa", EXCHANGE_NAME, "CASA");
+            rabbitChannel.queueDeclare("QueueAlimentar", true, false, false, null);
+            rabbitChannel.queueBind("QueueAlimentar", EXCHANGE_NAME, "ALIMENTAR");
+
             System.out.println("Connected to RabbitMQ successfully!");
 
         } catch (IOException | TimeoutException e) {
-            System.out.println("Error connecting to RabbitMQ" + e.getMessage());
+            System.out.println("Error connecting to RabbitMQ: " + e.getMessage());
         }
     }
 
@@ -118,7 +126,7 @@ public class PointOfSaleApp {
 
     static String buildSaleMessage(String code, String name, String quantity, String price, float totalPrice, String iva) {
         return String.format(
-                "Sale Information:\nProduct Code: %s\nProduct Name: %s\nQuantity: %s\nPrice: %s\nTotal Price: %.2f\nIVA: %s",
+                "Product Code: %s | Product Name: %s | Quantity: %s | Price: %s | Total Price: %.2f | IVA: %s",
                 code, name, quantity, price, totalPrice, iva
         );
     }
