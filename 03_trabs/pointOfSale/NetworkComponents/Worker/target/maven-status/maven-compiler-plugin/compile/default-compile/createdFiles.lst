@@ -1,0 +1,4 @@
+workerapp\SpreadMessageListener.class
+workerapp\Worker.class
+workerapp\WorkerCallbackCancel.class
+workerapp\WorkerCallback.class

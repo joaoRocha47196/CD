@@ -9,7 +9,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class UMService extends UMServiceGrpc.UMServiceImplBase {
-    private static final String SPREAD_GROUP_NAME = "SalesWorkers";
     private static final int CHUNK_SIZE = 32 * 1024;
     private SpreadGroupCaller spreadGroupCaller;
 
@@ -18,7 +17,6 @@ public class UMService extends UMServiceGrpc.UMServiceImplBase {
         this.spreadGroupCaller = spreadGroupCaller;
     }
 
-
     @Override
     public void resumeSales(ResumeInfo request, StreamObserver<EmptyResponse> responseObserver) {
         System.out.println(":: Asking Spread Group for Resume Sales File ::");
@@ -26,19 +24,17 @@ public class UMService extends UMServiceGrpc.UMServiceImplBase {
         String productType = request.getProductType();
         String filename = request.getFileName();
 
-        sendResumeRequestToSG(exchangeName, productType, filename);
+        spreadGroupCaller.sendResumeRequest(exchangeName, productType, filename);
 
         responseObserver.onNext(EmptyResponse.newBuilder().build());
         responseObserver.onCompleted();
     }
-
 
     @Override
     public void downloadFile(FileIdentifier request, StreamObserver<FileResponse> responseObserver) {
         System.out.println(":: Getting resume Of Sales File ::");
 
         //GET FILE FROM THE PUB/SUB
-
         String fileId = request.getFileId();
         String filePath = "/usr/images/" + fileId;
 
@@ -59,24 +55,5 @@ public class UMService extends UMServiceGrpc.UMServiceImplBase {
         } catch (IOException e) {
             responseObserver.onError(new Exception("Error downloading processed image"));
         }
-    }
-
-    private void sendResumeRequestToSG(String exchangeName, String productType, String filename) {
-        try {
-            if (spreadGroupCaller != null) {
-                SpreadMessage spreadMessage = new SpreadMessage();
-                spreadMessage.addGroup(SPREAD_GROUP_NAME);
-
-                // Add any additional information needed for the workers to process the resume request
-                spreadMessage.setObject(exchangeName);
-                spreadMessage.setObject(productType);
-
-                // Send the multicast message
-                spreadGroupCaller.sendMulticast(spreadMessage);
-            }
-        } catch (SpreadException e) {
-            System.err.println("Error sending multicast message to Spread Group: " + e.getMessage());
-        }
-
     }
 }

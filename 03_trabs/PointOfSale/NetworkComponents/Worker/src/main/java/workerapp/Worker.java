@@ -13,19 +13,22 @@ import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeoutException;
 
 public class Worker {
+    // RABBIT
     private static final String RABBITMQ_DEFAULT_HOST = "localhost";
     private static final int RABBITMQ_DEFAULT_PORT = 5672;
-    private static final String SPREAD_GROUP_NAME = "SalesWorkers";
-    private static final String GLUSTER_DIRECTORY_PATH = "/path/to/gluster/directory/";
     private static final String EXCHANGE_NAME = "ExgSales";
-    private static final int SPREAD_PORT = 4803;
-
-
     private static String rabbitMQHost;
     private static int rabbitMQPort;
+    private static Channel rabbitChannel;
+
+    // SPREAD
+    private static final String SPREAD_GROUP_NAME = "SalesWorkers";
+    private static final int SPREAD_PORT = 4803;
     private static String spreadIP;
     private static String queueName;
-    private static Channel rabbitChannel;
+
+    // GLUSTER
+    private static final String GLUSTER_DIRECTORY_PATH = "/path/to/gluster/directory/";
 
     public static void main(String[] args) {
         initConnections(args);
@@ -76,7 +79,7 @@ public class Worker {
             SpreadGroup group = new SpreadGroup();
             group.join(connection, SPREAD_GROUP_NAME);
 
-            connection.add(new SpreadMessageListener());
+            connection.add(new SpreadMessageListener(connection, 1));
 
             System.out.println("Connected to Spread group successfully!");
         } catch (SpreadException e) {

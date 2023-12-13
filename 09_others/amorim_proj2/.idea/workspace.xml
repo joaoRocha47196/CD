@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d56ac0cb-60fa-4a38-a978-c65611ef665c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../02_labs/04/SpreadDemo/.idea/SpreadDemo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../03_trabs/pointOfSale/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../03_trabs/pointOfSale/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../03_trabs/pointOfSale/NetworkComponents/ImgServerApp/target/ImgServerApp-1.0-jar-with-dependencies.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../03_trabs/pointOfSale/NetworkComponents/ImgServerApp/target/ImgServerApp-1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../03_trabs/pointOfSale/NetworkComponents/ImgServerApp/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../03_trabs/pointOfSale/NetworkComponents/ImgServerApp/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../03_trabs/pointOfSale/NetworkComponents/ImgServerApp/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/ManagerServerApp/src/main/java/servercallers/SpreadGroupCaller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/ManagerServerApp/src/main/java/servercallers/SpreadGroupCaller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/Worker/src/main/java/workerapp/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/Worker/src/main/java/workerapp/Worker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +26,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../03_trabs/gRPCCalc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -41,6 +37,8 @@
       <option name="presentableId" value="Default" />
       <updated>1702326866290</updated>
       <workItem from="1702326867831" duration="1785000" />
+      <workItem from="1702426114587" duration="517000" />
+      <workItem from="1702426666613" duration="617000" />
     </task>
     <servers />
   </component>

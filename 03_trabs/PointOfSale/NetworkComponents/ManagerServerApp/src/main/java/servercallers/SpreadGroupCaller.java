@@ -5,22 +5,37 @@ import spread.SpreadException;
 import spread.SpreadGroup;
 import spread.SpreadMessage;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 public class SpreadGroupCaller {
 
-    private static int spreadGroupPort;
-    private static String spreadGroupIp; // "35.246.73.129";
     private SpreadConnection connection;
     private static final String SPREAD_GROUP_NAME = "SalesWorkers";
+    private static final String SPREAD_PRIVATE_NAME = "worker_username";
 
     public SpreadGroupCaller(int spreadGroupPort, String spreadGroupIp) {
-        this.spreadGroupPort = spreadGroupPort;
-        this.spreadGroupIp = spreadGroupIp;
         connection = new SpreadConnection();
-        SpreadGroup group = new SpreadGroup();
-        //group.join(connection, SPREAD_GROUP_NAME);
+        try {
+            connection.connect(InetAddress.getByName(spreadGroupIp), spreadGroupPort, SPREAD_PRIVATE_NAME, false, true);
+        } catch (SpreadException | UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 
+    public void sendResumeRequest(String exchangeName, String productType, String filename) {
+        try {
+            SpreadMessage spreadMessage = new SpreadMessage();
+            spreadMessage.addGroup(SPREAD_GROUP_NAME);
 
+            // Add any additional information needed for the workers to process the resume request
+            spreadMessage.setObject(exchangeName);
+            spreadMessage.setObject(productType);
+            sendMulticast(spreadMessage);
+        } catch (SpreadException e) {
+            System.err.println("Error sending multicast message to Spread Group: " + e.getMessage());
+        }
+    }
 
     public void sendMulticast(SpreadMessage message) throws SpreadException {
         if (connection.isConnected()) {
@@ -29,5 +44,4 @@ public class SpreadGroupCaller {
             System.err.println("Not connected to Spread group");
         }
     }
-
 }
