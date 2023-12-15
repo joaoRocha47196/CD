@@ -41,6 +41,7 @@ public class RabbitConsumerNotification {
 
     public void declareQueue() {
         try {
+            // TODO verify queName on worker
             rabbitChannel.exchangeDeclare(exchangeName, "fanout");
             rabbitChannel.queueBind("QueueNotificacao", exchangeName, ""); // routingKey? none?
         }catch (IOException e) {

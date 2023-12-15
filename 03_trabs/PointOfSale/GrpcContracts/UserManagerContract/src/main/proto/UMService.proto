@@ -9,7 +9,6 @@ service UMService {
     rpc downloadFile(FileIdentifier) returns (stream FileResponse);
 }
 
-
 message ResumeInfo {
     string exchangeName = 1;
     string fileName = 2;
