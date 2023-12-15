@@ -3,21 +3,22 @@ package rabbit;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeoutException;
 
 public class RabbitConsumerNotification {
-    private static final String EXCHANGE_NAME = "ExgSales";
+    private static final String QUEUE_NAME = "QueueNotificacao";
 
-    private String rabbitMQHost;
-    private int rabbitMQPort;
+    private final String rabbitMQHost;
+    private final int rabbitMQPort;
     private Channel rabbitChannel;
-    private String queueName;
+    private final String exchangeName;
 
 
-    public RabbitConsumerNotification(String rabbitMQHost, int rabbitMQPort) {
+    public RabbitConsumerNotification(String rabbitMQHost, int rabbitMQPort, String exchangeName) {
         this.rabbitMQHost = rabbitMQHost;
         this.rabbitMQPort = rabbitMQPort;
-
+        this.exchangeName = exchangeName;
     }
 
     public void initConnection() {
@@ -40,25 +41,22 @@ public class RabbitConsumerNotification {
 
     public void declareQueue() {
         try {
-            rabbitChannel.exchangeDeclare(EXCHANGE_NAME, "fanout");
-
-            // Declare a temporary queue and bind it to the fanout exchange
-            this.queueName = rabbitChannel.queueDeclare().getQueue();
-            rabbitChannel.queueBind(queueName, EXCHANGE_NAME, "");
+            rabbitChannel.exchangeDeclare(exchangeName, "fanout");
+            rabbitChannel.queueBind("QueueNotificacao", exchangeName, ""); // routingKey? none?
         }catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void getNotification() {
+    public void consumeNotifications(CompletableFuture<String> futureNotification) {
         try {
             System.out.println(" [*] Waiting for messages. To exit, press Ctrl+C");
 
-            RabbitCallbackConsumer workerCallback = new RabbitCallbackConsumer();
+            RabbitCallbackConsumer workerCallback = new RabbitCallbackConsumer(futureNotification);
             RabbitCallbackCancel cancelCallback = new RabbitCallbackCancel();
 
-            rabbitChannel.basicConsume(queueName, true, workerCallback, consumerTag -> {
-            });
+            rabbitChannel.basicConsume(QUEUE_NAME, true, workerCallback, cancelCallback);
+            //consumerTag -> {});
         } catch (IOException e) {
             System.out.println("Error connecting to RabbitMQ");
         }

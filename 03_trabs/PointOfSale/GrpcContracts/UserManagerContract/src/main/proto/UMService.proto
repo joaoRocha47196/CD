@@ -5,7 +5,7 @@ package UMService; // package do proto
 
 
 service UMService {
-    rpc resumeSales(ResumeInfo) returns (EmptyResponse);
+    rpc resumeSales(ResumeInfo) returns (NotificationResponse);
     rpc downloadFile(FileIdentifier) returns (stream FileResponse);
 }
 
@@ -25,6 +25,8 @@ message FileResponse{
     bytes processedBytes = 2;
 }
 
-message EmptyResponse {}
+message NotificationResponse{
+    string message = 1;
+}
 
 

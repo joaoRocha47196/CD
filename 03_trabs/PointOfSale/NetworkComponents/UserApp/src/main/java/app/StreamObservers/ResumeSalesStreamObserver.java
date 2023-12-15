@@ -2,9 +2,9 @@ package app.StreamObservers;
 
 
 import io.grpc.stub.StreamObserver;
-import umstubs.EmptyResponse;
+import umstubs.NotificationResponse;
 
-public class ResumeSalesStreamObserver implements StreamObserver<EmptyResponse> {
+public class ResumeSalesStreamObserver implements StreamObserver<NotificationResponse> {
     private String exchangeName;
 
     public ResumeSalesStreamObserver(String exchangeName) {
@@ -12,9 +12,8 @@ public class ResumeSalesStreamObserver implements StreamObserver<EmptyResponse> 
     }
 
     @Override
-    public void onNext( EmptyResponse notification) {
-        // Handle the onNext event (summary received)
-        System.out.println("Resume Sales notification received: ");
+    public void onNext(NotificationResponse notification) {
+        System.out.println("Resume Sales notification received: " + notification.getMessage());
     }
 
     @Override
@@ -25,7 +24,6 @@ public class ResumeSalesStreamObserver implements StreamObserver<EmptyResponse> 
 
     @Override
     public void onCompleted() {
-        // Handle the onCompleted event (stream is completed)
         System.out.println("Resume Sales completed.");
     }
 }

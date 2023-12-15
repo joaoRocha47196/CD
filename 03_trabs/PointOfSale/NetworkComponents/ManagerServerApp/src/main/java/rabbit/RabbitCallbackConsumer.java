@@ -4,19 +4,23 @@ import com.rabbitmq.client.*;
 
 
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.CompletableFuture;
 
 public class RabbitCallbackConsumer implements DeliverCallback {
 
-    private static final String GLUSTER_DIRECTORY_PATH = "/var/sharedfiles";
-    private String filename;
+    private final CompletableFuture<String> futureNotification;
 
-    public RabbitCallbackConsumer() {
-
+    public RabbitCallbackConsumer(CompletableFuture<String> future) {
+        this.futureNotification = future;
     }
 
     @Override
     public void handle(String consumerTag, Delivery delivery) {
-        this.filename = new String(delivery.getBody(), StandardCharsets.UTF_8);
+        String notficationMessage = new String(delivery.getBody(), StandardCharsets.UTF_8);
+        System.out.println("Notification Message Received: '" + notficationMessage + "'");
+
+        // Complete Notification So the user can receive the message
+        futureNotification.complete(notficationMessage);
     }
 }
 

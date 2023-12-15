@@ -3,9 +3,6 @@ package umstubs;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
- * <pre>
- * UserToManagerService
- * </pre>
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.58.0)",
@@ -19,28 +16,28 @@ public final class UMServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<umstubs.ResumeInfo,
-      umstubs.EmptyResponse> getResumeSalesMethod;
+      umstubs.NotificationResponse> getResumeSalesMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "resumeSales",
       requestType = umstubs.ResumeInfo.class,
-      responseType = umstubs.EmptyResponse.class,
+      responseType = umstubs.NotificationResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<umstubs.ResumeInfo,
-      umstubs.EmptyResponse> getResumeSalesMethod() {
-    io.grpc.MethodDescriptor<umstubs.ResumeInfo, umstubs.EmptyResponse> getResumeSalesMethod;
+      umstubs.NotificationResponse> getResumeSalesMethod() {
+    io.grpc.MethodDescriptor<umstubs.ResumeInfo, umstubs.NotificationResponse> getResumeSalesMethod;
     if ((getResumeSalesMethod = UMServiceGrpc.getResumeSalesMethod) == null) {
       synchronized (UMServiceGrpc.class) {
         if ((getResumeSalesMethod = UMServiceGrpc.getResumeSalesMethod) == null) {
           UMServiceGrpc.getResumeSalesMethod = getResumeSalesMethod =
-              io.grpc.MethodDescriptor.<umstubs.ResumeInfo, umstubs.EmptyResponse>newBuilder()
+              io.grpc.MethodDescriptor.<umstubs.ResumeInfo, umstubs.NotificationResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "resumeSales"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   umstubs.ResumeInfo.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  umstubs.EmptyResponse.getDefaultInstance()))
+                  umstubs.NotificationResponse.getDefaultInstance()))
               .setSchemaDescriptor(new UMServiceMethodDescriptorSupplier("resumeSales"))
               .build();
         }
@@ -125,26 +122,17 @@ public final class UMServiceGrpc {
   }
 
   /**
-   * <pre>
-   * UserToManagerService
-   * </pre>
    */
   public interface AsyncService {
 
     /**
-     * <pre>
-     * Necessita enviar o nome do exchange e do nome do ficheiro a ser gerado
-     * </pre>
      */
     default void resumeSales(umstubs.ResumeInfo request,
-        io.grpc.stub.StreamObserver<umstubs.EmptyResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<umstubs.NotificationResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getResumeSalesMethod(), responseObserver);
     }
 
     /**
-     * <pre>
-     * When the notification arrives do grpcServer file is ready to dowllaod
-     * </pre>
      */
     default void downloadFile(umstubs.FileIdentifier request,
         io.grpc.stub.StreamObserver<umstubs.FileResponse> responseObserver) {
@@ -154,9 +142,6 @@ public final class UMServiceGrpc {
 
   /**
    * Base class for the server implementation of the service UMService.
-   * <pre>
-   * UserToManagerService
-   * </pre>
    */
   public static abstract class UMServiceImplBase
       implements io.grpc.BindableService, AsyncService {
@@ -168,9 +153,6 @@ public final class UMServiceGrpc {
 
   /**
    * A stub to allow clients to do asynchronous rpc calls to service UMService.
-   * <pre>
-   * UserToManagerService
-   * </pre>
    */
   public static final class UMServiceStub
       extends io.grpc.stub.AbstractAsyncStub<UMServiceStub> {
@@ -186,20 +168,14 @@ public final class UMServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Necessita enviar o nome do exchange e do nome do ficheiro a ser gerado
-     * </pre>
      */
     public void resumeSales(umstubs.ResumeInfo request,
-        io.grpc.stub.StreamObserver<umstubs.EmptyResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<umstubs.NotificationResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getResumeSalesMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
-     * <pre>
-     * When the notification arrives do grpcServer file is ready to dowllaod
-     * </pre>
      */
     public void downloadFile(umstubs.FileIdentifier request,
         io.grpc.stub.StreamObserver<umstubs.FileResponse> responseObserver) {
@@ -210,9 +186,6 @@ public final class UMServiceGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service UMService.
-   * <pre>
-   * UserToManagerService
-   * </pre>
    */
   public static final class UMServiceBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<UMServiceBlockingStub> {
@@ -228,19 +201,13 @@ public final class UMServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Necessita enviar o nome do exchange e do nome do ficheiro a ser gerado
-     * </pre>
      */
-    public umstubs.EmptyResponse resumeSales(umstubs.ResumeInfo request) {
+    public umstubs.NotificationResponse resumeSales(umstubs.ResumeInfo request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getResumeSalesMethod(), getCallOptions(), request);
     }
 
     /**
-     * <pre>
-     * When the notification arrives do grpcServer file is ready to dowllaod
-     * </pre>
      */
     public java.util.Iterator<umstubs.FileResponse> downloadFile(
         umstubs.FileIdentifier request) {
@@ -251,9 +218,6 @@ public final class UMServiceGrpc {
 
   /**
    * A stub to allow clients to do ListenableFuture-style rpc calls to service UMService.
-   * <pre>
-   * UserToManagerService
-   * </pre>
    */
   public static final class UMServiceFutureStub
       extends io.grpc.stub.AbstractFutureStub<UMServiceFutureStub> {
@@ -269,11 +233,8 @@ public final class UMServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Necessita enviar o nome do exchange e do nome do ficheiro a ser gerado
-     * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<umstubs.EmptyResponse> resumeSales(
+    public com.google.common.util.concurrent.ListenableFuture<umstubs.NotificationResponse> resumeSales(
         umstubs.ResumeInfo request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getResumeSalesMethod(), getCallOptions()), request);
@@ -302,7 +263,7 @@ public final class UMServiceGrpc {
       switch (methodId) {
         case METHODID_RESUME_SALES:
           serviceImpl.resumeSales((umstubs.ResumeInfo) request,
-              (io.grpc.stub.StreamObserver<umstubs.EmptyResponse>) responseObserver);
+              (io.grpc.stub.StreamObserver<umstubs.NotificationResponse>) responseObserver);
           break;
         case METHODID_DOWNLOAD_FILE:
           serviceImpl.downloadFile((umstubs.FileIdentifier) request,
@@ -331,7 +292,7 @@ public final class UMServiceGrpc {
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               umstubs.ResumeInfo,
-              umstubs.EmptyResponse>(
+              umstubs.NotificationResponse>(
                 service, METHODID_RESUME_SALES)))
         .addMethod(
           getDownloadFileMethod(),

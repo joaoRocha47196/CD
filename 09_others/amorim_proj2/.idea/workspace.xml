@@ -2,15 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d56ac0cb-60fa-4a38-a978-c65611ef665c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../02_labs/04/.idea/04.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/Worker/src/main/java/workerapp/consumer/WorkerCallback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/Worker/src/main/java/workerapp/consumer/WorkerCallbackCancel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../02_labs/04/SpreadDemo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../02_labs/04/SpreadDemo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/ManagerServerApp/src/main/java/servercallers/SpreadGroupCaller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/ManagerServerApp/src/main/java/servercallers/SpreadGroupCaller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/Worker/src/main/java/workerapp/SpreadMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/Worker/src/main/java/workerapp/SpreadMessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/Worker/src/main/java/workerapp/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/Worker/src/main/java/workerapp/Worker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/Worker/src/main/java/workerapp/WorkerCallback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../03_trabs/PointOfSale/NetworkComponents/Worker/src/main/java/workerapp/WorkerCallbackCancel.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,5 +42,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

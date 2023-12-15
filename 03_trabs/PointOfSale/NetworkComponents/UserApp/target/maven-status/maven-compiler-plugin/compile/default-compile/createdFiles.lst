@@ -1,4 +1,0 @@
-userapp\UserApp.class
-userapp\StreamObservers\ResumeSalesStreamObserver.class
-userapp\StreamObservers\DownloadFileStreamObserver.class
-userapp\servercallers\ManagerServerCaller.class

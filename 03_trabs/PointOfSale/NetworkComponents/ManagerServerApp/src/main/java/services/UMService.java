@@ -1,5 +1,7 @@
 package services;
 import io.grpc.stub.StreamObserver;
+import rabbit.RabbitConsumerNotification;
+import server.ManagerServer;
 import servercallers.SpreadGroupCaller;
 import spread.SpreadException;
 import spread.SpreadMessage;
@@ -7,10 +9,15 @@ import umstubs.*;
 import com.google.protobuf.ByteString;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+
+import static server.ManagerServer.consumeNotifications;
 
 public class UMService extends UMServiceGrpc.UMServiceImplBase {
     private static final int CHUNK_SIZE = 32 * 1024;
     private SpreadGroupCaller spreadGroupCaller;
+    private static final String RABBITMQ_DEFAULT_HOST = "34.28.226.254";
+    private static final int RABBITMQ_DEFAULT_PORT = 5672;
 
     // Constructor to accept SpreadGroupCaller parameter
     public UMService(SpreadGroupCaller spreadGroupCaller) {
@@ -18,7 +25,7 @@ public class UMService extends UMServiceGrpc.UMServiceImplBase {
     }
 
     @Override
-    public void resumeSales(ResumeInfo request, StreamObserver<EmptyResponse> responseObserver) {
+    public void resumeSales(ResumeInfo request, StreamObserver<NotificationResponse> responseObserver) {
         System.out.println(":: Asking Spread Group for Resume Sales File ::");
         String exchangeName = request.getExchangeName();
         String productType = request.getProductType();
@@ -26,8 +33,22 @@ public class UMService extends UMServiceGrpc.UMServiceImplBase {
 
         spreadGroupCaller.sendResumeRequest(exchangeName, productType, filename);
 
-        responseObserver.onNext(EmptyResponse.newBuilder().build());
-        responseObserver.onCompleted();
+        // The future notification message
+        CompletableFuture<String> futureNotification = new CompletableFuture<>();
+
+        // Create Rabbit consumer
+        consumeNotifications(exchangeName, futureNotification);
+
+        // Wait for future to be complete (A new notification arrived)
+        futureNotification.thenCompose(message -> {
+            // Send the notification message to the client
+            NotificationResponse notificationRsp = NotificationResponse.newBuilder()
+                    .setMessage(message)
+                    .build();
+            responseObserver.onNext(notificationRsp);
+            responseObserver.onCompleted();
+            return CompletableFuture.completedFuture(null);
+        });
     }
 
     @Override

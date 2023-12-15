@@ -59,7 +59,7 @@ public class Worker {
     private static void initRabbit(){
         RabbitConsumer rabbitBroker = new RabbitConsumer(rabbitMQHost, rabbitMQPort, routingKey, workerName);
         rabbitBroker.initConnection();
-        rabbitBroker.declareQueue();
+        rabbitBroker.declareSalesQueue();
     }
 
     public static void sendNotification(String exchangeName, String fileName) {
