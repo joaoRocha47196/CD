@@ -16,13 +16,18 @@ public class GlusterFileManager implements Serializable {
 
     public static void mergeFilesByRoutingKey(String routingKey, String filename) {
         String directoryPath = GLUSTER_DIRECTORY_PATH + routingKey.toLowerCase();
-        String fileDirectory = directoryPath + filename;
-
+        String fileDirectory = directoryPath + "/" + filename;
+        System.out.println("Merging files in directory: " + directoryPath);
         try {
             List<Path> filesInDirectory = Files.list(Paths.get(directoryPath))
                     .filter(Files::isRegularFile)
                     .filter(path -> path.toString().endsWith(".txt"))
                     .collect(Collectors.toList());
+
+            if (filesInDirectory.isEmpty()) {
+                System.out.println("Warning: No files found in the directory for routing key " + routingKey);
+                return; // Skip merging if there are no files
+            }
 
             try (BufferedWriter mergedFileWriter = Files.newBufferedWriter(Paths.get(filename))) {
                 for (Path filePath : filesInDirectory) {
@@ -45,20 +50,16 @@ public class GlusterFileManager implements Serializable {
 
 
     public static void writeToFile(String content, String routingKey, String workerName) {
-        String directoryPath = GLUSTER_DIRECTORY_PATH;
-        String fileName = directoryPath + "file_" + workerName + ".txt";
-
+        String fileName = GLUSTER_DIRECTORY_PATH + routingKey.toLowerCase() + "/file_" + workerName + ".txt";
         try {
             File file = new File(fileName);
-            // Create the file if it doesn't exist
-            if (!file.exists()) {
-                file.createNewFile();
-            }
 
-            // Use FileWriter with append mode
+            if (!file.exists())
+                file.createNewFile();
+
             try (FileWriter fileWriter = new FileWriter(file, true)) {
                 fileWriter.write(content + "\n");
-                System.out.println(" [x] Sale information written to file: " + fileName);
+                System.out.println("Sale information written to file: " + fileName);
             }catch (IOException e) {
                 System.out.println("Error writing to file: " + e.getMessage());
                 e.printStackTrace();

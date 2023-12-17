@@ -1,0 +1,21 @@
+RabbitMQ: Ja esta a correr em tfnode-1, abrir rabbit ui: https://ip-externo tfnode1:15672
+
+Gluster:
+sudo service glusterd start
+sudo mount -t glusterfs tf-node2:/glustervol /var/sharedfiles (change tf-node1 depending on which vm u are running)
+
+Spread:
+# executa o spread na vm
+/usr/local/sbin/spread -c /usr/local/etc/vmsSpread.conf > /tmp/spreadlogs 2>&1 &
+
+
+WORKER:
+rabbitIP   rabbitPort  routingkey  workerName spreadIp
+java -jar Worker-1.0-jar-with-dependencies.jar 34.134.140.57 5672 CASA worker1 localhost  (spread ip so funciona com localhost idk why)
+
+MANAGERSERVER:
+java -jar ManagerServerApp-1.0-jar-with-dependencies.jar 35.222.250.221 8080 34.134.140.57 5672 localhost
+
+UserApp and PointOfSale:
+correr em localhost
+

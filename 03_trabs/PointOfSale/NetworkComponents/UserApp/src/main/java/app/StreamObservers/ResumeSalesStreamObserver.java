@@ -18,8 +18,8 @@ public class ResumeSalesStreamObserver implements StreamObserver<NotificationRes
 
     @Override
     public void onError(Throwable t) {
-        // Handle the onError event (error in summary request)
         System.err.println("Error in summary request: " + t.getMessage());
+        t.printStackTrace();
     }
 
     @Override

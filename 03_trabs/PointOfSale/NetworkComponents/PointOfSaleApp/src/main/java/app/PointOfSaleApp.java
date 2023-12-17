@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public class PointOfSaleApp {
-    private static final String RABBITMQ_DEFAULT_HOST = "34.28.226.254";
+    private static final String RABBITMQ_DEFAULT_HOST = "34.134.140.57";
     private static final int RABBITMQ_DEFAULT_PORT = 5672;
     private static final int MENU_EXIT_OPTION = 2;
     private static final String EXCHANGE_NAME = "ExgSales";

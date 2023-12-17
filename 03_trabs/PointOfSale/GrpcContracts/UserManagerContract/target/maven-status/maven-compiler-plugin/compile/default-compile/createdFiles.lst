@@ -8,7 +8,6 @@ umstubs\UMServiceGrpc$UMServiceBaseDescriptorSupplier.class
 umstubs\UMServiceGrpc$AsyncService.class
 umstubs\UMServiceGrpc$UMServiceFutureStub.class
 umstubs\ResumeInfo$1.class
-umstubs\EmptyResponse$1.class
 umstubs\NotificationResponse$1.class
 umstubs\FileResponse.class
 umstubs\UMServiceGrpc$UMServiceStub.class
@@ -19,14 +18,11 @@ umstubs\FileResponse$Builder.class
 umstubs\NotificationResponse$Builder.class
 umstubs\ResumeInfo.class
 umstubs\UMServiceGrpc$2.class
-umstubs\EmptyResponseOrBuilder.class
 umstubs\FileResponseOrBuilder.class
 umstubs\FileIdentifier$1.class
 umstubs\UMServiceGrpc$UMServiceFileDescriptorSupplier.class
-umstubs\EmptyResponse.class
 umstubs\NotificationResponse.class
 umstubs\FileIdentifierOrBuilder.class
-umstubs\EmptyResponse$Builder.class
 umstubs\UMServiceGrpc.class
 umstubs\ResumeInfo$Builder.class
 umstubs\UMServiceGrpc$1.class

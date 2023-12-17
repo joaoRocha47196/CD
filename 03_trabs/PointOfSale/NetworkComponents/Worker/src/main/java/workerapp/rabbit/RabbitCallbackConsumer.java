@@ -7,7 +7,6 @@ import java.nio.charset.StandardCharsets;
 
 public class RabbitCallbackConsumer implements DeliverCallback {
 
-    private static final String GLUSTER_DIRECTORY_PATH = "/var/sharedfiles";
     private final String queueName;
     private final String workerName;
 

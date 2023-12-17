@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 public class UserApp {
     private static final int MENU_EXIT_OPTION = 9;
-    private static final int MANAGER_DEFAULT_PORT = 8009;
-    private static final String MANAGER_DEFAULT_IP = "34.175.229.136";
+    private static final int MANAGER_DEFAULT_PORT = 8080;
+    private static final String MANAGER_DEFAULT_IP = "35.222.250.221";
     private static String manageServerIp;
     private static int managerServerPort;
   

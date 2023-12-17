@@ -38,6 +38,7 @@ public class RabbitConsumer {
 
         } catch (IOException | TimeoutException e) {
             System.out.println("Error connecting to RabbitMQ" + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -64,7 +65,7 @@ public class RabbitConsumer {
             RabbitCallbackConsumer workerCallback = new RabbitCallbackConsumer(queueName, workerName);
             RabbitCallbackCancel cancelCallback = new RabbitCallbackCancel();
 
-            rabbitChannel.basicConsume(queueName, true, workerCallback, cancelCallback);
+            rabbitChannel.basicConsume(queueName, false, workerCallback, cancelCallback);
         } catch (IOException e) {
             System.out.println("Error connecting to RabbitMQ");
         }

@@ -1,6 +1,5 @@
 package server;
 
-import io.grpc.*;
 import rabbit.RabbitConsumerNotification;
 import servercallers.SpreadGroupCaller;
 import services.UMService;
@@ -13,12 +12,11 @@ public class ManagerServer {
     private static final String THIS_DEFAULT_IP = "localhost";
     private static int THIS_DEFAULT_PORT = 8080;
     private static int thisPort;
-    private static String thisIp; // "35.246.73.129";
+    private static String thisIp;
 
-    private static int WORKERS_DEAFULT_PORT = 8500;
-    private static final String WORKERS_DEFAULT_IP = "localhost";
-    private static int workersServerPort;
-    private static String workersServerIp; // "35.246.73.129";
+    private static final String SPREAD_DEFAULT_IP = "localhost";
+    private static final int SPREAD_PORT = 4803;
+    private static String spreadIP;
 
     // RABBIT
     private static final String RABBITMQ_DEFAULT_HOST = "34.28.226.254";
@@ -37,20 +35,17 @@ public class ManagerServer {
     }
 
     public static void initConnections(String[] args){
-        if (args.length == 4) {
+        if (args.length == 5) {
             thisIp = args[0];
             thisPort = Integer.parseInt(args[1]);
-            workersServerPort = Integer.parseInt(args[2]);
-            workersServerIp = args[3];
-            rabbitMQHost = args[0];
-            rabbitMQPort = Integer.parseInt(args[1]);
-
+            rabbitMQHost = args[2];
+            rabbitMQPort = Integer.parseInt(args[3]);
+            spreadIP = args[4];
         }
         else {
             thisPort = THIS_DEFAULT_PORT;
             thisIp = THIS_DEFAULT_IP;
-            workersServerPort = WORKERS_DEAFULT_PORT;
-            workersServerIp = WORKERS_DEFAULT_IP;
+            spreadIP = SPREAD_DEFAULT_IP;
             rabbitMQHost = RABBITMQ_DEFAULT_HOST;
             rabbitMQPort = RABBITMQ_DEFAULT_PORT;
         }
@@ -67,10 +62,9 @@ public class ManagerServer {
     }
 
     public static void initSpreadGroupConnection(){
-        spreadGroupCaller = new SpreadGroupCaller(workersServerPort, workersServerIp);
+        spreadGroupCaller = new SpreadGroupCaller(SPREAD_PORT, spreadIP);
     }
 
-    // Need to be here to acess rabbitIp and port
     public static void consumeNotifications(String exchangeName, CompletableFuture<String> futureNotification){
         RabbitConsumerNotification rabbitBroker = new RabbitConsumerNotification
                 (rabbitMQHost, rabbitMQPort, exchangeName);

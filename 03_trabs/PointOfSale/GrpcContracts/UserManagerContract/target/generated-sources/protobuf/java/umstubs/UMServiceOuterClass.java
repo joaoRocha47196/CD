@@ -34,11 +34,6 @@ public final class UMServiceOuterClass {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_UMService_NotificationResponse_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UMService_EmptyResponse_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UMService_EmptyResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -53,12 +48,12 @@ public final class UMServiceOuterClass {
       "(\t\022\023\n\013productType\030\003 \001(\t\" \n\016FileIdentifie" +
       "r\022\016\n\006fileId\030\001 \001(\t\"6\n\014FileResponse\022\016\n\006fil" +
       "eId\030\001 \001(\t\022\026\n\016processedBytes\030\002 \001(\014\"\'\n\024Not" +
-      "ificationResponse\022\017\n\007message\030\001 \001(\t\"\017\n\rEm" +
-      "ptyResponse2\230\001\n\tUMService\022E\n\013resumeSales" +
-      "\022\025.UMService.ResumeInfo\032\037.UMService.Noti" +
-      "ficationResponse\022D\n\014downloadFile\022\031.UMSer" +
-      "vice.FileIdentifier\032\027.UMService.FileResp" +
-      "onse0\001B\013\n\007umstubsP\001b\006proto3"
+      "ificationResponse\022\017\n\007message\030\001 \001(\t2\230\001\n\tU" +
+      "MService\022E\n\013resumeSales\022\025.UMService.Resu" +
+      "meInfo\032\037.UMService.NotificationResponse\022" +
+      "D\n\014downloadFile\022\031.UMService.FileIdentifi" +
+      "er\032\027.UMService.FileResponse0\001B\013\n\007umstubs" +
+      "P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -88,12 +83,6 @@ public final class UMServiceOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UMService_NotificationResponse_descriptor,
         new java.lang.String[] { "Message", });
-    internal_static_UMService_EmptyResponse_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_UMService_EmptyResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UMService_EmptyResponse_descriptor,
-        new java.lang.String[] { });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

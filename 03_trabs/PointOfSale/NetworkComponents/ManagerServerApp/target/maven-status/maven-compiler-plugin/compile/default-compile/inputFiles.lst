@@ -1,3 +1,7 @@
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\pointOfSale\NetworkComponents\ManagerServerApp\src\main\java\services\UMService.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\pointOfSale\NetworkComponents\ManagerServerApp\src\main\java\servercallers\SpreadGroupCaller.java
-C:\Users\joaoc\OneDrive\Ambiente de Trabalho\MEIC_Sem_1\CD\CD_repo\03_trabs\pointOfSale\NetworkComponents\ManagerServerApp\src\main\java\server\ManagerServer.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\ManagerServerApp\src\main\java\servercallers\SpreadGroupCaller.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\ManagerServerApp\src\main\java\rabbit\RabbitConsumerNotification.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\ManagerServerApp\src\main\java\servercallers\ResumeInfo.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\ManagerServerApp\src\main\java\rabbit\RabbitCallbackConsumer.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\ManagerServerApp\src\main\java\rabbit\RabbitCallbackCancel.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\ManagerServerApp\src\main\java\server\ManagerServer.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\ManagerServerApp\src\main\java\services\UMService.java

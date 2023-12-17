@@ -1,4 +1,11 @@
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\Worker\src\main\java\workerapp\spread\ResumoInfo.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\Worker\src\main\java\workerapp\spread\SpreadMessageListener.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\Worker\src\main\java\workerapp\spread\GroupMember.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\Worker\src\main\java\workerapp\spread\ElectionInfo.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\Worker\src\main\java\workerapp\rabbit\RabbitCallbackConsumer.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\Worker\src\main\java\workerapp\gluster\GlusterFileManager.java
 C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\Worker\src\main\java\workerapp\Worker.java
-C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\Worker\src\main\java\workerapp\WorkerCallbackCancel.java
-C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\Worker\src\main\java\workerapp\SpreadMessageListener.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\Worker\src\main\java\workerapp\rabbit\RabbitCallbackCancel.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\Worker\src\main\java\workerapp\rabbit\RabbitConsumer.java
 C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\Worker\src\main\java\workerapp\WorkerCallback.java
+C:\ISEL\CD_repo\03_trabs\PointOfSale\NetworkComponents\Worker\src\main\java\workerapp\rabbit\RabbitProducer.java

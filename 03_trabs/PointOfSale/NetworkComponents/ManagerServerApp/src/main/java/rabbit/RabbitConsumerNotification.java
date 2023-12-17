@@ -41,9 +41,11 @@ public class RabbitConsumerNotification {
 
     public void declareQueue() {
         try {
-            // TODO verify queName on worker
             rabbitChannel.exchangeDeclare(exchangeName, "fanout");
-            rabbitChannel.queueBind("QueueNotificacao", exchangeName, ""); // routingKey? none?
+            // Declare the queue
+            rabbitChannel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            // Bind the queue to the exchange
+            rabbitChannel.queueBind(QUEUE_NAME, exchangeName, "");
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,8 +58,8 @@ public class RabbitConsumerNotification {
             RabbitCallbackConsumer workerCallback = new RabbitCallbackConsumer(futureNotification);
             RabbitCallbackCancel cancelCallback = new RabbitCallbackCancel();
 
-            rabbitChannel.basicConsume(QUEUE_NAME, true, workerCallback, cancelCallback);
-            //consumerTag -> {});
+            rabbitChannel.basicConsume(QUEUE_NAME, false, workerCallback, cancelCallback);
+
         } catch (IOException e) {
             System.out.println("Error connecting to RabbitMQ");
         }

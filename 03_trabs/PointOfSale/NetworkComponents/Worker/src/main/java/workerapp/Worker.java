@@ -36,17 +36,18 @@ public class Worker {
     }
 
     private static void initConnections(String[] args) {
-        if (args.length == 4) {
+        if (args.length == 5) {
             rabbitMQHost = args[0];
             rabbitMQPort = Integer.parseInt(args[1]);
             routingKey = args[2];
-            //spreadIP = args[3];
             workerName = args[3];
+            spreadIP = args[4];  // ADD parseInt if its not localhost
+
         } else {
             rabbitMQHost = RABBITMQ_DEFAULT_HOST;
             rabbitMQPort = RABBITMQ_DEFAULT_PORT;
             routingKey = "ALIMENTAR";
-            spreadIP = "";
+            spreadIP = "localhost";
             workerName = "worker1";
         }
     }

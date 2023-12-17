@@ -29,24 +29,28 @@ public class SpreadMessageListener implements BasicMessageListener {
     @Override
     public void messageReceived(SpreadMessage spreadMessage) {
         try {
-            Object retrievedObject = spreadMessage.getObject();
+            System.out.println("Received message from Spread Group: " + spreadMessage.getSender());
+            if (spreadMessage.isRegular()) {
+                Object retrievedObject = spreadMessage.getObject();
 
-            // Resume Multicast Message
-            if (retrievedObject instanceof ResumoInfo) {
-                // TODO somehow stop all the workers
-                processResumeMessage(spreadMessage, (ResumoInfo) retrievedObject);
+                // Resume Multicast Message
+                if (retrievedObject instanceof ResumoInfo) {
+                    System.out.println("ResumeInfo message from SpreadGroup Received");
+                    // TODO somehow stop all the workers
+                    processResumeMessage(spreadMessage, (ResumoInfo) retrievedObject);
 
-            // Election Multicast Message
-            }else if (retrievedObject instanceof ElectionInfo)
-                processElectionMessage(spreadMessage, (ElectionInfo)retrievedObject);
+                    // Election Multicast Message
+                } else if (retrievedObject instanceof ElectionInfo)
+                    processElectionMessage(spreadMessage, (ElectionInfo) retrievedObject);
 
-            // Merge All Files
-            if (isLeader) {
-                GlusterFileManager.mergeFilesByRoutingKey(this.type, this.fileName);
-                sendNotification(this.exchangeName, this.fileName);
+                // Merge All Files
+                if (isLeader) {
+                    GlusterFileManager.mergeFilesByRoutingKey(this.type, this.fileName);
+                    sendNotification(this.exchangeName, this.fileName);
+                }
             }
-
         } catch (SpreadException e) {
+            System.out.println("Error receiving message from Spread Group: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -91,6 +95,7 @@ public class SpreadMessageListener implements BasicMessageListener {
     private void processElectionMessage(SpreadMessage spreadMessage, ElectionInfo retrievedObject) {
         MembershipInfo info = spreadMessage.getMembershipInfo();
         int receivedLeaderId = retrievedObject.getId();
+        System.out.println("inside processElectionMessage");
 
         if (info.isSelfLeave()) {
             // TODO, do smt?
@@ -113,19 +118,4 @@ public class SpreadMessageListener implements BasicMessageListener {
             System.err.println("Not connected to Spread group");
         }
     }
-
-
-
-    /*
-    // Method to stop the server
-    public void stopServer() {
-        try {
-            connection.remove(this);
-            group.leave();
-            connection.disconnect();
-        } catch (SpreadException e) {
-            e.printStackTrace();
-        }
-    }
-    */
 }

@@ -1,4 +1,11 @@
-workerapp\SpreadMessageListener.class
+workerapp\rabbit\RabbitCallbackCancel.class
+workerapp\spread\SpreadMessageListener.class
 workerapp\Worker.class
-workerapp\WorkerCallbackCancel.class
+workerapp\spread\ResumoInfo.class
+workerapp\spread\GroupMember.class
+workerapp\rabbit\RabbitProducer.class
+workerapp\rabbit\RabbitCallbackConsumer.class
+workerapp\gluster\GlusterFileManager.class
+workerapp\rabbit\RabbitConsumer.class
+workerapp\spread\ElectionInfo.class
 workerapp\WorkerCallback.class
