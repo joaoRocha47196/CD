@@ -1,5 +1,7 @@
 package servercallers;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 
 public class ResumeInfo implements Serializable {
@@ -10,6 +12,7 @@ public class ResumeInfo implements Serializable {
     public ResumeInfo(String exchangeName, String productType, String filename) {
         this.exchangeName = exchangeName;
         this.productType = productType;
+        this.filename = filename;
     }
 
     public String getExchangeName() {
@@ -34,5 +37,11 @@ public class ResumeInfo implements Serializable {
 
     public void setProductType(String productType) {
         this.productType = productType;
+    }
+
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

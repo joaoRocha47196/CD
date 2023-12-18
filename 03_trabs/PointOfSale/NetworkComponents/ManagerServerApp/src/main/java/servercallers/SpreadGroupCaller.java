@@ -1,10 +1,12 @@
 package servercallers;
 
+import com.google.gson.Gson;
 import spread.SpreadConnection;
 import spread.SpreadException;
 import spread.SpreadMessage;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 
 public class SpreadGroupCaller {
 
@@ -27,7 +29,13 @@ public class SpreadGroupCaller {
             spreadMessage.setSafe();
             spreadMessage.addGroup(SPREAD_GROUP_NAME);
 
-            spreadMessage.setObject(new ResumeInfo(exchangeName, productType, filename));
+            // Create a CommonMessage with type "ResumoInfo"
+            CommonMessage commonMessage = new CommonMessage("ResumoInfo", new ResumeInfo(exchangeName, productType, filename).toString());
+            // Convert CommonMessage to JSON string
+            String commonMessageJson = new Gson().toJson(commonMessage);
+            // Set JSON string as data in SpreadMessage
+            spreadMessage.setData(commonMessageJson.getBytes(StandardCharsets.UTF_8));
+
             sendMulticast(spreadMessage);
         } catch (SpreadException e) {
             System.err.println("Error sending multicast message to Spread Group: " + e.getMessage());

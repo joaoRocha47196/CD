@@ -2,6 +2,7 @@ workerapp\rabbit\RabbitCallbackCancel.class
 workerapp\spread\SpreadMessageListener.class
 workerapp\Worker.class
 workerapp\spread\ResumoInfo.class
+workerapp\spread\CommonMessage.class
 workerapp\spread\GroupMember.class
 workerapp\rabbit\RabbitProducer.class
 workerapp\rabbit\RabbitCallbackConsumer.class

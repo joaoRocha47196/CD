@@ -1,5 +1,7 @@
 package workerapp.spread;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 
 public class ResumoInfo implements Serializable {
@@ -10,6 +12,7 @@ public class ResumoInfo implements Serializable {
     public ResumoInfo(String exchangeName, String productType, String filename) {
         this.exchangeName = exchangeName;
         this.productType = productType;
+        this.filename = filename;
     }
 
     public String getExchangeName() {
@@ -34,5 +37,11 @@ public class ResumoInfo implements Serializable {
 
     public void setProductType(String productType) {
         this.productType = productType;
+    }
+
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

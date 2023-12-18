@@ -2,6 +2,7 @@ rabbit\RabbitCallbackCancel.class
 rabbit\RabbitConsumerNotification.class
 server\ManagerServer.class
 rabbit\RabbitCallbackConsumer.class
+servercallers\CommonMessage.class
 servercallers\SpreadGroupCaller.class
 services\UMService.class
 servercallers\ResumeInfo.class

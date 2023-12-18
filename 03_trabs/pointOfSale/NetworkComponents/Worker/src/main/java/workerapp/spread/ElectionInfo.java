@@ -1,5 +1,7 @@
 package workerapp.spread;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 
 public class ElectionInfo implements Serializable {
@@ -15,5 +17,11 @@ public class ElectionInfo implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

@@ -1,13 +1,14 @@
 package workerapp.spread;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
+import com.google.gson.Gson;
 import spread.*;
 import workerapp.gluster.GlusterFileManager;
 
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import static workerapp.Worker.sendNotification;
 
@@ -18,6 +19,7 @@ public class SpreadMessageListener implements BasicMessageListener {
     private String exchangeName;
     private String type;
     private String fileName;
+    private Set<SpreadGroup> groupMembers = new HashSet<>();
 
     private static final String SPREAD_GROUP_NAME = "SalesWorkers";
 
@@ -28,53 +30,61 @@ public class SpreadMessageListener implements BasicMessageListener {
 
     @Override
     public void messageReceived(SpreadMessage spreadMessage) {
-        try {
-            System.out.println("Received message from Spread Group: " + spreadMessage.getSender());
-            if (spreadMessage.isRegular()) {
-                Object retrievedObject = spreadMessage.getObject();
+        System.out.println("Received message from Spread Group: " + spreadMessage.getSender());
+        if (spreadMessage.isRegular()) {
 
-                // Resume Multicast Message
-                if (retrievedObject instanceof ResumoInfo) {
-                    System.out.println("ResumeInfo message from SpreadGroup Received");
-                    // TODO somehow stop all the workers
-                    processResumeMessage(spreadMessage, (ResumoInfo) retrievedObject);
+            String jsonString = new String(spreadMessage.getData(), StandardCharsets.UTF_8);
+            CommonMessage commonMessage = new Gson().fromJson(jsonString, CommonMessage.class);
 
-                    // Election Multicast Message
-                } else if (retrievedObject instanceof ElectionInfo)
-                    processElectionMessage(spreadMessage, (ElectionInfo) retrievedObject);
+            if ("ResumoInfo".equals(commonMessage.getType())) {
+                System.out.println("ResumeInfo message from SpreadGroup Received");
+                // TODO somehow stop all the workers
+                ResumoInfo resumoInfo = new Gson().fromJson(commonMessage.getData(), ResumoInfo.class);
+                System.out.println("ResumoInfo: " + resumoInfo.toString());
+                processResumeMessage(resumoInfo);
 
-                // Merge All Files
-                if (isLeader) {
-                    GlusterFileManager.mergeFilesByRoutingKey(this.type, this.fileName);
-                    sendNotification(this.exchangeName, this.fileName);
-                }
+                // Election Multicast Message
+            } else if ("ElectionInfo".equals(commonMessage.getType())) {
+                System.out.println("ElectionInfo message from SpreadGroup Received");
+                ElectionInfo electionInfo = new Gson().fromJson(commonMessage.getData(), ElectionInfo.class);
+                System.out.println("ElectionInfo: " + electionInfo.toString());
+                processElectionMessage(electionInfo);
             }
-        } catch (SpreadException e) {
-            System.out.println("Error receiving message from Spread Group: " + e.getMessage());
-            e.printStackTrace();
+
+            // Merge All Files
+            if (isLeader) {
+                System.out.println("Leader is merging files");
+                GlusterFileManager.mergeFilesByRoutingKey(this.type, this.fileName);
+                sendNotification(this.exchangeName, this.fileName);
+            }
+        } else if (spreadMessage.isMembership()) {
+            MembershipInfo membershipInfo = spreadMessage.getMembershipInfo();
+            if (membershipInfo.isRegularMembership()) {
+                SpreadGroup[] members = membershipInfo.getMembers();
+                System.out.println("Group Members: " + members.length);
+
+                // Update group membership information
+                groupMembers.clear();
+                groupMembers.addAll(Arrays.asList(members));
+            }
         }
     }
 
 
-    private void processResumeMessage(SpreadMessage spreadMessage, ResumoInfo retrievedObject) {
-        MembershipInfo info = spreadMessage.getMembershipInfo();
-        // TODO do smt?
+    private void processResumeMessage(ResumoInfo retrievedObject) {
         this.exchangeName = retrievedObject.getExchangeName();
         this.type = retrievedObject.getProductType();
         this.fileName = retrievedObject.getFileName();
 
-        if (info.isSelfLeave()) {
-            System.out.println("Left group:"+info.getGroup().toString());
-        } else {
-            SpreadGroup[] members = info.getMembers();
-            findMemberWithHighestId(members);
-            sendElectionMessage();
-        }
+        SpreadGroup[] members = groupMembers.toArray(new SpreadGroup[0]);
+        System.out.println("Group Members: " + members.length);
+        findMemberWithHighestId(members);
+        sendElectionMessage();
     }
 
-    private void findMemberWithHighestId(SpreadGroup[] members){
+    private void findMemberWithHighestId(SpreadGroup[] members){ //choose random
         for (SpreadGroup member : members) {
-            int currentID = Integer.parseInt(member.toString());
+            int currentID = member.hashCode();
             if (currentID > this.id)
                 this.id = currentID;
         }
@@ -85,29 +95,28 @@ public class SpreadMessageListener implements BasicMessageListener {
             SpreadMessage spreadMessage = new SpreadMessage();
             spreadMessage.setSafe();
             spreadMessage.addGroup(SPREAD_GROUP_NAME);
-            spreadMessage.setObject(new ElectionInfo(this.id));
+
+            CommonMessage commonMessage = new CommonMessage("ElectionInfo", new ElectionInfo(this.id).toString());
+            String commonMessageJson = new Gson().toJson(commonMessage);
+            spreadMessage.setData(commonMessageJson.getBytes(StandardCharsets.UTF_8));
+
             sendMulticast(spreadMessage);
+
         } catch (SpreadException e) {
             System.err.println("Error sending multicast message to Spread Group: " + e.getMessage());
         }
     }
 
-    private void processElectionMessage(SpreadMessage spreadMessage, ElectionInfo retrievedObject) {
-        MembershipInfo info = spreadMessage.getMembershipInfo();
+    private void processElectionMessage(ElectionInfo retrievedObject) {
         int receivedLeaderId = retrievedObject.getId();
-        System.out.println("inside processElectionMessage");
+        System.out.println("Received Leader ID: " + receivedLeaderId);
 
-        if (info.isSelfLeave()) {
-            // TODO, do smt?
-            System.out.println("Left group:"+info.getGroup().toString());
+        if (receivedLeaderId == this.id) {
+            isLeader = true;
+            System.out.println("Este worker é o líder.");
         } else {
-            if (receivedLeaderId == this.id) {
-                isLeader = true;
-                System.out.println("Este worker é o líder.");
-            } else {
-                isLeader = false;
-                System.out.println("Este worker não é o líder.");
-            }
+            isLeader = false;
+            System.out.println("Este worker não é o líder.");
         }
     }
 
