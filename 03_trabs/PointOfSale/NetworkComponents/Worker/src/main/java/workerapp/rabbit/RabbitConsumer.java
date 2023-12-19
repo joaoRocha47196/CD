@@ -65,7 +65,7 @@ public class RabbitConsumer {
             RabbitCallbackConsumer workerCallback = new RabbitCallbackConsumer(queueName, workerName);
             RabbitCallbackCancel cancelCallback = new RabbitCallbackCancel();
 
-            rabbitChannel.basicConsume(queueName, false, workerCallback, cancelCallback);
+            rabbitChannel.basicConsume(queueName, true, workerCallback, cancelCallback);
         } catch (IOException e) {
             System.out.println("Error connecting to RabbitMQ");
         }

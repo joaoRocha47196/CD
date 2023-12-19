@@ -73,7 +73,7 @@ public class UMService extends UMServiceGrpc.UMServiceImplBase {
 
             responseObserver.onCompleted();
         } catch (IOException e) {
-            responseObserver.onError(new Exception("Error downloading processed image"));
+            responseObserver.onError(new Exception("Error downloading merged file: " + e.getMessage()));
         }
     }
 }

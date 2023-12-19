@@ -4,6 +4,7 @@ Gluster:
 sudo service glusterd start
 sudo mount -t glusterfs tf-node2:/glustervol /var/sharedfiles (change tf-node1 depending on which vm u are running)
 
+
 Spread:
 # executa o spread na vm
 /usr/local/sbin/spread -c /usr/local/etc/vmsSpread.conf > /tmp/spreadlogs 2>&1 &

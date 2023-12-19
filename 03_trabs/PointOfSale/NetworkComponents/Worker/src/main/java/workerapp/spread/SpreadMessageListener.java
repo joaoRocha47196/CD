@@ -20,6 +20,8 @@ public class SpreadMessageListener implements BasicMessageListener {
     private String type;
     private String fileName;
     private Set<SpreadGroup> groupMembers = new HashSet<>();
+    private int current = -1;
+    private int selected = -1;
 
     private static final String SPREAD_GROUP_NAME = "SalesWorkers";
 
@@ -56,18 +58,43 @@ public class SpreadMessageListener implements BasicMessageListener {
                 System.out.println("Leader is merging files");
                 GlusterFileManager.mergeFilesByRoutingKey(this.type, this.fileName);
                 sendNotification(this.exchangeName, this.fileName);
+                isLeader = false;
             }
         } else if (spreadMessage.isMembership()) {
             MembershipInfo membershipInfo = spreadMessage.getMembershipInfo();
             if (membershipInfo.isRegularMembership()) {
                 SpreadGroup[] members = membershipInfo.getMembers();
-                System.out.println("Group Members: " + members.length);
+                if (this.current == -1)
+                    this.current = membershipInfo.getJoined().hashCode();
+                System.out.println("Current: " + this.current);
+                for (SpreadGroup member : members) {
+                    System.out.println("Member ID: " + member.hashCode());
+                }
 
                 // Update group membership information
                 groupMembers.clear();
                 groupMembers.addAll(Arrays.asList(members));
             }
         }
+
+        /*
+        } else if (spreadMessage.isMembership()) {
+            MembershipInfo membershipInfo = spreadMessage.getMembershipInfo();
+            if (membershipInfo.isRegularMembership()) {
+                SpreadGroup[] members = membershipInfo.getMembers();
+                System.out.println("Group ID: " + membershipInfo.getGroupID().toString());
+                String groupID = membershipInfo.getGroupID().toString();
+                String[] a = groupID.split(" ");
+                groupMembers.add(Integer.valueOf(a[2]));
+                membershipInfo.
+
+                // Update group membership information
+                groupMembers.clear();
+                groupMembers.addAll(Arrays.asList(members));
+            }
+        }
+
+         */
     }
 
 
@@ -82,11 +109,11 @@ public class SpreadMessageListener implements BasicMessageListener {
         sendElectionMessage();
     }
 
-    private void findMemberWithHighestId(SpreadGroup[] members){ //choose random
+    private void findMemberWithHighestId(SpreadGroup[] members){
         for (SpreadGroup member : members) {
             int currentID = member.hashCode();
-            if (currentID > this.id)
-                this.id = currentID;
+            if (currentID > this.current)
+                this.selected = currentID;
         }
     }
 
@@ -96,7 +123,7 @@ public class SpreadMessageListener implements BasicMessageListener {
             spreadMessage.setSafe();
             spreadMessage.addGroup(SPREAD_GROUP_NAME);
 
-            CommonMessage commonMessage = new CommonMessage("ElectionInfo", new ElectionInfo(this.id).toString());
+            CommonMessage commonMessage = new CommonMessage("ElectionInfo", new ElectionInfo(this.selected).toString());
             String commonMessageJson = new Gson().toJson(commonMessage);
             spreadMessage.setData(commonMessageJson.getBytes(StandardCharsets.UTF_8));
 
@@ -109,9 +136,8 @@ public class SpreadMessageListener implements BasicMessageListener {
 
     private void processElectionMessage(ElectionInfo retrievedObject) {
         int receivedLeaderId = retrievedObject.getId();
-        System.out.println("Received Leader ID: " + receivedLeaderId);
 
-        if (receivedLeaderId == this.id) {
+        if (receivedLeaderId == this.current) {
             isLeader = true;
             System.out.println("Este worker é o líder.");
         } else {

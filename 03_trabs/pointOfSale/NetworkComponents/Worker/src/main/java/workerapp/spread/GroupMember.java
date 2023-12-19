@@ -16,7 +16,6 @@ public class GroupMember {
         try  {
             this.connection = new SpreadConnection();
             connection.connect(InetAddress.getByName(spreadIP), spreadPort, workerName, false, true);
-            connection.add(new SpreadMessageListener(connection));
         }
         catch(SpreadException e)  {
             System.err.println("There was an error connecting to the daemon.");
@@ -32,6 +31,7 @@ public class GroupMember {
         try {
             SpreadGroup group = new SpreadGroup();
             group.join(connection, SPREAD_GROUP_NAME);
+            connection.add(new SpreadMessageListener(connection));
         } catch (SpreadException e) {
             e.printStackTrace();
         }

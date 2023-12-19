@@ -21,6 +21,7 @@ public class DownloadFileStreamObserver implements StreamObserver<FileResponse> 
             byte[] chunk = fileResponse.getProcessedBytes().toByteArray();
             outputStream.write(chunk);
         } catch (IOException e) {
+            System.out.println("Error writing chunk to file: " + e.getMessage());
             onError(e);
         }
     }

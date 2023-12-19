@@ -1,6 +1,7 @@
 package workerapp.spread;
 
 import com.google.gson.Gson;
+import spread.SpreadGroup;
 
 import java.io.Serializable;
 

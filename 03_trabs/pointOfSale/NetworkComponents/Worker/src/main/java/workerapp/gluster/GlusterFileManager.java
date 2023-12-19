@@ -10,13 +10,9 @@ import java.util.stream.Collectors;
 public class GlusterFileManager implements Serializable {
     private static final String GLUSTER_DIRECTORY_PATH ="/var/sharedfiles/";
 
-    private static String generateFileName(String routingKey, String workerName){
-        return routingKey.toLowerCase() + "/file_" + workerName + ".txt";
-    }
-
     public static void mergeFilesByRoutingKey(String routingKey, String filename) {
         String directoryPath = GLUSTER_DIRECTORY_PATH + routingKey.toLowerCase();
-        String fileDirectory = directoryPath + "/" + filename;
+        String fileDirectory = GLUSTER_DIRECTORY_PATH + "/" + filename;
         System.out.println("Merging files in directory: " + directoryPath);
         try {
             List<Path> filesInDirectory = Files.list(Paths.get(directoryPath))
@@ -29,7 +25,7 @@ public class GlusterFileManager implements Serializable {
                 return; // Skip merging if there are no files
             }
 
-            try (BufferedWriter mergedFileWriter = Files.newBufferedWriter(Paths.get(filename))) {
+            try (BufferedWriter mergedFileWriter = Files.newBufferedWriter(Paths.get(fileDirectory))) {
                 for (Path filePath : filesInDirectory) {
                     List<String> lines = Files.readAllLines(filePath);
                     for (String line : lines) {
@@ -38,7 +34,7 @@ public class GlusterFileManager implements Serializable {
                     }
                 }
                 System.out.println("All files in directory for routing key " + routingKey +
-                        " have been merged into " + filename);
+                        " have been merged into " + fileDirectory);
             } catch (IOException e) {
                 System.out.println("Error writing to merged file: " + e.getMessage());
             }
